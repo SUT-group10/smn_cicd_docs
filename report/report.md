@@ -826,15 +826,218 @@ Nguồn và các lệnh thu dữ liệu được tổng hợp tại [minh chứn
 
 ### 6.1. Kiến trúc và thành phần
 
+**Vai trò của Jenkins trong thực nghiệm**
+
+Jenkins được triển khai làm nền tảng CI đối chiếu với GitHub Actions. Nhóm sử dụng lại backend EShop, harness và các npm script đã chuẩn hóa, đồng thời tự chuẩn bị môi trường điều phối, agent và cơ chế công bố báo cáo. Mục tiêu là kiểm tra khả năng thực thi bộ test, giữ đúng trạng thái lỗi và cung cấp bằng chứng có thể truy vết trên một mô hình CI do nhóm quản lý.
+
+Hệ thống gồm repository GitHub, Jenkins controller và agent riêng. Repository chứa mã nguồn, bộ test và `Jenkinsfile`. Controller quản lý job, đọc định nghĩa pipeline, phân công công việc và lưu kết quả. Agent nhận các bước thực thi, checkout mã nguồn, chạy lệnh npm và tạo các file báo cáo. Pipeline chọn agent bằng label `eshop-node`; tên node trong môi trường triển khai là `eshop-agent`.
+
+![Kiến trúc Jenkins của EShop](assets/jenkins/jenkins-architecture.png)
+
+*Hình 8. Mô hình Jenkins của nhóm: controller điều phối, agent thực thi sáu stage; các báo cáo và artifact được gắn với từng build. Sơ đồ được dùng chung với tài liệu hướng dẫn Jenkins.*
+
+**Tổ chức job và kết nối GitHub**
+
+Job `eshop-ci` được tạo theo loại Multibranch Pipeline. Branch Source trỏ tới repository của nhóm; Jenkins quét các nhánh có `Jenkinsfile` để tạo job con tương ứng. Lượt baseline trong chương này thuộc job con của nhánh `cicd/jenkins`. Cách tổ chức này cho phép định nghĩa pipeline đi cùng phiên bản mã nguồn của nhánh, thay vì duy trì toàn bộ các lệnh kiểm tra bằng thao tác cấu hình thủ công trên giao diện.
+
+Trong quy trình đã tài liệu hóa, nhóm dùng Scan Multibranch Pipeline để phát hiện nhánh và Build Now để chạy job con. Webhook là chiều GitHub thông báo thay đổi tới Jenkins khi muốn tự động kích hoạt; commit status là chiều Jenkins gửi kết quả về GitHub. Hai cơ chế này có mục đích và quyền truy cập riêng. Việc một build đã gửi status thành công không tự chứng minh webhook đã được cấu hình hoặc push luôn tự kích hoạt build.
+
+Agent kết nối tới controller qua WebSocket bằng tên node và agent secret. Credential truy cập GitHub được quản lý trong Jenkins và gắn vào Branch Source; nó khác với secret kết nối agent. Các giá trị bí mật không nằm trong `Jenkinsfile` hoặc nội dung báo cáo. Cấu hình node trong hướng dẫn triển khai dùng một executor cho agent và đặt số executor của Built-In Node về 0 để công việc kiểm tra chạy trên agent riêng.
+
 ### 6.2. Môi trường triển khai
+
+**Controller và agent bằng Docker Compose**
+
+Hạ tầng được khai báo trong `infra/jenkins/compose.yaml`, `compose.agent.yaml` và `agent.Dockerfile`. Controller dùng image Jenkins có JDK 21; agent được build từ image inbound agent, bổ sung Node/npm, Git và các công cụ cần cho native module như Python, Make và G++. Controller được ánh xạ tới `127.0.0.1:8080` trên máy chạy Docker; agent sử dụng địa chỉ nội bộ `http://controller:8080/` để kết nối.
+
+*Bảng 19. Môi trường được ghi nhận cho thực nghiệm Jenkins*
+
+| Thành phần | Phiên bản hoặc cấu hình |
+| --- | --- |
+| Máy chủ triển khai | Windows, Docker Desktop với Linux engine |
+| Jenkins controller | `jenkins/jenkins:2.580.1-jdk21`, image được chỉ định kèm SHA-256 digest |
+| Agent base | `jenkins/inbound-agent`, JDK 21, image được chỉ định kèm digest |
+| Node / npm trên agent | `v24.14.0` / `11.9.0` |
+| Git trên agent | `2.47.3` tại build baseline |
+| Hệ điều hành thực thi test | Debian GNU/Linux 13 (trixie), container Linux |
+| Node / label | `eshop-agent` / `eshop-node` |
+| Workspace và cache | `/home/jenkins/agent` và `/home/jenkins/.npm` |
+
+Máy chủ là Windows nhưng các lệnh của pipeline chạy trong agent Linux. Đây là lý do `Jenkinsfile` sử dụng `sh` và Bash, không sử dụng PowerShell cho các bước npm. Phiên bản hệ điều hành và runtime trong Bảng 19 được đối chiếu với `environment.log` của build, không suy ra từ hệ điều hành máy cá nhân.
+
+Digest giúp cố định image nguồn; Dockerfile lấy Node/npm từ image Node `24.14.0` đã chỉ định. Tuy nhiên, lệnh cài Git và công cụ hệ thống qua apt không khóa riêng phiên bản từng package. Vì vậy, nhóm ghi nhận Git thực tế của build và kiểm tra Node ngay trong pipeline, thay vì khẳng định mọi lần build lại image đều có toàn bộ package giống hệt nhau.
+
+**Plugin phục vụ pipeline và báo cáo**
+
+*Bảng 20. Các plugin và chức năng được sử dụng*
+
+| Plugin | Vai trò trong triển khai |
+| --- | --- |
+| Pipeline (`workflow-aggregator`) | Cung cấp khả năng chạy pipeline khai báo trong `Jenkinsfile` |
+| Git (`git`) | Checkout mã nguồn vào workspace |
+| GitHub Branch Source (`github-branch-source`) | Phát hiện nhánh, tổ chức Multibranch Pipeline và tích hợp GitHub |
+| JUnit (`junit`) | Đọc JUnit XML để hiển thị kết quả và lỗi từng test |
+| Coverage (`coverage`) | Đọc Cobertura XML, tổng hợp coverage và hiển thị mã nguồn |
+| Timestamper (`timestamper`) | Gắn timestamp vào console log |
+| Pipeline Graph View / Pipeline: Stage View | Xem luồng stage hoặc bảng kết quả theo build |
+
+Danh sách phiên bản plugin tại thời điểm dựng môi trường được lưu trong minh chứng D-01; Stage View được cài bổ sung để có bảng các stage như Hình 9. Việc cài plugin chỉ cung cấp khả năng hiển thị: pipeline vẫn phải gọi publisher và có file báo cáo hợp lệ thì build mới có trang Tests hoặc Coverage.
+
+Các Docker volume tách dữ liệu controller, workspace agent và npm cache. Nhờ đó, việc dừng rồi khởi động lại container có thể giữ cấu hình và dữ liệu đã lưu. Log kiểm chứng D-01 ghi nhận agent kết nối lại sau thao tác stop/start. Đây là kết quả của phép kiểm tra khởi động lại đã lưu, chưa phải bằng chứng về cơ chế dự phòng hoặc khả năng tự phục hồi trong mọi sự cố hạ tầng.
 
 ### 6.3. Thiết kế pipeline
 
+**Sáu stage nối tiếp**
+
+Pipeline được viết bằng Declarative Pipeline trong `Jenkinsfile`, sử dụng một agent cho toàn bộ lượt chạy. Nhóm tắt checkout mặc định bằng `skipDefaultCheckout(true)` và thực hiện checkout tại stage riêng để kiểm soát việc làm sạch workspace.
+
+*Bảng 21. Các stage trong Jenkinsfile*
+
+| Stage | Lệnh hoặc hành vi chính | Mục đích |
+| --- | --- | --- |
+| Checkout | `deleteDir()`, `checkout scm` | Xóa nội dung workspace rồi lấy mã của phiên bản cần build |
+| Environment | Ghi commit, nhánh, Node, npm, Git, OS, kernel và đường dẫn cache | Nhận diện môi trường; dừng nếu Node khác `v24.14.0` |
+| Install | `npm ci --no-audit --no-fund` trong `backend` | Cài dependency theo lockfile |
+| Lint | `npm run lint` | Kiểm tra mã bằng ESLint với cấu hình của dự án |
+| Build | `npm run build` | Kiểm tra cú pháp backend bằng Node |
+| Tests | `npm run test:ci -- --json --outputFile=test-results/results.json` | Chạy đầy đủ unit, API, smoke, harness và thu báo cáo |
+
+Việc làm sạch workspace loại bỏ dependency và báo cáo còn lại từ build trước trong thư mục làm việc. npm cache nằm ở volume riêng nên vẫn có thể được dùng khi cài đặt. Hai cơ chế này giải quyết hai nhu cầu khác nhau: tránh đọc nhầm đầu ra cũ và tận dụng dữ liệu tải dependency đã có.
+
+Các stage chạy tuần tự; một lệnh thất bại làm stage tương ứng fail và các stage thông thường phía sau bị bỏ qua. Jenkinsfile hiện gom toàn bộ test vào một stage `Tests`, khác với cách GitHub Actions chạy riêng từng tầng rồi chạy thêm full suite để thu coverage. Trong Jenkins, tên ca và nhóm test được xem qua console, Jest JSON hoặc JUnit report; không có ba stage unit/API/smoke riêng.
+
+**Giữ trạng thái lỗi khi lưu log**
+
+Các lệnh npm chuyển cả stdout và stderr qua `tee` để vừa hiện console vừa lưu file. Ví dụ, stage Tests sử dụng:
+
+```sh
+set -euo pipefail
+npm run test:ci -- --json --outputFile="$LOG_DIR/results.json" 2>&1 | tee "$LOG_DIR/test.log"
+```
+
+Nếu chỉ xét exit code của `tee`, lỗi của lệnh test có thể không được truyền đúng ra shell. Tùy chọn `pipefail` làm pipeline lệnh trả trạng thái lỗi khi một lệnh trong chuỗi thất bại; kết hợp với cách `sh` xử lý exit code, Jenkins ghi nhận Tests fail khi Jest fail. Nhóm không thêm `|| true`, `forceExit` hoặc đổi expected result để làm build xanh.
+
+**Kiểm soát thực thi và lưu lịch sử**
+
+`disableConcurrentBuilds()` xếp các build của cùng job chờ nhau thay vì cho chạy chồng lấn; nó không có nghĩa hủy build cũ khi có build mới. Trong Multibranch Pipeline, tùy chọn này áp dụng cho job nhánh tương ứng, không phải một khóa chung cho mọi nhánh. Môi trường agent còn giới hạn số executor theo cấu hình node.
+
+Pipeline đặt timeout 20 phút và bật timestamp. Với agent khai báo ở cấp pipeline, thời gian chờ được cấp agent không nằm trong timeout thực thi này; một job chờ agent Offline cần được chẩn đoán riêng. Chính sách lưu giữ cấu hình tối đa 20 build và artifact của tối đa 10 build gần nhất. Các giới hạn này là cấu hình vận hành, không được dùng thay thời gian đo của một build cụ thể.
+
 ### 6.4. Báo cáo, artifact và cache
+
+**Công bố báo cáo sau khi test thất bại**
+
+Jest tạo kết quả JSON và coverage; reporter `jest-junit` tạo `test-results/junit.xml`. Khối `post { always }` của stage Tests gọi `junit` và `recordCoverage` sau phần thực thi, kể cả khi lệnh test fail. Nhờ đó, người xem có thể mở trang Tests để xem từng assertion, hoặc trang Coverage để xem các vùng mã đã và chưa được thực thi.
+
+Cấu hình `junit` dùng `allowEmptyResults: false`, nên thiếu báo cáo không bị coi là một lượt kiểm thử hợp lệ không có test. `recordCoverage` đọc `coverage/cobertura-coverage.xml`, bật `enabledForFailure: true` và `failOnError: true` để tiếp tục công bố coverage cho build failure, đồng thời báo lỗi khi xử lý báo cáo gặp vấn đề. Lời gọi Coverage đặt trong `finally` của khối xử lý JUnit, nên vẫn được thử nếu bước công bố JUnit phát sinh lỗi.
+
+Các publisher không thay thế việc chạy test và không làm một lệnh test lỗi trở thành thành công. Nếu build thất bại ở Install hoặc Lint trước khi vào Tests, không thể giả định sẽ có báo cáo test mới. Ngay cả khi Tests đã bắt đầu, file XML vẫn phải được sinh đầy đủ và workspace phải còn truy cập được để publisher xử lý thành công.
+
+**Lưu file để truy vết**
+
+Khối `post { always }` của toàn pipeline gọi `archiveArtifacts` để giữ các file hiện có thuộc những đường dẫn đã cấu hình. Bên cạnh giao diện báo cáo, bản lưu này cho phép kiểm tra lại dữ liệu gốc và phân biệt lỗi test với lỗi publisher.
+
+*Bảng 22. Đầu ra được lưu hoặc công bố trong build Jenkins*
+
+| Đầu ra trong `backend/` | Nội dung và vai trò |
+| --- | --- |
+| `test-results/environment.log` | Commit, nhánh và môi trường thực thi |
+| `test-results/install.log`, `lint.log`, `build.log`, `test.log` | Log các bước đã thực thi |
+| `test-results/results.json` | Trạng thái từng ca, thông báo assertion và kết quả tổng hợp của Jest |
+| `test-results/junit.xml` | Nguồn cho trang Tests của Jenkins |
+| `coverage/cobertura-coverage.xml` | Nguồn cho Coverage plugin |
+| `coverage/coverage-summary.json` | Bộ đếm coverage do Jest xuất để đối chiếu số liệu |
+
+Archive bật `fingerprint: true` và `allowEmptyArchive: true`. Fingerprint hỗ trợ theo dõi file trong Jenkins; tùy chọn cho phép archive rỗng giúp bước lưu file không tự gây thêm lỗi khi pipeline chưa tạo được đầu ra. Vì vậy, archive success không đủ để khẳng định có đầy đủ báo cáo: cần kiểm tra danh sách artifact và trạng thái publisher của chính build.
+
+Hai publisher JUnit/Coverage đặt `skipPublishingChecks: true`, nên báo cáo của chúng được gắn vào Jenkins, không tự phát hành các checks tương ứng lên GitHub. Cơ chế gửi commit status của tích hợp GitHub là phần riêng; build #4 có log xác nhận đã thông báo kết quả commit. Việc có status này cũng chưa xác nhận nó đã được chọn làm required check trong branch protection.
+
+**Cache qua Docker volume**
+
+Agent đặt npm cache ở `/home/jenkins/.npm` và mount volume `npm-cache` vào đường dẫn này. Mỗi build vẫn thực hiện `npm ci` trong workspace đã làm sạch; dữ liệu cache có thể được giữ lại qua các lần chạy và stop/start container. Cache không chứa verdict test hoặc thay cho artifact.
+
+Khác với khóa cache và log restore của GitHub Actions, bằng chứng Jenkins hiện ghi nhận đường dẫn cùng volume tồn tại nhưng chưa đo hoặc xác nhận hit/miss ở từng build. Do đó, báo cáo không gọi build #4 là cache hit và không tính tỷ lệ tăng tốc từ cache. Muốn đánh giá tiếp cần thiết kế lượt đo có và không có dữ liệu cache, giữ các điều kiện còn lại phù hợp và lưu thời gian cài đặt tương ứng.
 
 ### 6.5. Kết quả
 
+**Build được chọn làm mốc**
+
+Kết quả trong chương này lấy từ **build #4 của job `eshop-ci`, nhánh `cicd/jenkins`**, chạy ngày 16/10/2026 lúc 20:04:38,633 (UTC+07:00), tại commit `a559c53acb9a3b03cc05fca8a855bcc59c8eaae8`. Đây là lượt đã hoàn tất và có console, JSON, XML cùng metadata được lưu; các số liệu không phải kết quả của một lần chạy Jenkins mới khi biên soạn chương này.
+
+*Bảng 23. Kết quả thực thi Jenkins build #4*
+
+| Thành phần | Kết quả đã ghi nhận |
+| --- | --- |
+| Checkout | Pass, đúng commit được chọn |
+| Environment / Install / Lint / Build | Pass |
+| Tests | Fail; 39 ca trong 6 suite: 29 pass, 10 fail, 0 skip |
+| Nhóm test | Unit 5/5 pass; API 20/30 pass; smoke 1/1 pass; harness 3/3 pass |
+| Công bố báo cáo | JUnit và Coverage được xử lý thành công |
+| Artifact | Có log và các báo cáo đã xuất của cùng build |
+| Verdict cuối | `FAILURE`, console ghi `script returned exit code 1` |
+| Thời gian build theo metadata Jenkins | 17,600 giây |
+| Thời gian Jest trong console | 1,960 giây |
+
+![Stage View của nhánh cicd/jenkins](assets/jenkins/stage-view-build-4.png)
+
+*Hình 9. Stage View hiển thị các build #1–#4. Hàng #4 có các stage trước Tests thành công, Tests thất bại và Post Actions thành công; số liệu của chương được lấy riêng từ build #4.*
+
+Thời gian build bao gồm các công việc của lượt pipeline, còn thời gian Jest chỉ mô tả lần thực thi bộ test. Hai đại lượng không được dùng thay nhau. Một build đơn lẻ trên agent đã chuẩn bị sẵn cũng chưa đủ để kết luận Jenkins nhanh hơn một nền tảng khác có runtime, runner hoặc trạng thái cache khác.
+
+**Đối chiếu kết quả test với baseline**
+
+Jest JSON và JUnit XML cùng ghi nhận 39 ca, 10 lỗi assertion và không có test skip. Danh sách mười ID fail trùng với baseline local B-04 ở chương 4. Đối chiếu Git giữa commit B-04 và commit build #4 cho thấy `server.js`, `database.js`, các file test thực thi, helper và cấu hình Jest không thay đổi; khác biệt liên quan gồm việc bổ sung reporter và cấu hình CI.
+
+![Danh sách test thất bại trong build 4](assets/jenkins/test-results-build-4.png)
+
+*Hình 10. Trang Tests của build #4 hiển thị tổng 39 ca, 29 pass và 10 fail, cho phép đi từ tên ca tới chi tiết assertion.*
+
+Các dữ liệu này cho thấy bộ test đã chạy được trên agent và tiếp tục phát hiện những hành vi chưa đáp ứng đặc tả. Kết luận không dựa riêng vào màu đỏ của build. Khi đọc một build mới, vẫn cần đối chiếu từng ID, thông báo lỗi và stage; cùng tổng số fail chưa đủ để khẳng định đó là cùng tập lỗi đã biết.
+
+**Coverage và sự khác nhau giữa nguồn số liệu**
+
+*Bảng 24. Coverage của build #4 và nguồn dùng để đọc kết quả*
+
+| Tiêu chí | Jest `coverage-summary.json` | Coverage plugin đọc Cobertura |
+| --- | --- | --- |
+| Statement | 57,98% — 178/307 | Không dùng làm số đối chiếu ở đây |
+| Function / Method | Function: 39,72% — 29/73 | Method: 39,73% — 29/73 |
+| Branch | 39,09% — 52/133 | 41,74% — 48/115 |
+| Line | 61,48% — 174/283 | 61,48% — 174/283 |
+
+Line coverage của hai nguồn trùng nhau. Ở function/method, tỷ lệ hiển thị có khác biệt làm tròn; ở branch, cả bộ đếm và mẫu số đều khác, không chỉ là khác biệt cách viết phần trăm. Bằng chứng hiện có chưa xác định đầy đủ nguyên nhân chênh lệch branch, nên báo cáo giữ riêng từng nguồn và dùng số do Jest xuất khi đối chiếu với baseline hoặc GitHub Actions.
+
+Console của Coverage plugin ghi không có quality gate coverage được đặt. Build #4 fail do exit code của test, không phải vì một ngưỡng phần trăm coverage. Coverage 61,48% cũng không có nghĩa 61,48% yêu cầu nghiệp vụ đã đúng. Các nhận xét so sánh môi trường, thời gian và công sức vận hành được tiếp tục ở chương 7 trên cơ sở các điều kiện đo đã nêu.
+
+Minh chứng được sao chép từ repository mã nguồn và lưu kèm tại [bộ dữ liệu Jenkins build #4](assets/jenkins/evidence/README.md). Định danh bền vững là job, nhánh, số build, SHA và các file đã lưu; URL `localhost` hoặc địa chỉ tunnel tạm thời không phải liên kết mà mọi người đọc đều có thể truy cập.
+
 ### 6.6. Minh họa chẩn đoán lỗi
+
+**Trường hợp được chọn: tổng tiền checkout**
+
+Nhóm chọn `A-CHECKOUT-02` để minh họa cách đi từ trạng thái build tới nguyên nhân nghiệp vụ. Yêu cầu FR-08 quy định backend phải tính tổng tiền từ sản phẩm và số lượng, không tin trực tiếp giá trị tổng tiền do client gửi. Ca test thêm sản phẩm fixture có đơn giá 30.000.000 đồng với số lượng 2, gọi `POST /api/checkout` và cố ý gửi `total_amount: 1`.
+
+Test trước tiên xác nhận request trả HTTP 200, sau đó đọc đơn vừa tạo trong database theo `orderId`. Assertion kiểm tra `order.total_amount` phải bằng `product.price * 2`, tức 60.000.000 đồng. Console build #4 ghi:
+
+```text
+A-CHECKOUT-02 computes the total instead of trusting the client (FR-08)
+Expected: 60000000
+Received: 1
+```
+
+**Từ bằng chứng tới nguyên nhân**
+
+Bước đầu là xác định lỗi nằm ở stage Tests. Checkout, Environment, Install, Lint và Build đã pass trong lượt này; JSON có kết quả đầy đủ của ca test. Những quan sát đó giúp tập trung vào assertion đang fail, thay vì xử lý như trường hợp runner chưa cài được dependency hoặc Jest chưa khởi chạy. Chúng chưa tự loại trừ mọi khả năng lỗi fixture, nên vẫn cần đọc đầu vào và thao tác kiểm tra.
+
+Tiếp theo, chi tiết assertion trong console/JSON trỏ tới `tests/api/cart-orders.test.js:58:32`. Đối chiếu test cho thấy expected được tính từ giá sản phẩm và số lượng chuẩn bị trong fixture, không lấy từ công thức mà endpoint trả về. Dữ liệu `Received: 1` là tổng tiền đã được lưu trong đơn, sau khi API báo checkout thành công.
+
+Cuối cùng, đọc route `POST /api/checkout` ở đúng commit build #4 cho thấy server lấy `total_amount` từ `req.body` rồi truyền trực tiếp giá trị này vào câu lệnh `INSERT INTO orders`. Đường xử lý đó không tính lại tổng từ giá sản phẩm và giỏ hàng. Sự tương ứng giữa đầu vào 1 đồng, bản ghi nhận 1 đồng và mã nguồn ở cùng SHA hỗ trợ kết luận rằng endpoint đang tin tổng tiền của client, trái yêu cầu FR-08.
+
+**Kết luận và giới hạn của phép chẩn đoán**
+
+Trong trường hợp này, assertion fail phản ánh sai lệch nghiệp vụ của SUT baseline. Hướng sửa ở phía sản phẩm là tính tổng tiền bằng dữ liệu giá và số lượng được backend kiểm soát; việc đổi expected thành 1 đồng sẽ làm mất khả năng phát hiện lỗi. Theo phạm vi giữ nguyên SUT của thực nghiệm, nhóm ghi nhận nguyên nhân và giữ ca test để tiếp tục quan sát qua CI.
+
+Chuỗi chẩn đoán thể hiện giá trị của việc lưu đủ commit, trạng thái stage, request, assertion và dữ liệu đầu ra. Chỉ nhìn `FAILURE` chưa đủ xác định nguyên nhân; ngược lại, việc có JSON/XML giúp người đọc đi tới một kết luận có thể kiểm tra lại. Kết luận của ca này cũng không thay thế phân tích riêng cho chín ca fail còn lại hoặc cho các lỗi xuất hiện trên phiên bản SUT khác.
 
 ## 7. So sánh GitHub Actions và Jenkins
 
@@ -919,5 +1122,8 @@ Nguồn và các lệnh thu dữ liệu được tổng hợp tại [minh chứn
 37. GitHub Docs. [*Evaluate expressions in workflows and actions — Status check functions*](https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#status-check-functions).
 38. GitHub Actions. [*actions/cache v4 — Restore action*](https://github.com/actions/cache/blob/v4/restore/README.md).
 39. GitHub Actions. [*actions/upload-artifact v4*](https://github.com/actions/upload-artifact/blob/v4/README.md).
+40. Jenkins Pipeline Steps Reference. [*JUnit — Archive JUnit-formatted test results*](https://www.jenkins.io/doc/pipeline/steps/junit/).
+41. Jenkins Pipeline Steps Reference. [*Coverage — Record code coverage results*](https://www.jenkins.io/doc/pipeline/steps/coverage/).
+42. Jenkins User Handbook. [*Pipeline Syntax*](https://www.jenkins.io/doc/book/pipeline/syntax/).
 
 ## Phụ lục A. Truy vết số liệu
