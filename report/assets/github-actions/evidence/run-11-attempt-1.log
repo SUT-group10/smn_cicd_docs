@@ -1,0 +1,1404 @@
+Backend quality gates	Set up job	﻿2026-10-22T16:54:58.1994429Z Current runner version: '2.338.0'
+Backend quality gates	Set up job	2026-10-22T16:54:58.2031323Z ##[group]Runner Image Provisioner
+Backend quality gates	Set up job	2026-10-22T16:54:58.2032659Z Hosted Compute Agent
+Backend quality gates	Set up job	2026-10-22T16:54:58.2033747Z Version: 20261015.610
+Backend quality gates	Set up job	2026-10-22T16:54:58.2034838Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+Backend quality gates	Set up job	2026-10-22T16:54:58.2036191Z Build Date: 2026-10-14T17:06:54Z
+Backend quality gates	Set up job	2026-10-22T16:54:58.2037864Z Worker ID: {f0a0fe12-fb08-48c1-ab37-25c9052cd48a}
+Backend quality gates	Set up job	2026-10-22T16:54:58.2039092Z Region: eastus
+Backend quality gates	Set up job	2026-10-22T16:54:58.2040170Z Cloud: Azure
+Backend quality gates	Set up job	2026-10-22T16:54:58.2041155Z ##[endgroup]
+Backend quality gates	Set up job	2026-10-22T16:54:58.2043429Z ##[group]Operating System
+Backend quality gates	Set up job	2026-10-22T16:54:58.2044605Z Ubuntu
+Backend quality gates	Set up job	2026-10-22T16:54:58.2045493Z 22.04.5
+Backend quality gates	Set up job	2026-10-22T16:54:58.2046563Z LTS
+Backend quality gates	Set up job	2026-10-22T16:54:58.2047740Z ##[endgroup]
+Backend quality gates	Set up job	2026-10-22T16:54:58.2048699Z ##[group]Runner Image
+Backend quality gates	Set up job	2026-10-22T16:54:58.2049819Z Image: ubuntu-22.04
+Backend quality gates	Set up job	2026-10-22T16:54:58.2050828Z Version: 20261018.327.1
+Backend quality gates	Set up job	2026-10-22T16:54:58.2052861Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261018.327/images/ubuntu/Ubuntu2204-Readme.md
+Backend quality gates	Set up job	2026-10-22T16:54:58.2055766Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261018.327
+Backend quality gates	Set up job	2026-10-22T16:54:58.2057843Z ##[endgroup]
+Backend quality gates	Set up job	2026-10-22T16:54:58.2059914Z ##[group]GITHUB_TOKEN Permissions
+Backend quality gates	Set up job	2026-10-22T16:54:58.2062853Z Contents: read
+Backend quality gates	Set up job	2026-10-22T16:54:58.2063855Z Metadata: read
+Backend quality gates	Set up job	2026-10-22T16:54:58.2065226Z ##[endgroup]
+Backend quality gates	Set up job	2026-10-22T16:54:58.2068449Z Secret source: Actions
+Backend quality gates	Set up job	2026-10-22T16:54:58.2070110Z Cache mode: write
+Backend quality gates	Set up job	2026-10-22T16:54:58.2071278Z Prepare workflow directory
+Backend quality gates	Set up job	2026-10-22T16:54:58.2642955Z Prepare all required actions
+Backend quality gates	Set up job	2026-10-22T16:54:58.2713204Z Getting action download info
+Backend quality gates	Set up job	2026-10-22T16:54:58.4710604Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Backend quality gates	Set up job	2026-10-22T16:54:58.5974200Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+Backend quality gates	Set up job	2026-10-22T16:54:58.7500066Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+Backend quality gates	Set up job	2026-10-22T16:54:58.8526108Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Backend quality gates	Set up job	2026-10-22T16:54:59.1005494Z Complete job name: Backend quality gates
+Backend quality gates	Check out source	﻿2026-10-22T16:54:59.2144057Z ##[group]Run actions/checkout@v4
+Backend quality gates	Check out source	2026-10-22T16:54:59.2145494Z with:
+Backend quality gates	Check out source	2026-10-22T16:54:59.2146453Z   repository: SUT-group10/eshop-sut-group10
+Backend quality gates	Check out source	2026-10-22T16:54:59.2154875Z   token: ***
+Backend quality gates	Check out source	2026-10-22T16:54:59.2155762Z   ssh-strict: true
+Backend quality gates	Check out source	2026-10-22T16:54:59.2156645Z   ssh-user: git
+Backend quality gates	Check out source	2026-10-22T16:54:59.2157842Z   persist-credentials: true
+Backend quality gates	Check out source	2026-10-22T16:54:59.2158831Z   clean: true
+Backend quality gates	Check out source	2026-10-22T16:54:59.2159737Z   sparse-checkout-cone-mode: true
+Backend quality gates	Check out source	2026-10-22T16:54:59.2160790Z   fetch-depth: 1
+Backend quality gates	Check out source	2026-10-22T16:54:59.2161665Z   fetch-tags: false
+Backend quality gates	Check out source	2026-10-22T16:54:59.2162580Z   show-progress: true
+Backend quality gates	Check out source	2026-10-22T16:54:59.2163492Z   lfs: false
+Backend quality gates	Check out source	2026-10-22T16:54:59.2164330Z   submodules: false
+Backend quality gates	Check out source	2026-10-22T16:54:59.2165262Z   set-safe-directory: true
+Backend quality gates	Check out source	2026-10-22T16:54:59.2166282Z   allow-unsafe-pr-checkout: false
+Backend quality gates	Check out source	2026-10-22T16:54:59.2167871Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.3393335Z Syncing repository: SUT-group10/eshop-sut-group10
+Backend quality gates	Check out source	2026-10-22T16:54:59.3397608Z ##[group]Getting Git version info
+Backend quality gates	Check out source	2026-10-22T16:54:59.3400042Z Working directory is '/home/runner/work/eshop-sut-group10/eshop-sut-group10'
+Backend quality gates	Check out source	2026-10-22T16:54:59.3403576Z [command]/usr/bin/git version
+Backend quality gates	Check out source	2026-10-22T16:54:59.3432951Z git version 2.55.0
+Backend quality gates	Check out source	2026-10-22T16:54:59.3491624Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.3506509Z Temporarily overriding HOME='/home/runner/work/_temp/9d858bae-067e-4b18-a2e8-b5cfa6c4b165' before making global git config changes
+Backend quality gates	Check out source	2026-10-22T16:54:59.3510514Z Adding repository directory to the temporary git global config as a safe directory
+Backend quality gates	Check out source	2026-10-22T16:54:59.3514299Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eshop-sut-group10/eshop-sut-group10
+Backend quality gates	Check out source	2026-10-22T16:54:59.3553639Z Deleting the contents of '/home/runner/work/eshop-sut-group10/eshop-sut-group10'
+Backend quality gates	Check out source	2026-10-22T16:54:59.3560911Z ##[group]Initializing the repository
+Backend quality gates	Check out source	2026-10-22T16:54:59.3565196Z [command]/usr/bin/git init /home/runner/work/eshop-sut-group10/eshop-sut-group10
+Backend quality gates	Check out source	2026-10-22T16:54:59.3683348Z hint: Using 'master' as the name for the initial branch. This default branch name
+Backend quality gates	Check out source	2026-10-22T16:54:59.3686520Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Backend quality gates	Check out source	2026-10-22T16:54:59.3689593Z hint: to use in all of your new repositories, which will suppress this warning,
+Backend quality gates	Check out source	2026-10-22T16:54:59.3691634Z hint: call:
+Backend quality gates	Check out source	2026-10-22T16:54:59.3693554Z hint:
+Backend quality gates	Check out source	2026-10-22T16:54:59.3695507Z hint: 	git config --global init.defaultBranch <name>
+Backend quality gates	Check out source	2026-10-22T16:54:59.3697529Z hint:
+Backend quality gates	Check out source	2026-10-22T16:54:59.3699765Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Backend quality gates	Check out source	2026-10-22T16:54:59.3702367Z hint: 'development'. The just-created branch can be renamed via this command:
+Backend quality gates	Check out source	2026-10-22T16:54:59.3704316Z hint:
+Backend quality gates	Check out source	2026-10-22T16:54:59.3706108Z hint: 	git branch -m <name>
+Backend quality gates	Check out source	2026-10-22T16:54:59.3708357Z hint:
+Backend quality gates	Check out source	2026-10-22T16:54:59.3710938Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Backend quality gates	Check out source	2026-10-22T16:54:59.3715168Z Initialized empty Git repository in /home/runner/work/eshop-sut-group10/eshop-sut-group10/.git/
+Backend quality gates	Check out source	2026-10-22T16:54:59.3722328Z [command]/usr/bin/git remote add origin https://github.com/SUT-group10/eshop-sut-group10
+Backend quality gates	Check out source	2026-10-22T16:54:59.3749026Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.3750979Z ##[group]Disabling automatic garbage collection
+Backend quality gates	Check out source	2026-10-22T16:54:59.3754376Z [command]/usr/bin/git config --local gc.auto 0
+Backend quality gates	Check out source	2026-10-22T16:54:59.3794558Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.3796581Z ##[group]Setting up auth
+Backend quality gates	Check out source	2026-10-22T16:54:59.3801312Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Backend quality gates	Check out source	2026-10-22T16:54:59.3839068Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Backend quality gates	Check out source	2026-10-22T16:54:59.4255126Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Backend quality gates	Check out source	2026-10-22T16:54:59.4303713Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Backend quality gates	Check out source	2026-10-22T16:54:59.4585502Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Backend quality gates	Check out source	2026-10-22T16:54:59.4626994Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Backend quality gates	Check out source	2026-10-22T16:54:59.4888381Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Backend quality gates	Check out source	2026-10-22T16:54:59.4934661Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.4937317Z ##[group]Fetching the repository
+Backend quality gates	Check out source	2026-10-22T16:54:59.4944137Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d450424190c213b85c314603b6830d3a7ac0b604:refs/remotes/pull/19/merge
+Backend quality gates	Check out source	2026-10-22T16:54:59.7748137Z From https://github.com/SUT-group10/eshop-sut-group10
+Backend quality gates	Check out source	2026-10-22T16:54:59.7749315Z  * [new ref]         d450424190c213b85c314603b6830d3a7ac0b604 -> pull/19/merge
+Backend quality gates	Check out source	2026-10-22T16:54:59.7753770Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.7754957Z ##[group]Determining the checkout info
+Backend quality gates	Check out source	2026-10-22T16:54:59.7757987Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.7765261Z [command]/usr/bin/git sparse-checkout disable
+Backend quality gates	Check out source	2026-10-22T16:54:59.7818509Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Backend quality gates	Check out source	2026-10-22T16:54:59.7855616Z ##[group]Checking out the ref
+Backend quality gates	Check out source	2026-10-22T16:54:59.7860060Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/19/merge
+Backend quality gates	Check out source	2026-10-22T16:54:59.8180825Z Note: switching to 'refs/remotes/pull/19/merge'.
+Backend quality gates	Check out source	2026-10-22T16:54:59.8181358Z 
+Backend quality gates	Check out source	2026-10-22T16:54:59.8181780Z You are in 'detached HEAD' state. You can look around, make experimental
+Backend quality gates	Check out source	2026-10-22T16:54:59.8182761Z changes and commit them, and you can discard any commits you make in this
+Backend quality gates	Check out source	2026-10-22T16:54:59.8183791Z state without impacting any branches by switching back to a branch.
+Backend quality gates	Check out source	2026-10-22T16:54:59.8184830Z 
+Backend quality gates	Check out source	2026-10-22T16:54:59.8185199Z If you want to create a new branch to retain commits you create, you may
+Backend quality gates	Check out source	2026-10-22T16:54:59.8186037Z do so (now or later) by using -c with the switch command. Example:
+Backend quality gates	Check out source	2026-10-22T16:54:59.8186540Z 
+Backend quality gates	Check out source	2026-10-22T16:54:59.8186755Z   git switch -c <new-branch-name>
+Backend quality gates	Check out source	2026-10-22T16:54:59.8187363Z 
+Backend quality gates	Check out source	2026-10-22T16:54:59.8187586Z Or undo this operation with:
+Backend quality gates	Check out source	2026-10-22T16:54:59.8187916Z 
+Backend quality gates	Check out source	2026-10-22T16:54:59.8188109Z   git switch -
+Backend quality gates	Check out source	2026-10-22T16:54:59.8188368Z 
+Backend quality gates	Check out source	2026-10-22T16:54:59.8188622Z Turn off this advice by setting config variable advice.detachedHead to false
+Backend quality gates	Check out source	2026-10-22T16:54:59.8188981Z 
+Backend quality gates	Check out source	2026-10-22T16:54:59.8189396Z HEAD is now at d450424 Merge cbdcb885cc3974bea7f3b1749f28aa2f9a9bfd91 into fe41113025e58eb835540cdc16d6fd8dc7be697b
+Backend quality gates	Check out source	2026-10-22T16:54:59.8192877Z ##[endgroup]
+Backend quality gates	Check out source	2026-10-22T16:54:59.8237781Z [command]/usr/bin/git log -1 --format=%H
+Backend quality gates	Check out source	2026-10-22T16:54:59.8268713Z d450424190c213b85c314603b6830d3a7ac0b604
+Backend quality gates	Set up Node.js 22	﻿2026-10-22T16:54:59.8542735Z ##[group]Run actions/setup-node@v4
+Backend quality gates	Set up Node.js 22	2026-10-22T16:54:59.8543108Z with:
+Backend quality gates	Set up Node.js 22	2026-10-22T16:54:59.8543353Z   node-version: 22.14.0
+Backend quality gates	Set up Node.js 22	2026-10-22T16:54:59.8543622Z   always-auth: false
+Backend quality gates	Set up Node.js 22	2026-10-22T16:54:59.8543878Z   check-latest: false
+Backend quality gates	Set up Node.js 22	2026-10-22T16:54:59.8546418Z   token: ***
+Backend quality gates	Set up Node.js 22	2026-10-22T16:54:59.8546664Z ##[endgroup]
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:00.0055071Z Attempting to download 22.14.0...
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:00.0165371Z (node:2084) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:00.0167502Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:00.4561673Z Acquiring 22.14.0 - x64 from https://github.com/actions/node-versions/releases/download/22.14.0-13265982013/node-22.14.0-linux-x64.tar.gz
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:00.8779064Z Extracting ...
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:00.8997666Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/c5e064d3-83d6-40c5-9119-ba4e2b945627 -f /home/runner/work/_temp/b68d898f-41ea-425e-b667-2d9d174f4c08
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:02.0868944Z Adding to the cache ...
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:03.9802406Z ##[group]Environment details
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:04.3235716Z node: v22.14.0
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:04.3236826Z npm: 10.9.2
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:04.3239092Z yarn: 1.22.22
+Backend quality gates	Set up Node.js 22	2026-10-22T16:55:04.3240401Z ##[endgroup]
+Backend quality gates	Restore npm cache	﻿2026-10-22T16:55:04.4042442Z ##[group]Run actions/cache/restore@v4
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4042831Z with:
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4043068Z   path: ~/.npm
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4043533Z   key: Linux-node-22.14.0-npm-6bd926b18852784811c96b177f6861923edeea50f3b16c9035bb5a61235789fd
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4044074Z   restore-keys: Linux-node-22.14.0-npm-
+Backend quality gates	Restore npm cache	
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4044418Z   enableCrossOsArchive: false
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4044723Z   fail-on-cache-miss: false
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4045004Z   lookup-only: false
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.4045254Z ##[endgroup]
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.5161850Z (node:2134) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.5163696Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.6290989Z Cache hit for: Linux-node-22.14.0-npm-6bd926b18852784811c96b177f6861923edeea50f3b16c9035bb5a61235789fd
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.6396646Z (node:2134) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.8908182Z Received 21211439 of 21211439 (100.0%), 89.9 MBs/sec
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.8909058Z Cache Size: ~20 MB (21211439 B)
+Backend quality gates	Restore npm cache	2026-10-22T16:55:04.8938388Z [command]/usr/bin/tar -xf /home/runner/work/_temp/9df375de-ca97-4ed9-893b-67ccec5c4e53/cache.tzst -P -C /home/runner/work/eshop-sut-group10/eshop-sut-group10 --use-compress-program unzstd
+Backend quality gates	Restore npm cache	2026-10-22T16:55:05.0787679Z Cache restored successfully
+Backend quality gates	Restore npm cache	2026-10-22T16:55:05.0912563Z Cache restored from key: Linux-node-22.14.0-npm-6bd926b18852784811c96b177f6861923edeea50f3b16c9035bb5a61235789fd
+Backend quality gates	Record runtime	﻿2026-10-22T16:55:05.1086638Z ##[group]Run node --version
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1087007Z ^[[36;1mnode --version^[[0m
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1087587Z ^[[36;1mnpm --version^[[0m
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1087866Z ^[[36;1mprintf 'Commit SHA: %s\n' "${GITHUB_SHA}"^[[0m
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1088216Z ^[[36;1mprintf 'Runner OS: %s\n' "${RUNNER_OS}"^[[0m
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1126315Z shell: /usr/bin/bash -e {0}
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1126663Z ##[endgroup]
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1244054Z v22.14.0
+Backend quality gates	Record runtime	2026-10-22T16:55:05.1998195Z 10.9.2
+Backend quality gates	Record runtime	2026-10-22T16:55:05.2043180Z Commit SHA: d450424190c213b85c314603b6830d3a7ac0b604
+Backend quality gates	Record runtime	2026-10-22T16:55:05.2043783Z Runner OS: Linux
+Backend quality gates	Install dependencies	﻿2026-10-22T16:55:05.2091962Z ##[group]Run npm ci
+Backend quality gates	Install dependencies	2026-10-22T16:55:05.2092245Z ^[[36;1mnpm ci^[[0m
+Backend quality gates	Install dependencies	2026-10-22T16:55:05.2127494Z shell: /usr/bin/bash -e {0}
+Backend quality gates	Install dependencies	2026-10-22T16:55:05.2127760Z env:
+Backend quality gates	Install dependencies	2026-10-22T16:55:05.2127964Z   npm_config_build_from_source: true
+Backend quality gates	Install dependencies	2026-10-22T16:55:05.2128234Z ##[endgroup]
+Backend quality gates	Install dependencies	2026-10-22T16:55:07.0799505Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+Backend quality gates	Install dependencies	2026-10-22T16:55:07.3853714Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.7719089Z 
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.7719958Z added 488 packages, and audited 489 packages in 1m
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.7733460Z 
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.7734013Z 104 packages are looking for funding
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.7734703Z   run `npm fund` for details
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8081842Z 
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8082518Z 19 moderate severity vulnerabilities
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8082994Z 
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8083370Z To address issues that do not require attention, run:
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8083927Z   npm audit fix
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8084153Z 
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8084534Z To address all issues (including breaking changes), run:
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8085141Z   npm audit fix --force
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8085388Z 
+Backend quality gates	Install dependencies	2026-10-22T16:56:17.8085597Z Run `npm audit` for details.
+Backend quality gates	Lint	﻿2026-10-22T16:56:17.8634356Z ##[group]Run npm run lint
+Backend quality gates	Lint	2026-10-22T16:56:17.8634658Z ^[[36;1mnpm run lint^[[0m
+Backend quality gates	Lint	2026-10-22T16:56:17.8668851Z shell: /usr/bin/bash -e {0}
+Backend quality gates	Lint	2026-10-22T16:56:17.8669111Z ##[endgroup]
+Backend quality gates	Lint	2026-10-22T16:56:17.9817609Z 
+Backend quality gates	Lint	2026-10-22T16:56:17.9818388Z > backend@1.0.0 lint
+Backend quality gates	Lint	2026-10-22T16:56:17.9843288Z > eslint . --max-warnings=0
+Backend quality gates	Lint	2026-10-22T16:56:17.9843926Z 
+Backend quality gates	Build and syntax check	﻿2026-10-22T16:56:18.5183407Z ##[group]Run npm run build
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.5183883Z ^[[36;1mnpm run build^[[0m
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.5219486Z shell: /usr/bin/bash -e {0}
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.5219759Z ##[endgroup]
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.6212025Z 
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.6212970Z > backend@1.0.0 build
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.6213633Z > node scripts/check-syntax.cjs
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.6213989Z 
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.6732285Z PASS database.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.6956323Z PASS eslint.config.cjs
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.7177263Z PASS jest.config.cjs
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.7402172Z PASS jest.flaky.config.cjs
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.7619733Z PASS scripts/check-syntax.cjs
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.7836918Z PASS scripts/verify-isolation.cjs
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.8064479Z PASS server.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.8277378Z PASS test_profile.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.8493621Z PASS tests/api/cart-orders.test.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.8711881Z PASS tests/api/catalog-auth.test.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.8929657Z PASS tests/api/coupons.test.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.9146524Z PASS tests/experiments/cart-timing.flaky.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.9362891Z PASS tests/harness/isolation.test.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.9576326Z PASS tests/helpers/harness.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:18.9793439Z PASS tests/smoke/purchase.test.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:19.0010060Z PASS tests/unit/authentication.test.js
+Backend quality gates	Build and syntax check	2026-10-22T16:56:19.0010887Z Source syntax validation: 16 files, PASS
+Backend quality gates	Unit tests	﻿2026-10-22T16:56:19.0146337Z ##[group]Run npm run test:unit
+Backend quality gates	Unit tests	2026-10-22T16:56:19.0146652Z ^[[36;1mnpm run test:unit^[[0m
+Backend quality gates	Unit tests	2026-10-22T16:56:19.0182017Z shell: /usr/bin/bash -e {0}
+Backend quality gates	Unit tests	2026-10-22T16:56:19.0182273Z ##[endgroup]
+Backend quality gates	Unit tests	2026-10-22T16:56:19.1232875Z 
+Backend quality gates	Unit tests	2026-10-22T16:56:19.1233336Z > backend@1.0.0 test:unit
+Backend quality gates	Unit tests	2026-10-22T16:56:19.1233927Z > jest --runInBand tests/unit
+Backend quality gates	Unit tests	2026-10-22T16:56:19.1234252Z 
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8580849Z PASS tests/unit/authentication.test.js
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8583759Z   Unit: JWT authentication (FR-02, SEC-02)
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8586939Z     ✓ U-AUTH-01 rejects a missing token (3 ms)
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8587996Z     ✓ U-AUTH-02 rejects a malformed token (1 ms)
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8588944Z     ✓ U-AUTH-03 rejects a token signed with another key (4 ms)
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8589858Z     ✓ U-AUTH-04 rejects an expired token (3 ms)
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8590838Z     ✓ U-AUTH-05 accepts a valid token and forwards its identity (2 ms)
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8591413Z 
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8611201Z Test Suites: 1 passed, 1 total
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8612161Z Tests:       5 passed, 5 total
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8612743Z Snapshots:   0 total
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8613363Z Time:        0.542 s
+Backend quality gates	Unit tests	2026-10-22T16:56:19.8613909Z Ran all test suites matching tests/unit.
+Backend quality gates	API tests	﻿2026-10-22T16:56:19.8868597Z ##[group]Run npm run test:api
+Backend quality gates	API tests	2026-10-22T16:56:19.8869109Z ^[[36;1mnpm run test:api^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:19.8917486Z shell: /usr/bin/bash -e {0}
+Backend quality gates	API tests	2026-10-22T16:56:19.8917939Z ##[endgroup]
+Backend quality gates	API tests	2026-10-22T16:56:19.9960647Z 
+Backend quality gates	API tests	2026-10-22T16:56:19.9961188Z > backend@1.0.0 test:api
+Backend quality gates	API tests	2026-10-22T16:56:19.9961801Z > jest --runInBand tests/api
+Backend quality gates	API tests	2026-10-22T16:56:19.9962148Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1222137Z FAIL tests/api/cart-orders.test.js
+Backend quality gates	API tests	2026-10-22T16:56:21.1323292Z   ● Console
+Backend quality gates	API tests	2026-10-22T16:56:21.1323583Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1323973Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1324537Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1324944Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1325209Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1325570Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1325737Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1326157Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1326489Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1326748Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1327356Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1327537Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1328121Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1328514Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1328765Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1329136Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1329309Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1329691Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1329978Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1330222Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1330576Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1330752Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1331227Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1331599Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1331840Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1332168Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1332332Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1332720Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1333004Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1333270Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1333611Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1333780Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1334262Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1334657Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1334912Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1335265Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1335433Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1335823Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1336112Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1336366Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1336701Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1336866Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1337628Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1337995Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1338237Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1338561Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1338706Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1339054Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1339311Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1339531Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1340326Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1340476Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1340918Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1341284Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1341511Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1341824Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1341966Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1342322Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1342592Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1342819Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1343122Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1343280Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1343741Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1344123Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1344360Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1344682Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1344839Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1345229Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1345512Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1345753Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1346093Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1346251Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1346719Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1347361Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1347631Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1348374Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1348535Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1348927Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1349202Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1349441Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1349790Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1349941Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1350473Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1350850Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1351136Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1351481Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1351683Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1352053Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1352315Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1352544Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1352887Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1353042Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1353540Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.1353910Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1354142Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1354480Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1354622Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.1354988Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.1355250Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1355476Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.1355806Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1356601Z   ● API: cart, checkout and orders › A-CART-03 repeated products merge into one line (FR-07)
+Backend quality gates	API tests	2026-10-22T16:56:21.1357494Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1357781Z     expect(received).toHaveLength(expected)
+Backend quality gates	API tests	2026-10-22T16:56:21.1358195Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1358375Z     Expected length: 1
+Backend quality gates	API tests	2026-10-22T16:56:21.1358847Z     Received length: 2
+Backend quality gates	API tests	2026-10-22T16:56:21.1362633Z     Received array:  [{"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 1}, {"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 2}]
+Backend quality gates	API tests	2026-10-22T16:56:21.1365033Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1365587Z     ^[[0m ^[[90m 38 |^[[39m     ^[[36mawait^[[39m addProduct(^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1366994Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1368851Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoHaveLength(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1370013Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1371318Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody[^[[35m0^[[39m]^[[33m.^[[39mquantity)^[[33m.^[[39mtoBe(^[[35m3^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1372339Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1372849Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.1373412Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1373814Z       at Object.toHaveLength (tests/api/cart-orders.test.js:40:27)
+Backend quality gates	API tests	2026-10-22T16:56:21.1374316Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1375190Z   ● API: cart, checkout and orders › A-CHECKOUT-02 computes the total instead of trusting the client (FR-08)
+Backend quality gates	API tests	2026-10-22T16:56:21.1375939Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1376291Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	API tests	2026-10-22T16:56:21.1376719Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1376886Z     Expected: 60000000
+Backend quality gates	API tests	2026-10-22T16:56:21.1377567Z     Received: 1
+Backend quality gates	API tests	2026-10-22T16:56:21.1377787Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1378497Z     ^[[0m ^[[90m 56 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1380583Z      ^[[90m 57 |^[[39m     ^[[36mconst^[[39m order ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT * FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [response^[[33m.^[[39mbody^[[33m.^[[39morderId])^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1382819Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 58 |^[[39m     expect(order^[[33m.^[[39mtotal_amount)^[[33m.^[[39mtoBe(product^[[33m.^[[39mprice ^[[33m*^[[39m ^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1384374Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1385408Z      ^[[90m 59 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1385885Z      ^[[90m 60 |^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1387393Z      ^[[90m 61 |^[[39m   test(^[[32m'A-CHECKOUT-03 clears the cart after successful checkout (FR-08)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.1388271Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1388595Z       at Object.toBe (tests/api/cart-orders.test.js:58:32)
+Backend quality gates	API tests	2026-10-22T16:56:21.1389013Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1389875Z   ● API: cart, checkout and orders › A-CHECKOUT-03 clears the cart after successful checkout (FR-08)
+Backend quality gates	API tests	2026-10-22T16:56:21.1390529Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1390870Z     expect(received).toEqual(expected) // deep equality
+Backend quality gates	API tests	2026-10-22T16:56:21.1391301Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1391498Z     - Expected  -  1
+Backend quality gates	API tests	2026-10-22T16:56:21.1391958Z     + Received  + 11
+Backend quality gates	API tests	2026-10-22T16:56:21.1392193Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1392331Z     - Array []
+Backend quality gates	API tests	2026-10-22T16:56:21.1392645Z     + Array [
+Backend quality gates	API tests	2026-10-22T16:56:21.1392987Z     +   Object {
+Backend quality gates	API tests	2026-10-22T16:56:21.1393368Z     +     "category_id": 1,
+Backend quality gates	API tests	2026-10-22T16:56:21.1394073Z     +     "description": "Điện thoại cao cấp của Apple",
+Backend quality gates	API tests	2026-10-22T16:56:21.1394601Z     +     "id": 1,
+Backend quality gates	API tests	2026-10-22T16:56:21.1395180Z     +     "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15",
+Backend quality gates	API tests	2026-10-22T16:56:21.1395882Z     +     "name": "iPhone 15 Pro Max",
+Backend quality gates	API tests	2026-10-22T16:56:21.1396386Z     +     "price": 30000000,
+Backend quality gates	API tests	2026-10-22T16:56:21.1396913Z     +     "quantity": 1,
+Backend quality gates	API tests	2026-10-22T16:56:21.1397549Z     +   },
+Backend quality gates	API tests	2026-10-22T16:56:21.1397899Z     + ]
+Backend quality gates	API tests	2026-10-22T16:56:21.1398092Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1399070Z     ^[[0m ^[[90m 66 |^[[39m     ^[[36mconst^[[39m cart ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1400524Z      ^[[90m 67 |^[[39m     expect(cart^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1401817Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 68 |^[[39m     expect(cart^[[33m.^[[39mbody)^[[33m.^[[39mtoEqual([])^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1402861Z      ^[[90m    |^[[39m                       ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1403580Z      ^[[90m 69 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1404112Z      ^[[90m 70 |^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1405401Z      ^[[90m 71 |^[[39m   test(^[[32m'A-ORDER-01 history includes only the current user orders (FR-11)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.1406289Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1406639Z       at Object.toEqual (tests/api/cart-orders.test.js:68:23)
+Backend quality gates	API tests	2026-10-22T16:56:21.1407356Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1408093Z   ● API: cart, checkout and orders › A-ORDER-03 user cannot cancel a shipping order (FR-10)
+Backend quality gates	API tests	2026-10-22T16:56:21.1408747Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1409081Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	API tests	2026-10-22T16:56:21.1409513Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1409692Z     Expected: >= 400
+Backend quality gates	API tests	2026-10-22T16:56:21.1410398Z     Received:    200
+Backend quality gates	API tests	2026-10-22T16:56:21.1410996Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1411959Z     ^[[0m ^[[90m 89 |^[[39m     ^[[36mconst^[[39m id ^[[33m=^[[39m ^[[36mawait^[[39m createOrder(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1414053Z      ^[[90m 90 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'put'^[[39m^[[33m,^[[39m ^[[32m`/api/orders/${id}/cancel`^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1416266Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 91 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1418168Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1419645Z      ^[[90m 92 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1422075Z      ^[[90m 93 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1423859Z      ^[[90m 94 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.1424362Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1425259Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:91:29)
+Backend quality gates	API tests	2026-10-22T16:56:21.1425971Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1426877Z   ● API: cart, checkout and orders › A-ORDER-04 canceled is a final state even for admin (FR-10)
+Backend quality gates	API tests	2026-10-22T16:56:21.1427878Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1428553Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	API tests	2026-10-22T16:56:21.1429117Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1429348Z     Expected: >= 400
+Backend quality gates	API tests	2026-10-22T16:56:21.1430088Z     Received:    200
+Backend quality gates	API tests	2026-10-22T16:56:21.1449792Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1451152Z     ^[[0m ^[[90m  99 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39mput(^[[32m`/api/admin/orders/${id}/status`^[[39m)
+Backend quality gates	API tests	2026-10-22T16:56:21.1453417Z      ^[[90m 100 |^[[39m       ^[[33m.^[[39mauth(admin^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m.^[[39msend({ status^[[33m:^[[39m ^[[32m'delivered'^[[39m })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1455392Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 101 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1456661Z      ^[[90m     |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1458111Z      ^[[90m 102 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1460235Z      ^[[90m 103 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'canceled'^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.1461736Z      ^[[90m 104 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.1462081Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.1462571Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:101:29)
+Backend quality gates	API tests	2026-10-22T16:56:21.1463147Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5183351Z FAIL tests/api/catalog-auth.test.js
+Backend quality gates	API tests	2026-10-22T16:56:21.5272540Z   ● Console
+Backend quality gates	API tests	2026-10-22T16:56:21.5272836Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5273005Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5273524Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5273944Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5274189Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5274521Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5274670Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5275047Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5275314Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5275546Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5275897Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5276053Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5276510Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5276876Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5277382Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5277745Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5277919Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5278312Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5278664Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5278899Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5279711Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5279875Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5280343Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5280723Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5280947Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5281276Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5281427Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5281775Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5282032Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5282249Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5282572Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5282716Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5283155Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5283513Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5283732Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5284059Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5284200Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5284542Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5284800Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5285020Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5285343Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5285502Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5285955Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5286340Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5286576Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5287447Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5287623Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5288017Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5288293Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5288522Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5288863Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5289017Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5289563Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5289941Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5290182Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5290516Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5290672Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5291045Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5291313Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5291545Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5291865Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5292007Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5292477Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5292848Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5293081Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5293424Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5293574Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5293927Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5294197Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5294432Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5294756Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5294909Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5295350Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5295709Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5295938Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5296256Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5296397Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5296745Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5297009Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5297466Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5297791Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5298000Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5298446Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5298816Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5299044Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5299375Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5299518Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5299874Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5300133Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5300353Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5300676Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5300818Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5301266Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5301619Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5301846Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5302184Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5302328Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5302693Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5302962Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5303189Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5303518Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5303661Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5304111Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.5304479Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5305008Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5305354Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5305495Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.5305868Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.5306132Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5306368Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.5306714Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5307926Z   ● API: catalog and authentication › A-AUTH-03 each failed login increments the counter by exactly one (FR-02)
+Backend quality gates	API tests	2026-10-22T16:56:21.5308721Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5309067Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	API tests	2026-10-22T16:56:21.5309587Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5309761Z     Expected: 1
+Backend quality gates	API tests	2026-10-22T16:56:21.5310121Z     Received: 2
+Backend quality gates	API tests	2026-10-22T16:56:21.5310339Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5311501Z     ^[[0m ^[[90m 49 |^[[39m       ^[[33m.^[[39msend({ email^[[33m:^[[39m ^[[32m'test@eshop.com'^[[39m^[[33m,^[[39m password^[[33m:^[[39m ^[[32m'wrong-password'^[[39m })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5313835Z      ^[[90m 50 |^[[39m     ^[[36mconst^[[39m row ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT login_attempts FROM users WHERE email = ?'^[[39m^[[33m,^[[39m [^[[32m'test@eshop.com'^[[39m])^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5316120Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 51 |^[[39m     expect(row^[[33m.^[[39mlogin_attempts)^[[33m.^[[39mtoBe(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5317427Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5318155Z      ^[[90m 52 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5318632Z      ^[[90m 53 |^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5319140Z      ^[[90m 54 |^[[39m   test^[[33m.^[[39meach([^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.5319481Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5319804Z       at Object.toBe (tests/api/catalog-auth.test.js:51:32)
+Backend quality gates	API tests	2026-10-22T16:56:21.5320236Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5320900Z   ● API: catalog and authentication › A-ACCESS-02 user cannot read admin users (FR-12)
+Backend quality gates	API tests	2026-10-22T16:56:21.5321527Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5321851Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	API tests	2026-10-22T16:56:21.5322279Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5322471Z     Expected: >= 400
+Backend quality gates	API tests	2026-10-22T16:56:21.5322859Z     Received:    200
+Backend quality gates	API tests	2026-10-22T16:56:21.5323074Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5323812Z     ^[[0m ^[[90m 67 |^[[39m     ^[[36mconst^[[39m user ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39mlogin()^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5326161Z      ^[[90m 68 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39m^[[36mget^[[39m(^[[32m'/api/admin/users'^[[39m)^[[33m.^[[39mauth(user^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5328882Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 69 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5330163Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5331338Z      ^[[90m 70 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5332314Z      ^[[90m 71 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.5332858Z      ^[[90m 72 |^[[39m^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.5333120Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.5333613Z       at Object.toBeGreaterThanOrEqual (tests/api/catalog-auth.test.js:69:29)
+Backend quality gates	API tests	2026-10-22T16:56:21.5334208Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8748302Z FAIL tests/api/coupons.test.js
+Backend quality gates	API tests	2026-10-22T16:56:21.8821795Z   ● Console
+Backend quality gates	API tests	2026-10-22T16:56:21.8822089Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8822263Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8822664Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8822911Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8823057Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8823266Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8823360Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8823589Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8823751Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8823887Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8824090Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8824181Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8824462Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8824688Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8824833Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8825405Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8825501Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8825721Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8825891Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8826023Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8826209Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8826301Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8826569Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8826788Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8826933Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8827438Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8827547Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8827789Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8827961Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8828106Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8828305Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8828400Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8828681Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8828912Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8829053Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8829261Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8829358Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8829592Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8829762Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8829904Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8830333Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8830431Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8830719Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8830954Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8831104Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8831320Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8831418Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8831652Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8831827Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8831971Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8832175Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8832291Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8832589Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8832816Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8832961Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8833180Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8833278Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8833512Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8833681Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8833816Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8834028Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8834122Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8834404Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8834631Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8834768Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8834977Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8835069Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8835291Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8835452Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8835586Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8835789Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8835881Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8836158Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8836382Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8836523Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8836724Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8836816Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8837201Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8837384Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8837614Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8837884Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8837973Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8838229Z       Database initialized and seeded (Phase 2).
+Backend quality gates	API tests	2026-10-22T16:56:21.8838435Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8838564Z       at Database.log (database.js:113:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8838741Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8838827Z     console.log
+Backend quality gates	API tests	2026-10-22T16:56:21.8839024Z       Connected to database
+Backend quality gates	API tests	2026-10-22T16:56:21.8839166Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8839287Z       at Database.log (database.js:9:17)
+Backend quality gates	API tests	2026-10-22T16:56:21.8839461Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8840029Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)
+Backend quality gates	API tests	2026-10-22T16:56:21.8840500Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8840684Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	API tests	2026-10-22T16:56:21.8840930Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8841021Z     Expected: 200
+Backend quality gates	API tests	2026-10-22T16:56:21.8841228Z     Received: 400
+Backend quality gates	API tests	2026-10-22T16:56:21.8841531Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8842164Z     ^[[0m ^[[90m 38 |^[[39m   test(^[[32m'A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {
+Backend quality gates	API tests	2026-10-22T16:56:21.8843271Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'BIGBUY'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8844786Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8845397Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8846334Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8847327Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8847666Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.8847816Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8847990Z       at Object.toBe (tests/api/coupons.test.js:40:29)
+Backend quality gates	API tests	2026-10-22T16:56:21.8848217Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8848704Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-07 rejects an anonymous request even with user_id (C4)
+Backend quality gates	API tests	2026-10-22T16:56:21.8849831Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8850120Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	API tests	2026-10-22T16:56:21.8850503Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8850646Z     Expected: >= 400
+Backend quality gates	API tests	2026-10-22T16:56:21.8850992Z     Received:    200
+Backend quality gates	API tests	2026-10-22T16:56:21.8851191Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8851432Z     ^[[0m ^[[90m 13 |^[[39m }
+Backend quality gates	API tests	2026-10-22T16:56:21.8852057Z      ^[[90m 14 |^[[39m ^[[36mfunction^[[39m expectClientError(response) {
+Backend quality gates	API tests	2026-10-22T16:56:21.8853073Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 15 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8853728Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8854327Z      ^[[90m 16 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8855196Z      ^[[90m 17 |^[[39m   expect(response^[[33m.^[[39mbody^[[33m.^[[39merror)^[[33m.^[[39mtoEqual(expect^[[33m.^[[39many(^[[33mString^[[39m))^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8855759Z      ^[[90m 18 |^[[39m }^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.8855906Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8856116Z       at toBeGreaterThanOrEqual (tests/api/coupons.test.js:15:27)
+Backend quality gates	API tests	2026-10-22T16:56:21.8856590Z       at Object.expectClientError (tests/api/coupons.test.js:51:5)
+Backend quality gates	API tests	2026-10-22T16:56:21.8856855Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8857609Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-09 computes ten percent of the total
+Backend quality gates	API tests	2026-10-22T16:56:21.8858239Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8858490Z     expect(received).toMatchObject(expected)
+Backend quality gates	API tests	2026-10-22T16:56:21.8858750Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8858852Z     - Expected  - 2
+Backend quality gates	API tests	2026-10-22T16:56:21.8859068Z     + Received  + 2
+Backend quality gates	API tests	2026-10-22T16:56:21.8859197Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8859283Z       Object {
+Backend quality gates	API tests	2026-10-22T16:56:21.8859515Z     -   "discount_amount": 50000,
+Backend quality gates	API tests	2026-10-22T16:56:21.8859797Z     -   "final_amount": 450000,
+Backend quality gates	API tests	2026-10-22T16:56:21.8860073Z     +   "discount_amount": -4500000,
+Backend quality gates	API tests	2026-10-22T16:56:21.8860349Z     +   "final_amount": 5000000,
+Backend quality gates	API tests	2026-10-22T16:56:21.8860586Z       }
+Backend quality gates	API tests	2026-10-22T16:56:21.8860694Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8861234Z     ^[[0m ^[[90m 60 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'SAVE10'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8862009Z      ^[[90m 61 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8863105Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 62 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8863946Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8864299Z      ^[[90m 63 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8864603Z      ^[[90m 64 |^[[39m })^[[33m;^[[39m
+Backend quality gates	API tests	2026-10-22T16:56:21.8865423Z      ^[[90m 65 |^[[39m^[[0m
+Backend quality gates	API tests	2026-10-22T16:56:21.8865583Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8865790Z       at Object.toMatchObject (tests/api/coupons.test.js:62:27)
+Backend quality gates	API tests	2026-10-22T16:56:21.8866065Z 
+Backend quality gates	API tests	2026-10-22T16:56:21.8866224Z Test Suites: 3 failed, 3 total
+Backend quality gates	API tests	2026-10-22T16:56:21.8866540Z Tests:       10 failed, 20 passed, 30 total
+Backend quality gates	API tests	2026-10-22T16:56:21.8866838Z Snapshots:   0 total
+Backend quality gates	API tests	2026-10-22T16:56:21.8867336Z Time:        1.701 s
+Backend quality gates	API tests	2026-10-22T16:56:21.8867663Z Ran all test suites matching tests/api.
+Backend quality gates	API tests	2026-10-22T16:56:22.0020963Z ##[error]Process completed with exit code 1.
+Backend quality gates	Generate coverage and Jest report	﻿2026-10-22T16:56:22.0076936Z ##[group]Run mkdir -p test-results
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.0077535Z ^[[36;1mmkdir -p test-results^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.0077813Z ^[[36;1mnpm run test:ci -- \^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.0078059Z ^[[36;1m  --json \^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.0078331Z ^[[36;1m  --outputFile=test-results/jest-report.json^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.0112079Z shell: /usr/bin/bash -e {0}
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.0112351Z ##[endgroup]
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.1123714Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.1124151Z > backend@1.0.0 test:ci
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.1125522Z > jest --ci --runInBand --coverage --reporters=default --reporters=jest-junit --json --outputFile=test-results/jest-report.json
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:22.1126225Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5542597Z FAIL tests/api/cart-orders.test.js
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5661102Z   ● Console
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5661406Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5661591Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5662635Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5663118Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5663401Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5663846Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5664025Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5664439Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5664734Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5664993Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5665345Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5665521Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5666013Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5666404Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5666684Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5667047Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5667482Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5667887Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5668189Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5668446Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5668786Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5668944Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5669431Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5669816Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5670073Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5670414Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5670581Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5670948Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5671204Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5671443Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5671785Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5671941Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5672424Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5672795Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5673056Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5673430Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5673596Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5673999Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5674269Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5674524Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5674864Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5675030Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5675537Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5675912Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5676158Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5676497Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5676651Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5677042Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5677551Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5677793Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5678125Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5678266Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5678714Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5679070Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5679297Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5679623Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5680195Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5680553Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5680805Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5681027Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5681351Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5681499Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5681970Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5682323Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5682571Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5682923Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5683091Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5683459Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5684112Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5684372Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5684717Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5684880Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5685357Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5685734Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5685975Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5686322Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5686480Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5686867Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5687457Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5687710Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5688061Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5688222Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5688698Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5689067Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5689294Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5689636Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5689791Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5690159Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5690424Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5690642Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5690985Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5691131Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5691593Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5691978Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5692213Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5692553Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5692705Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5693063Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5693330Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5693550Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5693878Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5694675Z   ● API: cart, checkout and orders › A-CART-03 repeated products merge into one line (FR-07)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5695283Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5695549Z     expect(received).toHaveLength(expected)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5695907Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5696073Z     Expected length: 1
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5696455Z     Received length: 2
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5700101Z     Received array:  [{"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 1}, {"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 2}]
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5702405Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5702964Z     ^[[0m ^[[90m 38 |^[[39m     ^[[36mawait^[[39m addProduct(^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5704359Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5705900Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoHaveLength(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5706991Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5708568Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody[^[[35m0^[[39m]^[[33m.^[[39mquantity)^[[33m.^[[39mtoBe(^[[35m3^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5709646Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5710163Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5710415Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5710801Z       at Object.toHaveLength (tests/api/cart-orders.test.js:40:27)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5711285Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5712164Z   ● API: cart, checkout and orders › A-CHECKOUT-02 computes the total instead of trusting the client (FR-08)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5713267Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5713610Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5714030Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5714204Z     Expected: 60000000
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5714588Z     Received: 1
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5714800Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5715505Z     ^[[0m ^[[90m 56 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5718045Z      ^[[90m 57 |^[[39m     ^[[36mconst^[[39m order ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT * FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [response^[[33m.^[[39mbody^[[33m.^[[39morderId])^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5720617Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 58 |^[[39m     expect(order^[[33m.^[[39mtotal_amount)^[[33m.^[[39mtoBe(product^[[33m.^[[39mprice ^[[33m*^[[39m ^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5721859Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5722507Z      ^[[90m 59 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5722986Z      ^[[90m 60 |^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5724241Z      ^[[90m 61 |^[[39m   test(^[[32m'A-CHECKOUT-03 clears the cart after successful checkout (FR-08)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5725107Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5725466Z       at Object.toBe (tests/api/cart-orders.test.js:58:32)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5725905Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5726694Z   ● API: cart, checkout and orders › A-CHECKOUT-03 clears the cart after successful checkout (FR-08)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5727639Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5727965Z     expect(received).toEqual(expected) // deep equality
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5728396Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5728564Z     - Expected  -  1
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5728948Z     + Received  + 11
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5729165Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5729309Z     - Array []
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5729639Z     + Array [
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5729962Z     +   Object {
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5730339Z     +     "category_id": 1,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5731130Z     +     "description": "Điện thoại cao cấp của Apple",
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5731717Z     +     "id": 1,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5732338Z     +     "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15",
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5733117Z     +     "name": "iPhone 15 Pro Max",
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5733615Z     +     "price": 30000000,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5734069Z     +     "quantity": 1,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5734467Z     +   },
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5734793Z     + ]
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5734989Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5735973Z     ^[[0m ^[[90m 66 |^[[39m     ^[[36mconst^[[39m cart ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5737683Z      ^[[90m 67 |^[[39m     expect(cart^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5738987Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 68 |^[[39m     expect(cart^[[33m.^[[39mbody)^[[33m.^[[39mtoEqual([])^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5740009Z      ^[[90m    |^[[39m                       ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5740731Z      ^[[90m 69 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5741201Z      ^[[90m 70 |^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5742543Z      ^[[90m 71 |^[[39m   test(^[[32m'A-ORDER-01 history includes only the current user orders (FR-11)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5743458Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5743838Z       at Object.toEqual (tests/api/cart-orders.test.js:68:23)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5744291Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5745023Z   ● API: cart, checkout and orders › A-ORDER-03 user cannot cancel a shipping order (FR-10)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5745651Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5745995Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5746424Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5746601Z     Expected: >= 400
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5747001Z     Received:    200
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5747643Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5748489Z     ^[[0m ^[[90m 89 |^[[39m     ^[[36mconst^[[39m id ^[[33m=^[[39m ^[[36mawait^[[39m createOrder(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5750239Z      ^[[90m 90 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'put'^[[39m^[[33m,^[[39m ^[[32m`/api/orders/${id}/cancel`^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5752414Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 91 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5753654Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5754783Z      ^[[90m 92 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5756908Z      ^[[90m 93 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5758987Z      ^[[90m 94 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5759379Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5759855Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:91:29)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5760432Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5761179Z   ● API: cart, checkout and orders › A-ORDER-04 canceled is a final state even for admin (FR-10)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5761853Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5762184Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5762614Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5762787Z     Expected: >= 400
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5763160Z     Received:    200
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5763380Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5764553Z     ^[[0m ^[[90m  99 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39mput(^[[32m`/api/admin/orders/${id}/status`^[[39m)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5766757Z      ^[[90m 100 |^[[39m       ^[[33m.^[[39mauth(admin^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m.^[[39msend({ status^[[33m:^[[39m ^[[32m'delivered'^[[39m })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5768997Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 101 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5770265Z      ^[[90m     |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5771418Z      ^[[90m 102 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5773538Z      ^[[90m 103 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'canceled'^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5775055Z      ^[[90m 104 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5775405Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5775896Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:101:29)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.5776484Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9818441Z FAIL tests/api/catalog-auth.test.js
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9903870Z   ● Console
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9904277Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9904518Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9905118Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9905519Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9905761Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9906143Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9906295Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9906671Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9906931Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9907417Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9907713Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9907838Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9908216Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9908515Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9908703Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9908970Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9909093Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9909401Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9909616Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9909810Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9910111Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9910226Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9910598Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9910888Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9911072Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9911746Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9911862Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9912157Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9912369Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9912552Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9912826Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9912942Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9913312Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9913596Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9913780Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9914044Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9914159Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9914453Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9914814Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9915006Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9915276Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9915393Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9915777Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9916071Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9916258Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9916527Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9916642Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9916946Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9917297Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9917449Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9917646Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9917736Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9918005Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9918225Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9918362Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9918568Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9918658Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9918883Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9919042Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9919174Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9919387Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9919480Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9919753Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9919978Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9920110Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9920311Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9920403Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9920620Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9920781Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9920910Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9921108Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9921201Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9921468Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9921684Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9921813Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9922012Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9922103Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9922319Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9922478Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9922605Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9922806Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9922900Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9923167Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9923386Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9923514Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9923712Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9923804Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9924017Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9924170Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9924301Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9924498Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9924589Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9924854Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9925069Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9925197Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9925396Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9925487Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9925699Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9925853Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9925979Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9926174Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9926264Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9926534Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9926750Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9926894Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9927238Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9927328Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9927529Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9927673Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9927797Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9928159Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9928721Z   ● API: catalog and authentication › A-AUTH-03 each failed login increments the counter by exactly one (FR-02)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9929155Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9929340Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9929584Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9929674Z     Expected: 1
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9929870Z     Received: 2
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9929984Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9930579Z     ^[[0m ^[[90m 49 |^[[39m       ^[[33m.^[[39msend({ email^[[33m:^[[39m ^[[32m'test@eshop.com'^[[39m^[[33m,^[[39m password^[[33m:^[[39m ^[[32m'wrong-password'^[[39m })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9932014Z      ^[[90m 50 |^[[39m     ^[[36mconst^[[39m row ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT login_attempts FROM users WHERE email = ?'^[[39m^[[33m,^[[39m [^[[32m'test@eshop.com'^[[39m])^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9933066Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 51 |^[[39m     expect(row^[[33m.^[[39mlogin_attempts)^[[33m.^[[39mtoBe(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9933670Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9934042Z      ^[[90m 52 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9934313Z      ^[[90m 53 |^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9934619Z      ^[[90m 54 |^[[39m   test^[[33m.^[[39meach([^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9934813Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9934999Z       at Object.toBe (tests/api/catalog-auth.test.js:51:32)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9935242Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9935587Z   ● API: catalog and authentication › A-ACCESS-02 user cannot read admin users (FR-12)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9935922Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9936105Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9936334Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9936421Z     Expected: >= 400
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9936639Z     Received:    200
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9936760Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9937294Z     ^[[0m ^[[90m 67 |^[[39m     ^[[36mconst^[[39m user ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39mlogin()^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9938627Z      ^[[90m 68 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39m^[[36mget^[[39m(^[[32m'/api/admin/users'^[[39m)^[[33m.^[[39mauth(user^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9939927Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 69 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9940579Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9941194Z      ^[[90m 70 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9941696Z      ^[[90m 71 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9941975Z      ^[[90m 72 |^[[39m^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9942118Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9942381Z       at Object.toBeGreaterThanOrEqual (tests/api/catalog-auth.test.js:69:29)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:23.9942689Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3622330Z FAIL tests/api/coupons.test.js
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3693460Z   ● Console
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3693726Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3693889Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3694477Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3694885Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3695103Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3695333Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3695440Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3695693Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3695879Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3696040Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3696261Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3696366Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3696700Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3696949Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3697339Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3697575Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3697682Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3697932Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3698115Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3698268Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3698494Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3698980Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3699293Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3699538Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3699702Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3699930Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3700038Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3700288Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3700469Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3700623Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3700839Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3700942Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3701250Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3701660Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3701815Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3702045Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3702142Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3702383Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3702562Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3702715Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3702938Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3703034Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3703371Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3703637Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3703796Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3704032Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3704133Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3704377Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3704556Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3704705Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3704931Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3705027Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3705312Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3705547Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3705692Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3705903Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3705998Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3706225Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3706389Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3706529Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3706733Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3706828Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3707450Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3707777Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3708006Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3708276Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3708598Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3708960Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3709228Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3709386Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3709808Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3709988Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3710409Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3710760Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3710961Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3711256Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3711453Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3711844Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3726290Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3726490Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3726710Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3726895Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3727602Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3727945Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3728205Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3728497Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3728632Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3728953Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3729194Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3729401Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3729680Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3730645Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3731390Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3731720Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3732159Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3732327Z     Expected: 200
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3732690Z     Received: 400
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3732907Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3734071Z     ^[[0m ^[[90m 38 |^[[39m   test(^[[32m'A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3735909Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'BIGBUY'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3738112Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3739194Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3740851Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3742287Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3743203Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3743461Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3743764Z       at Object.toBe (tests/api/coupons.test.js:40:29)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3744172Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3745059Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-07 rejects an anonymous request even with user_id (C4)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3745811Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3746174Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3746555Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3746658Z     Expected: >= 400
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3746875Z     Received:    200
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3746998Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3747430Z     ^[[0m ^[[90m 13 |^[[39m }
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3747853Z      ^[[90m 14 |^[[39m ^[[36mfunction^[[39m expectClientError(response) {
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3748631Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 15 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3749269Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3749896Z      ^[[90m 16 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3750745Z      ^[[90m 17 |^[[39m   expect(response^[[33m.^[[39mbody^[[33m.^[[39merror)^[[33m.^[[39mtoEqual(expect^[[33m.^[[39many(^[[33mString^[[39m))^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3751299Z      ^[[90m 18 |^[[39m }^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3751448Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3751664Z       at toBeGreaterThanOrEqual (tests/api/coupons.test.js:15:27)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3752142Z       at Object.expectClientError (tests/api/coupons.test.js:51:5)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3752409Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3752801Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-09 computes ten percent of the total
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3753174Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3753325Z     expect(received).toMatchObject(expected)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3753533Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3753624Z     - Expected  - 2
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3753845Z     + Received  + 2
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3753966Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3754057Z       Object {
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3754300Z     -   "discount_amount": 50000,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3754579Z     -   "final_amount": 450000,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3754850Z     +   "discount_amount": -4500000,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3755128Z     +   "final_amount": 5000000,
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3755355Z       }
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3755459Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3755988Z     ^[[0m ^[[90m 60 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'SAVE10'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3756780Z      ^[[90m 61 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3758224Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 62 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3759112Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3759491Z      ^[[90m 63 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3759804Z      ^[[90m 64 |^[[39m })^[[33m;^[[39m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3760073Z      ^[[90m 65 |^[[39m^[[0m
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3760217Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3760419Z       at Object.toMatchObject (tests/api/coupons.test.js:62:27)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.3760680Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5790840Z PASS tests/harness/isolation.test.js
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5828292Z   ● Console
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5828955Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5829340Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5830101Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5830449Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5830662Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5830947Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5831065Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5831377Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5831588Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5831773Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5832045Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5832159Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5832926Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5833230Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5833422Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5833693Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5833805Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5834100Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5834305Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5834485Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5834746Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5834875Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5835237Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5835526Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5835699Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5835959Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5836077Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5836355Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5836560Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5836737Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5837005Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5837480Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5837948Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5838280Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5838469Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5838748Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5838871Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5839166Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5839385Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5839565Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5839843Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5839965Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5840341Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5840642Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5840824Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5841094Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5841215Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5841508Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5841725Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5841901Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.5842169Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6862580Z PASS tests/smoke/purchase.test.js
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6872377Z   ● Console
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6872659Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6872862Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6873547Z       Database initialized and seeded (Phase 2).
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6874007Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6874213Z       at Database.log (database.js:113:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6874502Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6874621Z     console.log
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6874930Z       Connected to database
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6875146Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6875339Z       at Database.log (database.js:9:17)
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.6875631Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7556975Z PASS tests/unit/authentication.test.js
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7702210Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7702959Z =============================== Coverage summary ===============================
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7703756Z Statements   : 57.98% ( 178/307 )
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7704399Z Branches     : 39.09% ( 52/133 )
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7704969Z Functions    : 39.72% ( 29/73 )
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7705492Z Lines        : 61.48% ( 174/283 )
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7706172Z ================================================================================
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7792382Z 
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7801068Z Test Suites: 3 failed, 3 passed, 6 total
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7801570Z Tests:       10 failed, 29 passed, 39 total
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7801913Z Snapshots:   0 total
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7802169Z Time:        2.465 s
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7802413Z Ran all test suites.
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.7832975Z Test results written to: test-results/jest-report.json
+Backend quality gates	Generate coverage and Jest report	2026-10-22T16:56:24.8196676Z ##[error]Process completed with exit code 1.
+Backend quality gates	Upload coverage and test report	﻿2026-10-22T16:56:24.8250729Z ##[group]Run actions/upload-artifact@v4
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8251032Z with:
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8251272Z   name: backend-ci-reports-39818068371
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8251555Z   if-no-files-found: error
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8251797Z   retention-days: 14
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8252323Z   path: backend/coverage/cobertura-coverage.xml
+Backend quality gates	Upload coverage and test report	backend/coverage/coverage-summary.json
+Backend quality gates	Upload coverage and test report	backend/test-results/jest-report.json
+Backend quality gates	Upload coverage and test report	
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8252918Z   compression-level: 6
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8253135Z   overwrite: false
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8253355Z   include-hidden-files: false
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.8253591Z ##[endgroup]
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.9996960Z (node:2946) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:24.9998246Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.0066233Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.0070367Z The least common ancestor is /home/runner/work/eshop-sut-group10/eshop-sut-group10/backend. This will be the root directory of the artifact
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.0072114Z With the provided path, there will be 3 files uploaded
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.0073726Z Artifact name is valid!
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.0074621Z Root directory input is valid!
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.2008269Z Beginning upload of artifact content to blob storage
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.2262920Z (node:2946) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.2763436Z Uploaded bytes 15993
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.2946742Z Finished uploading artifact content to blob storage!
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.2949162Z SHA256 digest of uploaded artifact zip is 0b9841b26f5adaccd39af64a711a05fe2a17de690c79580bae2d2aaec7f3215f
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.2950815Z Finalizing artifact upload
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.7011545Z Artifact backend-ci-reports-39818068371.zip successfully finalized. Artifact ID 12443751457
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.7012992Z Artifact backend-ci-reports-39818068371 has been successfully uploaded! Final size is 15993 bytes. Artifact ID is 12443751457
+Backend quality gates	Upload coverage and test report	2026-10-22T16:56:25.7019551Z Artifact download URL: https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39818068371/artifacts/12443751457
+Backend quality gates	Post Check out source	﻿2026-10-22T16:56:25.7226967Z Post job cleanup.
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8118019Z [command]/usr/bin/git version
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8180954Z git version 2.55.0
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8238693Z Temporarily overriding HOME='/home/runner/work/_temp/2a21edf6-ef4c-4adc-bbfc-c6bfeb3f68dc' before making global git config changes
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8240652Z Adding repository directory to the temporary git global config as a safe directory
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8242455Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eshop-sut-group10/eshop-sut-group10
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8286873Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8328585Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8656704Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8699044Z http.https://github.com/.extraheader
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8733894Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.8788056Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.9312693Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Backend quality gates	Post Check out source	2026-10-22T16:56:25.9399210Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Backend quality gates	Complete job	﻿2026-10-22T16:56:26.0033067Z Cleaning up orphan processes
+Backend quality gates	Complete job	2026-10-22T16:56:26.0441882Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

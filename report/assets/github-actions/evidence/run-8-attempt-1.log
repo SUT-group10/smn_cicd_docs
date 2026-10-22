@@ -1,0 +1,1398 @@
+Backend quality gates	UNKNOWN STEP	﻿2026-10-22T14:54:53.6775003Z Current runner version: '2.338.0'
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6811831Z ##[group]Runner Image Provisioner
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6814063Z Hosted Compute Agent
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6815166Z Version: 20261021.618
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6816445Z Commit: 21505ad2541d5be6135ed84fc33697146cf75b8e
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6817851Z Build Date: 2026-10-21T00:45:21Z
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6819296Z Worker ID: {1a8bd3aa-46ee-4f20-a6e7-88b0638fdb9e}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6821415Z Region: eastus
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6822512Z Cloud: Azure
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6823619Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6825945Z ##[group]Operating System
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6827028Z Ubuntu
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6828161Z 22.04.5
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6829146Z LTS
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6830476Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6831497Z ##[group]Runner Image
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6832526Z Image: ubuntu-22.04
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6833625Z Version: 20261021.330.9
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6835795Z Included Software: https://github.com/actions/runner-images/blob/ubuntu22/20261021.330/images/ubuntu/Ubuntu2204-Readme.md
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6838733Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu22%2F20261021.330
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6840731Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6842807Z ##[group]GITHUB_TOKEN Permissions
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6845738Z Contents: read
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6846869Z Metadata: read
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6847880Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6851292Z Secret source: Actions
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6852894Z Cache mode: write
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.6854185Z Prepare workflow directory
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.7432622Z Prepare all required actions
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.7504600Z Getting action download info
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:53.9800324Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:54.1920923Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:54.3611820Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:54.5602275Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:54.9240219Z Complete job name: Backend quality gates
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0223097Z ##[group]Run actions/checkout@v4
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0224448Z with:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0225343Z   repository: SUT-group10/eshop-sut-group10
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0233713Z   token: ***
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0234541Z   ssh-strict: true
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0235384Z   ssh-user: git
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0236249Z   persist-credentials: true
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0237184Z   clean: true
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0238052Z   sparse-checkout-cone-mode: true
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0239038Z   fetch-depth: 1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0239884Z   fetch-tags: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0240890Z   show-progress: true
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0241758Z   lfs: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0242571Z   submodules: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0243444Z   set-safe-directory: true
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0244430Z   allow-unsafe-pr-checkout: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.0245746Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1297670Z Syncing repository: SUT-group10/eshop-sut-group10
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1301156Z ##[group]Getting Git version info
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1302896Z Working directory is '/home/runner/work/eshop-sut-group10/eshop-sut-group10'
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1305282Z [command]/usr/bin/git version
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1375163Z git version 2.55.0
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1400744Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1416833Z Temporarily overriding HOME='/home/runner/work/_temp/36f1b45d-a819-4f04-9fcb-3cc350075912' before making global git config changes
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1419375Z Adding repository directory to the temporary git global config as a safe directory
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1422917Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eshop-sut-group10/eshop-sut-group10
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1467280Z Deleting the contents of '/home/runner/work/eshop-sut-group10/eshop-sut-group10'
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1482734Z ##[group]Initializing the repository
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1503318Z [command]/usr/bin/git init /home/runner/work/eshop-sut-group10/eshop-sut-group10
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1624678Z hint: Using 'master' as the name for the initial branch. This default branch name
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1627314Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1629095Z hint: to use in all of your new repositories, which will suppress this warning,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1632190Z hint: call:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1633977Z hint:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1635758Z hint: 	git config --global init.defaultBranch <name>
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1637871Z hint:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1639789Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1642958Z hint: 'development'. The just-created branch can be renamed via this command:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1645424Z hint:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1646897Z hint: 	git branch -m <name>
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1648463Z hint:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1650774Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1654121Z Initialized empty Git repository in /home/runner/work/eshop-sut-group10/eshop-sut-group10/.git/
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1657595Z [command]/usr/bin/git remote add origin https://github.com/SUT-group10/eshop-sut-group10
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1697508Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1702770Z ##[group]Disabling automatic garbage collection
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1705027Z [command]/usr/bin/git config --local gc.auto 0
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1740458Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1743012Z ##[group]Setting up auth
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1747562Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.1789584Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2201805Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2247269Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2516910Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2557339Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2819673Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2898867Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2908054Z ##[group]Fetching the repository
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.2910923Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +b32104dec9c93ed77f475b545643f590d166aa8c:refs/remotes/origin/main
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6187519Z From https://github.com/SUT-group10/eshop-sut-group10
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6188797Z  * [new ref]         b32104dec9c93ed77f475b545643f590d166aa8c -> origin/main
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6276162Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6277503Z ##[group]Determining the checkout info
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6278871Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6279839Z [command]/usr/bin/git sparse-checkout disable
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6282461Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6299076Z ##[group]Checking out the ref
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6303974Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6544097Z Switched to a new branch 'main'
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6547524Z branch 'main' set up to track 'origin/main'.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6555580Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6603260Z [command]/usr/bin/git log -1 --format=%H
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6635700Z b32104dec9c93ed77f475b545643f590d166aa8c
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.6999507Z ##[group]Run actions/setup-node@v4
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.7000255Z with:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.7000531Z   node-version: 22.14.0
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.7000799Z   always-auth: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.7001055Z   check-latest: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.7003685Z   token: ***
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.7003934Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.8658906Z Attempting to download 22.14.0...
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.8777666Z (node:2103) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:55.8779076Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:56.4421121Z Acquiring 22.14.0 - x64 from https://github.com/actions/node-versions/releases/download/22.14.0-13265982013/node-22.14.0-linux-x64.tar.gz
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:56.9217041Z Extracting ...
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:56.9354346Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/00d3c395-20a9-4e1e-bf18-8b194e71ca07 -f /home/runner/work/_temp/9189dcdf-5bb6-40be-8268-6f859671b750
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:58.0763167Z Adding to the cache ...
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:54:59.8363155Z ##[group]Environment details
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.0872786Z node: v22.14.0
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.0873188Z npm: 10.9.2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.0873388Z yarn: 1.22.22
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.0874316Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1713141Z ##[group]Run actions/cache/restore@v4
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1713507Z with:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1713722Z   path: ~/.npm
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1714129Z   key: Linux-node-22.14.0-npm-6bd926b18852784811c96b177f6861923edeea50f3b16c9035bb5a61235789fd
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1714616Z   restore-keys: Linux-node-22.14.0-npm-
+Backend quality gates	UNKNOWN STEP	
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1714920Z   enableCrossOsArchive: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1715189Z   fail-on-cache-miss: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1715420Z   lookup-only: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.1715640Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.2876359Z (node:2150) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.2878006Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.3697028Z Cache hit for restore-key: Linux-node-22.14.0-npm-7c08e1ce2d98b13fa94005160c0f254bb6459662f4051a6d6de73ea9a8af2f71
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.3805829Z (node:2150) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.7194090Z Received 20126857 of 20126857 (100.0%), 65.7 MBs/sec
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.7201856Z Cache Size: ~19 MB (20126857 B)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.7225391Z [command]/usr/bin/tar -xf /home/runner/work/_temp/59042796-d9e2-4c56-8403-8d177f69cd3b/cache.tzst -P -C /home/runner/work/eshop-sut-group10/eshop-sut-group10 --use-compress-program unzstd
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9054380Z Cache restored successfully
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9179837Z Cache restored from key: Linux-node-22.14.0-npm-7c08e1ce2d98b13fa94005160c0f254bb6459662f4051a6d6de73ea9a8af2f71
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9350842Z ##[group]Run node --version
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9351196Z ^[[36;1mnode --version^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9351454Z ^[[36;1mnpm --version^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9351771Z ^[[36;1mprintf 'Commit SHA: %s\n' "${GITHUB_SHA}"^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9352124Z ^[[36;1mprintf 'Runner OS: %s\n' "${RUNNER_OS}"^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9389547Z shell: /usr/bin/bash -e {0}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9389815Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:00.9506473Z v22.14.0
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0267962Z 10.9.2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0313153Z Commit SHA: b32104dec9c93ed77f475b545643f590d166aa8c
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0313765Z Runner OS: Linux
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0359617Z ##[group]Run npm ci
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0359895Z ^[[36;1mnpm ci^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0394144Z shell: /usr/bin/bash -e {0}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0394396Z env:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0394595Z   npm_config_build_from_source: true
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:01.0394867Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:02.9534087Z npm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:55:03.3034751Z npm warn deprecated glob@10.5.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5439492Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5442711Z added 488 packages, and audited 489 packages in 1m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5443217Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5443544Z 104 packages are looking for funding
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5444156Z   run `npm fund` for details
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5780134Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5780700Z 19 moderate severity vulnerabilities
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5781390Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5781888Z To address issues that do not require attention, run:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5782585Z   npm audit fix
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5782746Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5783043Z To address all issues (including breaking changes), run:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5783517Z   npm audit fix --force
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5783715Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.5783872Z Run `npm audit` for details.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.6362913Z ##[group]Run actions/cache/save@v4
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.6363185Z with:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.6363374Z   path: ~/.npm
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.6363785Z   key: Linux-node-22.14.0-npm-6bd926b18852784811c96b177f6861923edeea50f3b16c9035bb5a61235789fd
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.6364267Z   enableCrossOsArchive: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.6364507Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.7451667Z (node:2724) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.7453117Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:19.7647215Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/eshop-sut-group10/eshop-sut-group10 --files-from manifest.txt --use-compress-program zstdmt
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.0418060Z (node:2724) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.4410254Z Sent 21211439 of 21211439 (100.0%), 49.7 MBs/sec
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.5294104Z Cache saved with key: Linux-node-22.14.0-npm-6bd926b18852784811c96b177f6861923edeea50f3b16c9035bb5a61235789fd
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.5404669Z ##[group]Run npm run lint
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.5404974Z ^[[36;1mnpm run lint^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.5438841Z shell: /usr/bin/bash -e {0}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.5439095Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.6431846Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.6432485Z > backend@1.0.0 lint
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.6433099Z > eslint . --max-warnings=0
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:20.6433418Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.1959092Z ##[group]Run npm run build
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.1959496Z ^[[36;1mnpm run build^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.1994769Z shell: /usr/bin/bash -e {0}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.1995036Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.3037368Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.3037940Z > backend@1.0.0 build
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.3038657Z > node scripts/check-syntax.cjs
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.3038984Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.3565255Z PASS database.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.3789964Z PASS eslint.config.cjs
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.4010675Z PASS jest.config.cjs
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.4230453Z PASS scripts/check-syntax.cjs
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.4450755Z PASS scripts/verify-isolation.cjs
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.4707328Z PASS server.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.4947118Z PASS test_profile.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.5177664Z PASS tests/api/cart-orders.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.5410842Z PASS tests/api/catalog-auth.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.5658784Z PASS tests/api/coupons.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.5891575Z PASS tests/harness/isolation.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6112659Z PASS tests/helpers/harness.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6344572Z PASS tests/smoke/purchase.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6580703Z PASS tests/unit/authentication.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6581452Z Source syntax validation: 14 files, PASS
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6733029Z ##[group]Run npm run test:unit
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6733354Z ^[[36;1mnpm run test:unit^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6767400Z shell: /usr/bin/bash -e {0}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.6767674Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.7830830Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.7831112Z > backend@1.0.0 test:unit
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.7831483Z > jest --runInBand tests/unit
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:21.7831690Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5148172Z PASS tests/unit/authentication.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5151878Z   Unit: JWT authentication (FR-02, SEC-02)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5155214Z     ✓ U-AUTH-01 rejects a missing token (4 ms)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5155968Z     ✓ U-AUTH-02 rejects a malformed token (1 ms)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5156581Z     ✓ U-AUTH-03 rejects a token signed with another key (4 ms)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5157360Z     ✓ U-AUTH-04 rejects an expired token (2 ms)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5158303Z     ✓ U-AUTH-05 accepts a valid token and forwards its identity (3 ms)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5158838Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5179769Z Test Suites: 1 passed, 1 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5180641Z Tests:       5 passed, 5 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5181180Z Snapshots:   0 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5181619Z Time:        0.542 s
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5182165Z Ran all test suites matching tests/unit.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5406062Z ##[group]Run npm run test:api
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5406373Z ^[[36;1mnpm run test:api^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5440807Z shell: /usr/bin/bash -e {0}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.5441078Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.6453245Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.6454061Z > backend@1.0.0 test:api
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.6454641Z > jest --runInBand tests/api
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:22.6480867Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.7914725Z FAIL tests/api/cart-orders.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8013636Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8013928Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8014096Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8014612Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8015010Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8015267Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8015530Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8015624Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8015867Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8016039Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8016179Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8016377Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8016514Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8016790Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8017006Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8017136Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8017328Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8017418Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8017632Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8017788Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8017922Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8018111Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8018194Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8018463Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8018675Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8018804Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8018998Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8019088Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8019307Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8019463Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8019598Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8019794Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8019880Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8020437Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8020659Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8020790Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8020985Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8021076Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8021292Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8021449Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8021581Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8021772Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8021856Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8022126Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8022330Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8022465Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8022657Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8022746Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8022959Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8023451Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8023587Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8023772Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8023860Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8024133Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8024339Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8024473Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8024662Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8024750Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8024956Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8025112Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8025241Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8025422Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8025512Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8025775Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8025979Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8026113Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8026304Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8026391Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8026599Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8026755Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8026879Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8027067Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8027154Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8027414Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8027621Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8027990Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8028189Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8028275Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8028494Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8028645Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8028771Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8028960Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8029047Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8029316Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8029526Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8029660Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8029852Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8029933Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8030395Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8030555Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8030684Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8030878Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8030966Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8031222Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8031428Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8031566Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8031754Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8031837Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8032053Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8032203Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8032336Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8032527Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8033026Z   ● API: cart, checkout and orders › A-CART-03 repeated products merge into one line (FR-07)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8033388Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8033542Z     expect(received).toHaveLength(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8033747Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8033850Z     Expected length: 1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8034153Z     Received length: 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8036264Z     Received array:  [{"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 1}, {"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 2}]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8037628Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8037932Z     ^[[0m ^[[90m 38 |^[[39m     ^[[36mawait^[[39m addProduct(^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8038745Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8039647Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoHaveLength(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8040766Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8041483Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody[^[[35m0^[[39m]^[[33m.^[[39mquantity)^[[33m.^[[39mtoBe(^[[35m3^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8042270Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8042564Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8042709Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8042945Z       at Object.toHaveLength (tests/api/cart-orders.test.js:40:27)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8043220Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8043670Z   ● API: cart, checkout and orders › A-CHECKOUT-02 computes the total instead of trusting the client (FR-08)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8044081Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8044272Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8044517Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8044607Z     Expected: 60000000
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8044836Z     Received: 1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8044962Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8045333Z     ^[[0m ^[[90m 56 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8046494Z      ^[[90m 57 |^[[39m     ^[[36mconst^[[39m order ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT * FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [response^[[33m.^[[39mbody^[[33m.^[[39morderId])^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8047720Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 58 |^[[39m     expect(order^[[33m.^[[39mtotal_amount)^[[33m.^[[39mtoBe(product^[[33m.^[[39mprice ^[[33m*^[[39m ^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8048593Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8048990Z      ^[[90m 59 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8049275Z      ^[[90m 60 |^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8049997Z      ^[[90m 61 |^[[39m   test(^[[32m'A-CHECKOUT-03 clears the cart after successful checkout (FR-08)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8050684Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8050876Z       at Object.toBe (tests/api/cart-orders.test.js:58:32)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8051119Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8051533Z   ● API: cart, checkout and orders › A-CHECKOUT-03 clears the cart after successful checkout (FR-08)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8051907Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8052085Z     expect(received).toEqual(expected) // deep equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8052327Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8052429Z     - Expected  -  1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8052663Z     + Received  + 11
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8052793Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8052884Z     - Array []
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8053091Z     + Array [
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8053285Z     +   Object {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8053501Z     +     "category_id": 1,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8053891Z     +     "description": "Điện thoại cao cấp của Apple",
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8054201Z     +     "id": 1,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8054591Z     +     "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15",
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8055001Z     +     "name": "iPhone 15 Pro Max",
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8055274Z     +     "price": 30000000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8055523Z     +     "quantity": 1,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8055743Z     +   },
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8055932Z     + ]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8056042Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8056561Z     ^[[0m ^[[90m 66 |^[[39m     ^[[36mconst^[[39m cart ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8057337Z      ^[[90m 67 |^[[39m     expect(cart^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8058009Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 68 |^[[39m     expect(cart^[[33m.^[[39mbody)^[[33m.^[[39mtoEqual([])^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8058546Z      ^[[90m    |^[[39m                       ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8058905Z      ^[[90m 69 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8059187Z      ^[[90m 70 |^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8059880Z      ^[[90m 71 |^[[39m   test(^[[32m'A-ORDER-01 history includes only the current user orders (FR-11)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8060521Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8060725Z       at Object.toEqual (tests/api/cart-orders.test.js:68:23)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8060970Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8061342Z   ● API: cart, checkout and orders › A-ORDER-03 user cannot cancel a shipping order (FR-10)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8061690Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8062082Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8062316Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8062417Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8062644Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8062768Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8063214Z     ^[[0m ^[[90m 89 |^[[39m     ^[[36mconst^[[39m id ^[[33m=^[[39m ^[[36mawait^[[39m createOrder(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8064150Z      ^[[90m 90 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'put'^[[39m^[[33m,^[[39m ^[[32m`/api/orders/${id}/cancel`^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8065120Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 91 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8065781Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8066393Z      ^[[90m 92 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8067537Z      ^[[90m 93 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8068326Z      ^[[90m 94 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8068642Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8068912Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:91:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8069229Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8069624Z   ● API: cart, checkout and orders › A-ORDER-04 canceled is a final state even for admin (FR-10)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8069983Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8070300Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8070537Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8070630Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8070846Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8070975Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8071620Z     ^[[0m ^[[90m  99 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39mput(^[[32m`/api/admin/orders/${id}/status`^[[39m)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8072816Z      ^[[90m 100 |^[[39m       ^[[33m.^[[39mauth(admin^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m.^[[39msend({ status^[[33m:^[[39m ^[[32m'delivered'^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8073882Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 101 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8074541Z      ^[[90m     |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8075166Z      ^[[90m 102 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8076331Z      ^[[90m 103 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'canceled'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8077303Z      ^[[90m 104 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8077569Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8077891Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:101:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:23.8078430Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.1943569Z FAIL tests/api/catalog-auth.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2031836Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2032122Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2032333Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2032922Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2033346Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2033612Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2033955Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2034088Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2034636Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2034881Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2035136Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2035518Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2035737Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2049845Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2050509Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2050766Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2051151Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2051293Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2051674Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2052239Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2052387Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2052586Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2052681Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2052971Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2053195Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2053337Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2053539Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2053625Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2053849Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2053999Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2054169Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2054351Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2054441Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2054707Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2054915Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2055048Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2055241Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2055324Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2055539Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2055698Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2055828Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2056016Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2056104Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2056359Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2056562Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2056851Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2057045Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2057129Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2057340Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2057490Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2057611Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2057794Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2057882Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2058136Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2058336Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2058465Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2058648Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2058728Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2058938Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2059078Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2059203Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2059395Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2059482Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2059735Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2059933Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2060469Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2060710Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2060815Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2061040Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2061186Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2061325Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2061510Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2061598Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2061854Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2062061Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2062196Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2062375Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2062465Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2062679Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2062821Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2062955Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2063159Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2063248Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2063507Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2063709Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2063848Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2064037Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2064135Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2064351Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2064506Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2064635Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2064828Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2064911Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2065177Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2065417Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2065552Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2065740Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2065821Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2066030Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2066179Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2066303Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2066484Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2066570Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2067042Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2067248Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2067380Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2067564Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2067646Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2067863Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2068012Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2068135Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2068315Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2068930Z   ● API: catalog and authentication › A-AUTH-03 each failed login increments the counter by exactly one (FR-02)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2069359Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2069552Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2069813Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2069906Z     Expected: 1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2070387Z     Received: 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2070520Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2071149Z     ^[[0m ^[[90m 49 |^[[39m       ^[[33m.^[[39msend({ email^[[33m:^[[39m ^[[32m'test@eshop.com'^[[39m^[[33m,^[[39m password^[[33m:^[[39m ^[[32m'wrong-password'^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2072612Z      ^[[90m 50 |^[[39m     ^[[36mconst^[[39m row ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT login_attempts FROM users WHERE email = ?'^[[39m^[[33m,^[[39m [^[[32m'test@eshop.com'^[[39m])^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2073704Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 51 |^[[39m     expect(row^[[33m.^[[39mlogin_attempts)^[[33m.^[[39mtoBe(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2074331Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2074722Z      ^[[90m 52 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2075010Z      ^[[90m 53 |^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2075325Z      ^[[90m 54 |^[[39m   test^[[33m.^[[39meach([^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2075524Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2075727Z       at Object.toBe (tests/api/catalog-auth.test.js:51:32)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2075969Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2076324Z   ● API: catalog and authentication › A-ACCESS-02 user cannot read admin users (FR-12)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2076670Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2076861Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2077087Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2077185Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2077409Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2077536Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2077948Z     ^[[0m ^[[90m 67 |^[[39m     ^[[36mconst^[[39m user ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39mlogin()^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2079279Z      ^[[90m 68 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39m^[[36mget^[[39m(^[[32m'/api/admin/users'^[[39m)^[[33m.^[[39mauth(user^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2080810Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 69 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2081481Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2082101Z      ^[[90m 70 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2082616Z      ^[[90m 71 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2082901Z      ^[[90m 72 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2083046Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2083320Z       at Object.toBeGreaterThanOrEqual (tests/api/catalog-auth.test.js:69:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.2083640Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5446921Z FAIL tests/api/coupons.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5518218Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5518486Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5518681Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5519295Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5519644Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5519834Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5520428Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5520547Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5520840Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5521042Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5521223Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5521474Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5521590Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5521939Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5522570Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5522747Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5522996Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5523111Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5523407Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5523600Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5523772Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5524052Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5524168Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5524512Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5524777Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5524953Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5525205Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5525322Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5525595Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5525792Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5525962Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5526205Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5526330Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5526677Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5526953Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5527125Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5527370Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5527484Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5527757Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5527959Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5528530Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5528872Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5529017Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5529451Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5529803Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5530255Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5530619Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5530793Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5531182Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5531431Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5531641Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5531979Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5532096Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5532445Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5532697Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5532846Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5533039Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5533139Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5533350Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5533498Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5533630Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5533816Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5533904Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5534166Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5534387Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5534519Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5534717Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5534803Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5535021Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5535171Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5535306Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5535495Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5535576Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5535836Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5536033Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5536169Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5536363Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5536449Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5536660Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5536813Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5536942Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5537120Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5537211Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5537484Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5537686Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5537822Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5538010Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5538097Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5538302Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5538454Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5538584Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5538763Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5539588Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5540575Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5540897Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5541689Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5541799Z     Expected: 200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5542033Z     Received: 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5542156Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5542857Z     ^[[0m ^[[90m 38 |^[[39m   test(^[[32m'A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5543950Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'BIGBUY'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5544804Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5545403Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5546618Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5547383Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5547688Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5547848Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5548030Z       at Object.toBe (tests/api/coupons.test.js:40:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5548265Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5548904Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-07 rejects an anonymous request even with user_id (C4)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5549350Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5549533Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5549767Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5549858Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5550570Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5550726Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5550867Z     ^[[0m ^[[90m 13 |^[[39m }
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5551279Z      ^[[90m 14 |^[[39m ^[[36mfunction^[[39m expectClientError(response) {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5552033Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 15 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5552692Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5553299Z      ^[[90m 16 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5554163Z      ^[[90m 17 |^[[39m   expect(response^[[33m.^[[39mbody^[[33m.^[[39merror)^[[33m.^[[39mtoEqual(expect^[[33m.^[[39many(^[[33mString^[[39m))^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5554730Z      ^[[90m 18 |^[[39m }^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5554878Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5555094Z       at toBeGreaterThanOrEqual (tests/api/coupons.test.js:15:27)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5555577Z       at Object.expectClientError (tests/api/coupons.test.js:51:5)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5555850Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5556237Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-09 computes ten percent of the total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5556601Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5556750Z     expect(received).toMatchObject(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5556954Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5557053Z     - Expected  - 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5557268Z     + Received  + 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5557400Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5557489Z       Object {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5557729Z     -   "discount_amount": 50000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5558018Z     -   "final_amount": 450000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5558297Z     +   "discount_amount": -4500000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5558588Z     +   "final_amount": 5000000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5558828Z       }
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5558933Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5559470Z     ^[[0m ^[[90m 60 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'SAVE10'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5560519Z      ^[[90m 61 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5561650Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 62 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5562501Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5563052Z      ^[[90m 63 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5563355Z      ^[[90m 64 |^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5563631Z      ^[[90m 65 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5563773Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5563978Z       at Object.toMatchObject (tests/api/coupons.test.js:62:27)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5564237Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5564399Z Test Suites: 3 failed, 3 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5564718Z Tests:       10 failed, 20 passed, 30 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5565019Z Snapshots:   0 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5565244Z Time:        1.716 s
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.5565518Z Ran all test suites matching tests/api.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6747893Z ##[error]Process completed with exit code 1.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6817359Z ##[group]Run mkdir -p test-results
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6817701Z ^[[36;1mmkdir -p test-results^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6817964Z ^[[36;1mnpm run test:ci -- \^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6818220Z ^[[36;1m  --json \^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6818499Z ^[[36;1m  --outputFile=test-results/jest-report.json^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6852648Z shell: /usr/bin/bash -e {0}
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.6852911Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.7879852Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.7880413Z > backend@1.0.0 test:ci
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.7881758Z > jest --ci --runInBand --coverage --reporters=default --reporters=jest-junit --json --outputFile=test-results/jest-report.json
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:24.7882704Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2412042Z FAIL tests/api/cart-orders.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2530257Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2530558Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2530691Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2531382Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2531747Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2531997Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2532254Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2532369Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2532641Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2532842Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2533007Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2533245Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2533347Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2533739Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2534065Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2534232Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2534485Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2534597Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2534864Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2535061Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2535228Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2535470Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2535576Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2535914Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2536186Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2536351Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2536602Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2536716Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2536982Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2537175Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2537339Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2537582Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2537687Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2538025Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2538298Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2538469Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2538720Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2538871Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2539144Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2539337Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2539504Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2539747Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2539858Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2540478Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2540773Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2540946Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2541187Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2541308Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2541580Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2541768Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2541934Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2542176Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2542288Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2542620Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2543229Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2543398Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2543638Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2543752Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2544019Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2544206Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2544370Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2544608Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2544718Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2545041Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2545242Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2545369Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2545547Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2545633Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2546109Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2546266Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2546398Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2546577Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2546657Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2546917Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2547128Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2547255Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2547450Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2547536Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2547741Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2547888Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2548019Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2548200Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2548280Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2548540Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2548740Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2548862Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2549045Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2549130Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2549331Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2549477Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2549608Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2549789Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2549869Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2550445Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2550649Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2550782Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2550971Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2551060Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2551264Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2551408Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2551535Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2551706Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2552180Z   ● API: cart, checkout and orders › A-CART-03 repeated products merge into one line (FR-07)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2552541Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2552689Z     expect(received).toHaveLength(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2552893Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2552986Z     Expected length: 1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2553219Z     Received length: 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2555746Z     Received array:  [{"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 1}, {"category_id": 1, "description": "Điện thoại cao cấp của Apple", "id": 1, "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15", "name": "iPhone 15 Pro Max", "price": 30000000, "quantity": 2}]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2557831Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2558369Z     ^[[0m ^[[90m 38 |^[[39m     ^[[36mawait^[[39m addProduct(^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2559817Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2561730Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoHaveLength(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2562538Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2563254Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody[^[[35m0^[[39m]^[[33m.^[[39mquantity)^[[33m.^[[39mtoBe(^[[35m3^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2563807Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2564093Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2564239Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2564466Z       at Object.toHaveLength (tests/api/cart-orders.test.js:40:27)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2564971Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2565448Z   ● API: cart, checkout and orders › A-CHECKOUT-02 computes the total instead of trusting the client (FR-08)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2565857Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2566049Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2566294Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2566387Z     Expected: 60000000
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2566615Z     Received: 1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2566733Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2567117Z     ^[[0m ^[[90m 56 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2568419Z      ^[[90m 57 |^[[39m     ^[[36mconst^[[39m order ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT * FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [response^[[33m.^[[39mbody^[[33m.^[[39morderId])^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2569638Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 58 |^[[39m     expect(order^[[33m.^[[39mtotal_amount)^[[33m.^[[39mtoBe(product^[[33m.^[[39mprice ^[[33m*^[[39m ^[[35m2^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2570706Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2571099Z      ^[[90m 59 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2571382Z      ^[[90m 60 |^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2572085Z      ^[[90m 61 |^[[39m   test(^[[32m'A-CHECKOUT-03 clears the cart after successful checkout (FR-08)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2572573Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2572758Z       at Object.toBe (tests/api/cart-orders.test.js:58:32)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2572998Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2573396Z   ● API: cart, checkout and orders › A-CHECKOUT-03 clears the cart after successful checkout (FR-08)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2573770Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2573952Z     expect(received).toEqual(expected) // deep equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2574183Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2574288Z     - Expected  -  1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2574509Z     + Received  + 11
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2574636Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2574719Z     - Array []
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2574924Z     + Array [
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2575121Z     +   Object {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2575339Z     +     "category_id": 1,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2576024Z     +     "description": "Điện thoại cao cấp của Apple",
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2576572Z     +     "id": 1,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2577186Z     +     "imageUrl": "https://placehold.co/300x300/png?text=iPhone+15",
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2577956Z     +     "name": "iPhone 15 Pro Max",
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2578452Z     +     "price": 30000000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2578902Z     +     "quantity": 1,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2579313Z     +   },
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2579654Z     + ]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2579852Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2581109Z     ^[[0m ^[[90m 66 |^[[39m     ^[[36mconst^[[39m cart ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'get'^[[39m^[[33m,^[[39m ^[[32m'/api/cart'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2582532Z      ^[[90m 67 |^[[39m     expect(cart^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2583739Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 68 |^[[39m     expect(cart^[[33m.^[[39mbody)^[[33m.^[[39mtoEqual([])^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2584736Z      ^[[90m    |^[[39m                       ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2585390Z      ^[[90m 69 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2585913Z      ^[[90m 70 |^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2587084Z      ^[[90m 71 |^[[39m   test(^[[32m'A-ORDER-01 history includes only the current user orders (FR-11)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2587611Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2587828Z       at Object.toEqual (tests/api/cart-orders.test.js:68:23)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2588087Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2588485Z   ● API: cart, checkout and orders › A-ORDER-03 user cannot cancel a shipping order (FR-10)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2588854Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2589042Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2589274Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2589370Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2589594Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2589718Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2590479Z     ^[[0m ^[[90m 89 |^[[39m     ^[[36mconst^[[39m id ^[[33m=^[[39m ^[[36mawait^[[39m createOrder(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2591684Z      ^[[90m 90 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m call(^[[32m'put'^[[39m^[[33m,^[[39m ^[[32m`/api/orders/${id}/cancel`^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2592675Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 91 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2593335Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2593945Z      ^[[90m 92 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2595203Z      ^[[90m 93 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'shipping'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2596027Z      ^[[90m 94 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2596208Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2596473Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:91:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2596789Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2597179Z   ● API: cart, checkout and orders › A-ORDER-04 canceled is a final state even for admin (FR-10)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2597534Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2597711Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2597944Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2598039Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2598255Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2598382Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2599021Z     ^[[0m ^[[90m  99 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39mput(^[[32m`/api/admin/orders/${id}/status`^[[39m)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2600385Z      ^[[90m 100 |^[[39m       ^[[33m.^[[39mauth(admin^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m.^[[39msend({ status^[[33m:^[[39m ^[[32m'delivered'^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2601437Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 101 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2602100Z      ^[[90m     |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2602750Z      ^[[90m 102 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2603873Z      ^[[90m 103 |^[[39m     expect((^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT status FROM orders WHERE id = ?'^[[39m^[[33m,^[[39m [id]))^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[32m'canceled'^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2604663Z      ^[[90m 104 |^[[39m   })^[[33m;^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2604846Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2605110Z       at Object.toBeGreaterThanOrEqual (tests/api/cart-orders.test.js:101:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.2605417Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6696056Z FAIL tests/api/catalog-auth.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6780679Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6781204Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6781429Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6782133Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6782739Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6783094Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6783592Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6783821Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6784378Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6784772Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6785118Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6785624Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6785901Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6786593Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6786994Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6787213Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6787524Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6787680Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6788053Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6788307Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6788515Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6788827Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6788967Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6789389Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6790479Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6790712Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6791030Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6791164Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6791510Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6791756Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6791969Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6792264Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6792377Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6792686Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6792929Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6793079Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6793295Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6793389Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6793845Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6794023Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6794166Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6794376Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6794473Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6794759Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6794991Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6795137Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6795355Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6795447Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6795684Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6795847Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6795994Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6796202Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6796299Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6796588Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6796816Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6796962Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6797166Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6797269Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6797504Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6797666Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6797815Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6798024Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6798124Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6798410Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6798640Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6798787Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6798997Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6799094Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6799327Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6799488Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6799632Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6799837Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6799932Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6800470Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6800703Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6800849Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6801053Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6801151Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6801392Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6801569Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6801719Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6801926Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6802026Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6802316Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6802536Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6802661Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6802845Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6802937Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6803140Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6803301Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6803438Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6803630Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6803711Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6803976Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6804183Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6804308Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6804499Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6804586Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6804787Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6804934Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6805064Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6805247Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6805332Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6805587Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6805784Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6805912Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6806096Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6806183Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6806386Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6806717Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6806856Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6807043Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6807622Z   ● API: catalog and authentication › A-AUTH-03 each failed login increments the counter by exactly one (FR-02)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6808061Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6808253Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6808501Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6808588Z     Expected: 1
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6808799Z     Received: 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6808913Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6809664Z     ^[[0m ^[[90m 49 |^[[39m       ^[[33m.^[[39msend({ email^[[33m:^[[39m ^[[32m'test@eshop.com'^[[39m^[[33m,^[[39m password^[[33m:^[[39m ^[[32m'wrong-password'^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6811142Z      ^[[90m 50 |^[[39m     ^[[36mconst^[[39m row ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39m^[[36mget^[[39m(^[[32m'SELECT login_attempts FROM users WHERE email = ?'^[[39m^[[33m,^[[39m [^[[32m'test@eshop.com'^[[39m])^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6812238Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 51 |^[[39m     expect(row^[[33m.^[[39mlogin_attempts)^[[33m.^[[39mtoBe(^[[35m1^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6812852Z      ^[[90m    |^[[39m                                ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6813230Z      ^[[90m 52 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6813513Z      ^[[90m 53 |^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6813822Z      ^[[90m 54 |^[[39m   test^[[33m.^[[39meach([^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6814022Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6814211Z       at Object.toBe (tests/api/catalog-auth.test.js:51:32)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6814457Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6814812Z   ● API: catalog and authentication › A-ACCESS-02 user cannot read admin users (FR-12)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6815156Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6815334Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6815564Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6815652Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6815874Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6816004Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6816401Z     ^[[0m ^[[90m 67 |^[[39m     ^[[36mconst^[[39m user ^[[33m=^[[39m ^[[36mawait^[[39m harness^[[33m.^[[39mlogin()^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6817710Z      ^[[90m 68 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m request(harness^[[33m.^[[39mapp)^[[33m.^[[39m^[[36mget^[[39m(^[[32m'/api/admin/users'^[[39m)^[[33m.^[[39mauth(user^[[33m.^[[39mtoken^[[33m,^[[39m { type^[[33m:^[[39m ^[[32m'bearer'^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6818979Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 69 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6819642Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6820389Z      ^[[90m 70 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6820897Z      ^[[90m 71 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6821191Z      ^[[90m 72 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6821330Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6821599Z       at Object.toBeGreaterThanOrEqual (tests/api/catalog-auth.test.js:69:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:26.6821924Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0561869Z FAIL tests/api/coupons.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0633374Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0633630Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0633810Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0634359Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0634768Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0635031Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0635285Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0635433Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0635753Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0635961Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0636153Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0636380Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0636562Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0636937Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0637198Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0637382Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0637623Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0637764Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0638086Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0638723Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0638915Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0639154Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0639298Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0639684Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0639948Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0640394Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0640647Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0640818Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0641133Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0641342Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0641528Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0641771Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0641909Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0642631Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0642953Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0643145Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0643395Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0643539Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0643859Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0644062Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0644244Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0644489Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0644632Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0645004Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0645293Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0645476Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0645721Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0645862Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0646170Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0646372Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0646557Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0646796Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0646931Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0647294Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0647554Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0647741Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0647980Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0648119Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0648426Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0648629Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0648819Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0649060Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0649199Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0649568Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0649818Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0649996Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0650740Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0650972Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0651574Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0651866Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0652071Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0652340Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0652634Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0653112Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0653420Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0653707Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0654027Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0654228Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0654667Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0655002Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0655206Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0655521Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0655721Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0669079Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0669433Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0669782Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0670473Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0670671Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0671154Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0671468Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0671786Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0672157Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0673343Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0673883Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0674134Z     expect(received).toBe(expected) // Object.is equality
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0674428Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0674571Z     Expected: 200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0674888Z     Received: 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0675057Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0675762Z     ^[[0m ^[[90m 38 |^[[39m   test(^[[32m'A-COUPON-05 accepts the exact minimum and computes the fixed discount (C3)'^[[39m^[[33m,^[[39m ^[[36masync^[[39m () ^[[33m=>^[[39m {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0677136Z      ^[[90m 39 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'BIGBUY'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0678116Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 40 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0678780Z      ^[[90m    |^[[39m                             ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0679788Z      ^[[90m 41 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0681130Z      ^[[90m 42 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0681531Z      ^[[90m 43 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0681725Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0681946Z       at Object.toBe (tests/api/coupons.test.js:40:29)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0682204Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0682717Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-07 rejects an anonymous request even with user_id (C4)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0683183Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0683404Z     expect(received).toBeGreaterThanOrEqual(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0683671Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0683820Z     Expected: >= 400
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0684136Z     Received:    200
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0684306Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0684486Z     ^[[0m ^[[90m 13 |^[[39m }
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0684969Z      ^[[90m 14 |^[[39m ^[[36mfunction^[[39m expectClientError(response) {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0685807Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 15 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeGreaterThanOrEqual(^[[35m400^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0686530Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0687198Z      ^[[90m 16 |^[[39m   expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBeLessThan(^[[35m500^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0688111Z      ^[[90m 17 |^[[39m   expect(response^[[33m.^[[39mbody^[[33m.^[[39merror)^[[33m.^[[39mtoEqual(expect^[[33m.^[[39many(^[[33mString^[[39m))^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0688762Z      ^[[90m 18 |^[[39m }^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0688958Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0689221Z       at toBeGreaterThanOrEqual (tests/api/coupons.test.js:15:27)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0689786Z       at Object.expectClientError (tests/api/coupons.test.js:51:5)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0690436Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0690896Z   ● API: coupon conditions and formulas (FR-09) › A-COUPON-09 computes ten percent of the total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0691300Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0691493Z     expect(received).toMatchObject(expected)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0691738Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0691892Z     - Expected  - 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0692212Z     + Received  + 2
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0692382Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0692528Z       Object {
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0692861Z     -   "discount_amount": 50000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0693235Z     -   "final_amount": 450000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0693599Z     +   "discount_amount": -4500000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0693981Z     +   "final_amount": 5000000,
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0694322Z       }
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0694482Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0695046Z     ^[[0m ^[[90m 60 |^[[39m     ^[[36mconst^[[39m response ^[[33m=^[[39m ^[[36mawait^[[39m apply(^[[32m'SAVE10'^[[39m^[[33m,^[[39m ^[[35m500000^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0695891Z      ^[[90m 61 |^[[39m     expect(response^[[33m.^[[39mstatus)^[[33m.^[[39mtoBe(^[[35m200^[[39m)^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0697046Z     ^[[31m^[[1m>^[[22m^[[39m^[[90m 62 |^[[39m     expect(response^[[33m.^[[39mbody)^[[33m.^[[39mtoMatchObject({ discount_amount^[[33m:^[[39m ^[[35m50000^[[39m^[[33m,^[[39m final_amount^[[33m:^[[39m ^[[35m450000^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0697964Z      ^[[90m    |^[[39m                           ^[[31m^[[1m^^[[22m^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0698410Z      ^[[90m 63 |^[[39m   })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0698796Z      ^[[90m 64 |^[[39m })^[[33m;^[[39m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0699162Z      ^[[90m 65 |^[[39m^[[0m
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0699338Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0699586Z       at Object.toMatchObject (tests/api/coupons.test.js:62:27)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.0700244Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2701771Z PASS tests/harness/isolation.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2741432Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2741751Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2741979Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2742627Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2743098Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2743387Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2743774Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2743936Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2744383Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2744692Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2744956Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2745306Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2745834Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2746624Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2747050Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2747312Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2747724Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2747932Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2748342Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2748672Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2748930Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2749319Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2749493Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2750461Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2750897Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2751169Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2751527Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2751704Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2752122Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2752405Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2752654Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2753007Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2753177Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2753672Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2754046Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2754289Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2754637Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2754801Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2755205Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2755497Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2755780Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2756327Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2756485Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2756973Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2757417Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2757707Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2758188Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2758404Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2758866Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2759214Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2759517Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.2760362Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3796579Z PASS tests/smoke/purchase.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3807820Z   ● Console
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3808061Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3808262Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3808786Z       Database initialized and seeded (Phase 2).
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3809180Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3809425Z       at Database.log (database.js:113:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3809758Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3809906Z     console.log
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3810515Z       Connected to database
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3810797Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3811024Z       at Database.log (database.js:9:17)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.3811349Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4484899Z PASS tests/unit/authentication.test.js
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4626877Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4627782Z =============================== Coverage summary ===============================
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4628900Z Statements   : 57.98% ( 178/307 )
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4629739Z Branches     : 39.09% ( 52/133 )
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4630743Z Functions    : 39.72% ( 29/73 )
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4631294Z Lines        : 61.48% ( 174/283 )
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4631983Z ================================================================================
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4716617Z 
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4726587Z Test Suites: 3 failed, 3 passed, 6 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4727148Z Tests:       10 failed, 29 passed, 39 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4727569Z Snapshots:   0 total
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4727904Z Time:        2.482 s
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4728240Z Ran all test suites.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.4763084Z Test results written to: test-results/jest-report.json
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5114992Z ##[error]Process completed with exit code 1.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5194463Z ##[group]Run actions/upload-artifact@v4
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5195046Z with:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5195472Z   name: backend-ci-reports-39799889101
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5196000Z   if-no-files-found: error
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5196442Z   retention-days: 14
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5197403Z   path: backend/coverage/cobertura-coverage.xml
+Backend quality gates	UNKNOWN STEP	backend/coverage/coverage-summary.json
+Backend quality gates	UNKNOWN STEP	backend/test-results/jest-report.json
+Backend quality gates	UNKNOWN STEP	
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5198483Z   compression-level: 6
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5198893Z   overwrite: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5199371Z   include-hidden-files: false
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.5199809Z ##[endgroup]
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.6951809Z (node:2964) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.6952775Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.7039713Z Multiple search paths detected. Calculating the least common ancestor of all paths
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.7061521Z The least common ancestor is /home/runner/work/eshop-sut-group10/eshop-sut-group10/backend. This will be the root directory of the artifact
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.7063115Z With the provided path, there will be 3 files uploaded
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.7064464Z Artifact name is valid!
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.7065007Z Root directory input is valid!
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.9258171Z Beginning upload of artifact content to blob storage
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:27.9504111Z (node:2964) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.0045777Z Uploaded bytes 16011
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.0239869Z Finished uploading artifact content to blob storage!
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.0241488Z SHA256 digest of uploaded artifact zip is 220da4d14d072f4552031e64da944c68428d716e2b473ca5e09e434218ee72be
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.0243094Z Finalizing artifact upload
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.5303053Z Artifact backend-ci-reports-39799889101.zip successfully finalized. Artifact ID 12435087149
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.5304304Z Artifact backend-ci-reports-39799889101 has been successfully uploaded! Final size is 16011 bytes. Artifact ID is 12435087149
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.5311273Z Artifact download URL: https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39799889101/artifacts/12435087149
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.5524627Z Post job cleanup.
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6416566Z [command]/usr/bin/git version
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6491089Z git version 2.55.0
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6534505Z Temporarily overriding HOME='/home/runner/work/_temp/ad1348d4-9fc9-4404-a265-f97eb5d71224' before making global git config changes
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6536377Z Adding repository directory to the temporary git global config as a safe directory
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6540630Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eshop-sut-group10/eshop-sut-group10
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6582397Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6641290Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6944424Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6972414Z http.https://github.com/.extraheader
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.6985140Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.7039837Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.7357893Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.7403885Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.7872986Z Cleaning up orphan processes
+Backend quality gates	UNKNOWN STEP	2026-10-22T14:56:33.8181854Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/cache/save@v4, actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
