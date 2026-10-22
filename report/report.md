@@ -1043,11 +1043,33 @@ Chuỗi chẩn đoán thể hiện giá trị của việc lưu đủ commit, tr
 
 ### 7.1. Điều kiện đo
 
+Nhóm đối chiếu GitHub Actions run #11, attempt 2 của PR #19 (head SHA `cbdcb885`) với Jenkins build #4 (commit `a559c53`). Hai lượt sử dụng SUT baseline và bộ 39 test, giữ nguyên các assertion nghiệp vụ. Run xanh của PR #20 được trình bày riêng ở chương 5 vì đã thay đổi SUT.
+
+Môi trường chưa hoàn toàn đồng nhất: GitHub Actions dùng Ubuntu 22.04, Node 22.14.0, npm 10.9.2; Jenkins dùng agent Debian trong Docker, Node 24.14.0, npm 11.9.0. GitHub Actions chạy test theo tầng rồi chạy lại full suite; Jenkins chạy full suite một lần. Vì vậy, số liệu thời gian chỉ mô tả các lượt đã quan sát.
+
 ### 7.2. Kết quả đo
+
+*Bảng 25. Đối chiếu kết quả hai lượt CI trên SUT baseline*
+
+| Tiêu chí | GitHub Actions | Jenkins |
+| --- | --- | --- |
+| Kết quả full suite | 39 test: 29 pass, 10 fail, 0 skip | 39 test: 29 pass, 10 fail, 0 skip |
+| Verdict job/build | Failure | FAILURE |
+| Line coverage theo Jest | 61,48% (174/283) | 61,48% (174/283) |
+| Thời gian full suite theo Jest | 1,449 giây | 1,960 giây |
+| Thời gian toàn job/build | 65 giây | 17,600 giây |
+| Cache trong lượt đối chiếu | Đã xác nhận exact hit | Có volume npm cache, chưa xác nhận hit/miss |
+| Lưu báo cáo khi test fail | Upload artifact thành công | Publish JUnit, Coverage và archive thành công |
+
+Danh sách mười ID fail trùng nhau cho thấy hai lượt ghi nhận cùng các sai lệch baseline. Chênh lệch thời gian chưa đủ để kết luận nền tảng nào nhanh hơn do khác môi trường, cách tổ chức bước và điều kiện cache.
 
 ### 7.3. So sánh cấu hình và vận hành
 
+GitHub Actions dùng YAML trong `.github/workflows`, tích hợp sự kiện PR/push và kết quả kiểm tra ngay trên GitHub. Với hosted runner, nhóm tập trung vào workflow, dependency và artifact. Jenkins dùng `Jenkinsfile`; nhóm cần dựng controller, kết nối agent và quản lý plugin, volume cùng credential. Đổi lại, cấu hình hiện có cung cấp trang Tests và Coverage để đi từ kết quả tổng hợp tới từng assertion hoặc vùng mã nguồn. GitHub Actions hiện lưu các báo cáo JSON/XML qua artifact.
+
 ### 7.4. Nhận xét
+
+GitHub Actions phù hợp làm CI chính của EShop nhờ gắn trực tiếp với quy trình PR trên GitHub. Jenkins là nền tảng đối chiếu giúp nhóm thực hành quản lý môi trường và công bố báo cáo. Cả hai đều giữ verdict fail và cung cấp dữ liệu chẩn đoán khi SUT không đáp ứng yêu cầu. Đánh giá hiện giới hạn ở các lượt đã chọn; cần thêm phép đo có kiểm soát nếu muốn so sánh hiệu năng hoặc hiệu quả cache.
 
 ## 8. Thí nghiệm flaky test
 
@@ -1083,47 +1105,12 @@ Chuỗi chẩn đoán thể hiện giá trị của việc lưu đủ commit, tr
 
 ## 13. Tài liệu tham khảo
 
-1. Martin Fowler. [*Continuous Integration*](https://martinfowler.com/articles/continuousIntegration.html).
-2. Martin Fowler. [*Continuous Delivery*](https://martinfowler.com/bliki/ContinuousDelivery.html).
-3. GitHub Docs. [*Workflows*](https://docs.github.com/en/actions/concepts/workflows-and-actions/workflows).
-4. Jenkins User Handbook. [*Pipeline*](https://www.jenkins.io/doc/book/pipeline/).
-5. Jest documentation. [*Setup and Teardown*](https://jestjs.io/docs/setup-teardown).
-6. Jest documentation. [*Testing Asynchronous Code*](https://jestjs.io/docs/asynchronous).
-7. Martin Fowler. [*Test Double*](https://martinfowler.com/bliki/TestDouble.html).
-8. pytest documentation. [*About fixtures*](https://docs.pytest.org/en/stable/explanation/fixtures.html).
-9. Jest documentation. [*Configuring Jest*](https://jestjs.io/docs/configuration).
-10. GitHub Docs. [*GitHub-hosted runners*](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners).
-11. GitHub Docs. [*Self-hosted runners*](https://docs.github.com/en/actions/concepts/runners/self-hosted-runners).
-12. Jenkins User Handbook. [*Managing Nodes*](https://www.jenkins.io/doc/book/managing/nodes/).
-13. Jenkins User Handbook. [*Pipeline Syntax — agent*](https://www.jenkins.io/doc/book/pipeline/syntax/#agent).
-14. Jenkins User Handbook. [*Controller Isolation*](https://www.jenkins.io/doc/book/security/controller-isolation/).
-15. GitHub Docs. [*Dependency caching*](https://docs.github.com/en/actions/concepts/workflows-and-actions/dependency-caching).
-16. GitHub Docs. [*Dependency caching reference*](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching).
-17. GitHub Actions. [*actions/setup-node — Caching global packages data*](https://github.com/actions/setup-node#caching-global-packages-data).
-18. npm documentation. [*npm ci*](https://docs.npmjs.com/cli/v11/commands/npm-ci/).
-19. GitHub Docs. [*Store and share data with workflow artifacts*](https://docs.github.com/en/actions/tutorials/store-and-share-data).
-20. Jenkins Pipeline Steps Reference. [*archiveArtifacts*](https://www.jenkins.io/doc/pipeline/steps/core/#archiveartifacts-archive-the-artifacts).
-21. Carlos Arguelles, Marko Ivanković và Adam Bender. [*Code Coverage Best Practices*](https://testing.googleblog.com/2020/08/code-coverage-best-practices.html). Google Testing Blog.
-22. GitHub Docs. [*About protected branches*](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
-23. GitHub Docs. [*Status checks*](https://docs.github.com/en/pull-requests/reference/status-checks).
-24. Istanbul documentation. [*Using Alternative Reporters*](https://istanbul.js.org/docs/advanced/alternative-reporters/).
-25. GitHub Docs. [*Understanding GitHub Actions*](https://docs.github.com/en/actions/get-started/understand-github-actions).
-26. GitHub Docs. [*GitHub Actions billing*](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
-27. Jenkins. [*MIT License*](https://www.jenkins.io/license/).
-28. GitLab Docs. [*Get started with GitLab CI/CD*](https://docs.gitlab.com/ci/).
-29. GitLab Docs. [*Runners*](https://docs.gitlab.com/ci/runners/).
-30. GitLab Docs. [*CI/CD for external repositories*](https://docs.gitlab.com/ci/ci_cd_for_external_repos/).
-31. OpenAI Docs. [*Use ChatGPT*](https://learn.chatgpt.com/docs/use-chatgpt).
-32. OpenAI Docs. [*Prompting*](https://learn.chatgpt.com/docs/prompting).
-33. Datadog documentation. [*Getting Started with Test Optimization*](https://docs.datadoghq.com/getting_started/test_optimization/).
-34. Datadog documentation. [*Flaky Tests Management*](https://docs.datadoghq.com/tests/flaky_management/).
-35. Datadog. [*Test Optimization*](https://www.datadoghq.com/product/test-optimization/).
-36. GitHub Docs. [*Workflow syntax for GitHub Actions*](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax).
-37. GitHub Docs. [*Evaluate expressions in workflows and actions — Status check functions*](https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#status-check-functions).
-38. GitHub Actions. [*actions/cache v4 — Restore action*](https://github.com/actions/cache/blob/v4/restore/README.md).
-39. GitHub Actions. [*actions/upload-artifact v4*](https://github.com/actions/upload-artifact/blob/v4/README.md).
-40. Jenkins Pipeline Steps Reference. [*JUnit — Archive JUnit-formatted test results*](https://www.jenkins.io/doc/pipeline/steps/junit/).
-41. Jenkins Pipeline Steps Reference. [*Coverage — Record code coverage results*](https://www.jenkins.io/doc/pipeline/steps/coverage/).
-42. Jenkins User Handbook. [*Pipeline Syntax*](https://www.jenkins.io/doc/book/pipeline/syntax/).
-
-## Phụ lục A. Truy vết số liệu
+1. [GitHub Actions Documentation](https://docs.github.com/en/actions).
+2. [Jenkins User Documentation](https://www.jenkins.io/doc/).
+3. [Jest Documentation](https://jestjs.io/docs/getting-started).
+4. [Supertest Documentation](https://github.com/forwardemail/supertest).
+5. [npm Documentation](https://docs.npmjs.com/).
+6. [Docker Documentation](https://docs.docker.com/).
+7. [GitLab CI/CD Documentation](https://docs.gitlab.com/ci/).
+8. [ChatGPT Help Center](https://help.openai.com/en/collections/3742473-chatgpt).
+9. [Datadog Documentation](https://docs.datadoghq.com/).
