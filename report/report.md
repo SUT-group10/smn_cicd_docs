@@ -594,17 +594,233 @@ Các lệnh được chạy thành những bước riêng để ghi nhận đún
 
 ### 5.1. Kiến trúc và thành phần
 
+**Tổ chức pipeline trong repository**
+
+Pipeline CI chính của EShop được khai báo trong `.github/workflows/ci.yml`, với tên workflow là `Backend CI`. Workflow có một job mang ID `quality`, tên hiển thị `Backend quality gates`. Các công việc chuẩn bị môi trường, cài dependency, lint, kiểm tra cú pháp, kiểm thử và xuất báo cáo được tổ chức thành các step trong cùng job. Thiết kế này giúp mỗi bước sử dụng cùng workspace và theo dõi được vị trí phát sinh lỗi trong một luồng thực thi.
+
+GitHub nhận sự kiện từ repository và điều phối job tới GitHub-hosted runner có nhãn `ubuntu-22.04`. Runner checkout mã nguồn, thiết lập Node.js `22.14.0`, sau đó gọi các npm script đã chuẩn hóa ở chương 4. Bộ test vẫn sử dụng harness tạo Express app và SQLite trong bộ nhớ; workflow không cần khởi động server ở cổng 3000 hay chuẩn bị một dịch vụ database bên ngoài.
+
+*Bảng 13. Các thành phần của pipeline GitHub Actions*
+
+| Thành phần | Cấu hình trong EShop | Vai trò |
+| --- | --- | --- |
+| Workflow | `.github/workflows/ci.yml`, tên `Backend CI` | Khai báo sự kiện, môi trường và trình tự thực thi |
+| Job | `quality`, tên `Backend quality gates` | Tổng hợp kết quả các bước kiểm tra backend |
+| Runner | GitHub-hosted, `ubuntu-22.04` | Cung cấp môi trường Linux thực thi job |
+| Runtime | Node.js `22.14.0`, cài bằng `actions/setup-node@v4` | Chọn phiên bản Node cho các npm script |
+| Mã nguồn | `actions/checkout@v4` | Đưa mã của lượt chạy vào workspace |
+| Cache | `actions/cache/restore@v4` và `actions/cache/save@v4` | Khôi phục, lưu dữ liệu npm ở `~/.npm` |
+| Báo cáo | Jest JSON, Cobertura XML, coverage summary | Cung cấp kết quả và dữ liệu phục vụ phân tích |
+| Artifact | `actions/upload-artifact@v4` | Lưu các file báo cáo gắn với lượt chạy |
+
+Các lệnh `run` có thư mục làm việc mặc định là `backend`. Các action được khai báo bằng `uses` có cấu hình đường dẫn riêng; vì vậy, danh sách upload vẫn ghi đầy đủ `backend/coverage/...` và `backend/test-results/...`. Job có giới hạn 15 phút và quyền `contents: read`, phù hợp với nhiệm vụ checkout và kiểm tra mã nguồn. Pipeline dừng ở kiểm thử và lưu báo cáo, chưa có bước triển khai ứng dụng.
+
+![Luồng thực thi Backend CI trên GitHub Actions](assets/github-actions/backend-ci-flow.png)
+
+*Hình 7. Luồng thực thi của workflow `Backend CI`: kiểm tra theo thứ tự, sau đó thu báo cáo khi chưa bị hủy. Job vẫn fail nếu có bước kiểm thử fail, dù upload artifact thành công.*
+
+**Phạm vi tái lập môi trường**
+
+Việc ghi rõ phiên bản Node và nhãn hệ điều hành giúp thu hẹp khác biệt giữa các lượt chạy. Workflow cũng in phiên bản Node, npm, commit SHA và runner OS vào log để có thể kiểm tra lại môi trường thực tế. Tuy nhiên, nhãn `ubuntu-22.04` không cố định toàn bộ nội dung image theo thời gian; npm không được cài riêng bằng một phiên bản khóa trong workflow này. Khi đối chiếu các lượt chạy, vẫn cần đọc thông tin runtime đã ghi thay vì chỉ dựa vào tên runner.
+
+Môi trường này khác baseline local B-04 sử dụng Windows và Node.js `24.14.0`. Do đó, kết quả local ở chương 4 là mốc đối chiếu hành vi bộ test, không được dùng thay số liệu thời gian hoặc coverage của một run GitHub Actions chưa được kiểm chứng.
+
 ### 5.2. Workflow và trigger
+
+**Sự kiện kích hoạt**
+
+Workflow khai báo hai sự kiện:
+
+```yaml
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+```
+
+Với `pull_request`, bộ lọc `branches` áp dụng cho nhánh đích của PR. Khi PR hướng vào `main` được mở hoặc cập nhật theo các hoạt động mặc định của sự kiện, workflow chạy để cung cấp phản hồi trước khi tích hợp. Với `push`, workflow kiểm tra thay đổi được đẩy vào chính nhánh `main`, bao gồm thay đổi sau khi merge PR.
+
+Một lần push lên nhánh chức năng chưa có PR vào `main` không tự thỏa điều kiện `push` của cấu hình trên. Workflow cũng không đặt bộ lọc đường dẫn, nên PR hoặc push phù hợp có thể kích hoạt kiểm tra dù thay đổi nằm ngoài `backend`. Đây là phạm vi trigger hiện có, cần phân biệt với việc chỉ chạy CI khi mã backend thay đổi.
+
+**Quản lý các lượt chạy chồng lấn**
+
+Cấu hình concurrency sử dụng nhóm `backend-ci-${{ github.workflow }}-${{ github.ref }}` và bật `cancel-in-progress: true`. Khi có lượt mới trong cùng nhóm, lượt cũ đang chạy có thể bị hủy để tập trung tài nguyên vào phiên bản mới hơn. Các PR có ref khác nhau không bị gộp thành một nhóm duy nhất.
+
+Một lượt bị hủy cần được đọc đúng trạng thái `cancelled`; không dùng nó làm bằng chứng test pass hoặc fail. Các bước xuất và upload báo cáo dùng điều kiện `!cancelled()`, nên báo cáo của lượt bị hủy không được bảo đảm sẽ hoàn tất. Khi thu bằng chứng, nhóm cần chọn một lượt đã chạy xong và ghi rõ commit, event, run ID cùng trạng thái cuối.
+
+Repo còn có workflow `flaky-experiment.yml` chạy thủ công để phục vụ thí nghiệm ở chương 8. Workflow đó có runtime và phạm vi test riêng; các lượt thí nghiệm không được dùng thay minh chứng cho job `Backend quality gates` của chương này.
 
 ### 5.3. Các bước của pipeline
 
+**Chuẩn bị nguồn và dependency**
+
+Sau checkout, workflow thiết lập Node, khôi phục npm cache và ghi thông tin runtime. Bước cài đặt luôn gọi `npm ci` để cài dependency theo lockfile, kể cả khi cache được khôi phục. Harness và bộ test được chạy từ chính mã nguồn đã checkout trong workspace của job.
+
+Dependency `sqlite3` có native binding nên việc cài đặt còn phụ thuộc khả năng tương thích với môi trường Linux. Tài liệu triển khai C-02 ghi nhận lỗi ban đầu `GLIBC_2.38 not found` khi nạp binary của module này. Workflow bổ sung biến `npm_config_build_from_source: "true"` ở bước `npm ci` để build native module từ source trên runner. Đây là biện pháp xử lý vấn đề môi trường; nó không sửa các assertion hay quy tắc nghiệp vụ của SUT.
+
+**Các bước kiểm tra chất lượng**
+
+*Bảng 14. Trình tự kiểm tra và thu báo cáo trong workflow*
+
+| Step | Lệnh hoặc hành động | Cách thực thi |
+| --- | --- | --- |
+| Lint | `npm run lint` | Chạy sau khi các bước chuẩn bị trước đó thành công |
+| Build and syntax check | `npm run build` | Chạy tiếp nếu các bước trước thành công; kiểm tra cú pháp backend |
+| Unit tests | `npm run test:unit` | Kiểm tra riêng middleware xác thực |
+| API tests | `npm run test:api` | Kiểm tra route, dữ liệu và quy tắc nghiệp vụ |
+| Smoke tests | `npm run test:smoke` | Chạy riêng luồng mua hàng nếu các bước trước thành công |
+| Generate coverage and Jest report | `npm run test:ci -- --json --outputFile=test-results/jest-report.json` | Được phép chạy sau lỗi ở bước trước, nếu workflow chưa bị hủy |
+| Upload coverage and test report | Upload các đường dẫn báo cáo đã cấu hình | Được phép chạy sau lỗi, nếu workflow chưa bị hủy |
+
+Các bước lint, build và test theo tầng sử dụng điều kiện thành công mặc định của GitHub Actions. Nếu một bước fail, các bước thông thường phía sau bị bỏ qua. Trong tình huống baseline, unit có thể pass còn API fail; khi đó step smoke riêng có trạng thái skipped. Trạng thái này chỉ cho biết step chưa chạy, không cho biết smoke test đã thất bại.
+
+**Chạy đầy đủ suite để thu bằng chứng sau lỗi**
+
+Hai step tạo báo cáo và upload khai báo điều kiện:
+
+```yaml
+if: ${{ !cancelled() }}
+```
+
+Điều kiện này cho phép tiếp tục thu bằng chứng dù bước kiểm tra trước đã fail. `test:ci` chạy lại toàn bộ suite thuộc cấu hình Jest thông thường, bao gồm unit, API, smoke và harness, đồng thời bật coverage. Vì vậy, smoke có thể bị bỏ qua ở step riêng nhưng vẫn được thực thi trong lượt full suite tạo báo cáo. Muốn biết kết quả của ca smoke trong tình huống này phải đọc log hoặc JSON của lượt full suite.
+
+Cách tổ chức hiện tại có sự lặp lại: những nhóm test đã chạy ở step riêng sẽ chạy thêm một lần trong `test:ci`. Đổi lại, giao diện job chỉ rõ tầng nào làm chuỗi kiểm tra dừng, còn báo cáo cuối thu kết quả của đầy đủ suite trong một lượt có coverage. Khi phân tích thời gian, cần tính đến hai lần thực thi này thay vì coi tổng thời gian job là thời gian chạy một bộ 39 test duy nhất.
+
+Workflow không sử dụng `continue-on-error` hoặc đổi exit code của test thành thành công. Nếu `test:ci` phát hiện assertion fail, step tạo báo cáo vẫn đỏ dù các file được sinh ra. Upload thành công cũng không xóa lỗi đã xảy ra hoặc biến verdict của job thành pass. Ngược lại, nếu dependency chưa cài được hoặc runner gặp sự cố, điều kiện tiếp tục chạy không bảo đảm Jest có thể thực thi và tạo đủ báo cáo; khi đó cần đọc lỗi ở bước chuẩn bị trước tiên.
+
 ### 5.4. Cache và artifact
+
+**Thiết kế npm cache**
+
+Workflow cache thư mục `~/.npm`, chứa dữ liệu npm có thể tái sử dụng khi cài dependency. Nó không cache `node_modules`, database hay kết quả test. Khóa cache gồm runner OS, phiên bản Node và hash của lockfile:
+
+```yaml
+key: ${{ runner.os }}-node-22.14.0-npm-${{ hashFiles('backend/package-lock.json') }}
+restore-keys: |
+  ${{ runner.os }}-node-22.14.0-npm-
+```
+
+Khi có cache khớp chính xác khóa, output `cache-hit` phản ánh exact hit. Nếu không có exact hit, `restore-keys` cho phép tìm cache theo tiền tố để tận dụng một phần dữ liệu đã tải. Vì vậy, `cache-hit` khác `true` chưa đủ để kết luận runner không khôi phục được dữ liệu nào; cần đọc cả log khóa được khôi phục. Trong mọi trường hợp, `npm ci` vẫn chịu trách nhiệm tạo dependency theo lockfile của mã nguồn đang kiểm tra.
+
+Nhóm tách cache thành hai bước restore và save. Restore chạy trước cài đặt; save được đặt ngay sau cài đặt, trước các bước lint và test. Bước save dùng lại `cache-primary-key` từ restore và điều kiện `!cancelled() && steps.npm-cache.outputs.cache-hit != 'true'`. Thiết kế này cho phép lưu cache trước khi gặp các lỗi API đã biết của baseline, thay vì phụ thuộc việc toàn bộ job phải xanh. Tuy vậy, save thành công phải được xác nhận bằng log của chính step; sự có mặt của cấu hình chưa chứng minh một lượt đã lưu được cache hoặc lượt sau đã hit.
+
+Để đánh giá hiệu quả, cần đối chiếu các lượt có cùng điều kiện phù hợp, ghi khóa cache, trạng thái khôi phục và thời gian từng bước. Với cấu hình này, một exact hit có thể giảm tải dữ liệu từ mạng nhưng không loại bỏ `npm ci` hoặc bước build native module. Chỉ nhìn một job chạy nhanh hơn chưa đủ để quy toàn bộ chênh lệch cho cache.
+
+**Báo cáo được lưu dưới dạng artifact**
+
+Artifact được đặt tên `backend-ci-reports-${{ github.run_id }}` và có thời hạn lưu cấu hình là 14 ngày. Mục đích là giữ kết quả của một lượt chạy để tải về, đối chiếu assertion và kiểm tra coverage, kể cả khi job fail.
+
+*Bảng 15. Các file được khai báo upload trong workflow*
+
+| File tính từ gốc repository | Nội dung và cách sử dụng |
+| --- | --- |
+| `backend/coverage/cobertura-coverage.xml` | Coverage ở định dạng XML để công cụ khác đọc và tổng hợp |
+| `backend/coverage/coverage-summary.json` | Các bộ đếm và tỷ lệ statement, branch, function, line |
+| `backend/test-results/jest-report.json` | Tổng số test, trạng thái từng ca và thông tin lỗi assertion |
+
+Step upload dùng `if-no-files-found: error` để báo lỗi khi không tìm thấy file phù hợp trong các đường dẫn khai báo. Tùy chọn này không thay thế phép kiểm tra rằng từng file trong danh sách đều tồn tại, có nội dung hợp lệ và thuộc đúng lượt chạy. Ảnh step upload pass chỉ xác nhận action đã hoàn tất, chưa tự xác nhận đầy đủ nội dung bên trong artifact.
+
+Trong cấu hình npm hiện tại, `test:ci` còn sinh JUnit XML, nhưng đường dẫn `backend/test-results/junit.xml` chưa được thêm vào danh sách upload của workflow GitHub Actions này. Console log được xem trên trang run của GitHub và cũng không nằm trong ba file artifact đã khai báo. Khi cần giữ bằng chứng lâu hơn thời hạn artifact, nhóm phải xuất và lưu riêng các file cần thiết kèm định danh run; không dùng cache làm nơi lưu báo cáo kiểm thử.
 
 ### 5.5. Status check và branch protection
 
+**Kết quả kiểm tra trên pull request**
+
+Job `Backend quality gates` cung cấp kết quả kiểm tra gắn với lượt chạy của PR. Người review có thể đi từ PR tới run, mở step bị lỗi và đối chiếu báo cáo. Các PR #19 và #20 được dùng để kiểm tra hai trạng thái failure và success; kết quả chi tiết được trình bày ở mục 5.7.
+
+Với sự kiện `pull_request`, cần phân biệt commit đầu nhánh PR với commit merge mà runner thực sự checkout. Chẳng hạn, run #11 có head SHA `cbdcb885cc3974bea7f3b1749f28aa2f9a9bfd91`, nhưng log ghi `GITHUB_SHA` là `d450424190c213b85c314603b6830d3a7ac0b604`. Đây là hai định danh có vai trò khác nhau trong cùng lượt chạy, không phải bằng chứng dữ liệu bị trộn. Khi lưu minh chứng, nhóm giữ cả metadata run và SHA trong log để nhận diện đúng mã đã thực thi.
+
+**Cấu hình bảo vệ nhánh được kiểm chứng**
+
+Tại lần đọc cấu hình repository ngày 23/10/2026 (UTC+07:00), API GitHub xác nhận `main` đã có branch protection. Cấu hình yêu cầu một review chấp thuận, yêu cầu chấp thuận đối với lần push gần nhất theo quy tắc đã bật và áp dụng bảo vệ cả cho quản trị viên. Force push và xóa nhánh đều không được cho phép trong cấu hình trả về.
+
+Tuy nhiên, hai danh sách `required_status_checks.contexts` và `required_status_checks.checks` đều rỗng; trường `strict` có giá trị `false`. API truy vấn các ruleset áp dụng cho `main` cũng trả danh sách rỗng. Như vậy, nhánh đã có bảo vệ ở khía cạnh review nhưng **chưa chọn một check CI cụ thể làm điều kiện bắt buộc** trong snapshot được kiểm tra.
+
+Việc PR có check đỏ và việc GitHub bắt buộc check đó pass trước khi merge là hai điều kiện cần được xác minh riêng. Một PR đang bị chặn do thiếu review chưa chứng minh branch protection đang chặn vì CI fail. Với cấu hình quan sát được, báo cáo chưa kết luận đã hoàn tất yêu cầu “CI fail thì không được merge vào `main`”.
+
+Để hoàn thiện cơ chế này, quy tắc bảo vệ cần chọn đúng check `Backend quality gates` do workflow phát ra và được kiểm chứng lại bằng PR fail/pass cùng trạng thái merge tương ứng. Bằng chứng cần thể hiện cả cấu hình required check và tác dụng của nó, thay vì chỉ chụp màu kết quả job. Phần kiểm chứng của chương này chỉ đọc cấu hình và chạy lại workflow, không thay đổi quy tắc bảo vệ hoặc merge các PR demo.
+
 ### 5.6. Coverage badge
 
+**Mục đích và nguồn dữ liệu**
+
+Coverage badge là cách đưa một chỉ số tổng hợp, chẳng hạn line coverage, lên trang giới thiệu dự án để người đọc nhanh chóng nhận biết mức độ thực thi mã của bộ test. Một badge có ý nghĩa cần lấy số liệu từ báo cáo đã xác định nguồn, kèm quy ước nhánh hoặc lượt chạy được đại diện. Việc upload coverage XML và JSON tạo đầu vào cho việc công bố chỉ số, nhưng chưa tự tạo badge trên README.
+
+Tại mốc kiểm chứng, README trên nhánh `main` chưa có coverage badge và workflow `Backend CI` chưa có bước công bố hoặc cập nhật badge. Vì vậy, mục này ghi nhận **chưa triển khai coverage badge**, thay vì chèn một hình có phần trăm cố định rồi coi đó là kết quả tự động.
+
+Nguồn phù hợp để triển khai tiếp là `coverage-summary.json` từ lượt full suite, với phạm vi đo `server.js` và `database.js`. Cần chọn rõ badge theo baseline trên `main` hay theo một nhánh khác. Run #11 trên SUT baseline có line coverage 61,48%, còn run xanh #12 của PR thay đổi SUT có 63,69%; không lấy số của nhánh demo thay cho trạng thái `main`. Khi được triển khai, badge cũng không thay thế verdict test hoặc required status check ở mục 5.5.
+
 ### 5.7. Kết quả
+
+**Phương pháp thu và đối chiếu minh chứng**
+
+Ngoài tài liệu C-01/C-02 đã có trong repo, nhóm kiểm tra trực tiếp các run, job, artifact và cấu hình bảo vệ nhánh qua GitHub API và GitHub CLI. Bằng chứng được lưu kèm báo cáo trong `report/assets/github-actions/evidence/`, gồm metadata, log, các file lấy từ artifact và snapshot cấu hình. Dữ liệu run được phân biệt theo run ID và attempt; lần chạy lại không được gộp thành một lần đo với lượt ban đầu.
+
+Hai lượt PR đại diện được đối chiếu là run #11 của PR #19 và run #12 của PR #20. Sau đó, run #11 được chạy lại một lần để kiểm chứng cơ chế thực thi trên cùng phiên bản mã nguồn của run đó. Không tạo commit mới hoặc sửa assertion trong phép kiểm chứng này.
+
+*Bảng 16. Kết quả thực tế của các lượt kiểm tra trên GitHub Actions*
+
+| Nội dung | Run #11, attempt 1 | Run #11, attempt 2 — chạy lại | Run #12, attempt 1 |
+| --- | --- | --- | --- |
+| Run ID | `39818068371` | `39818068371` | `39820430997` |
+| PR / nhánh nguồn | #19 / `testPR` | #19 / `testPR` | #20 / `testPR-Success` |
+| Head SHA rút gọn | `cbdcb885` | `cbdcb885` | `7f76d840` |
+| Lint / build / unit | Pass | Pass | Pass |
+| API riêng | 20 pass, 10 fail | 20 pass, 10 fail | 30 pass, 0 fail |
+| Step smoke riêng | Skipped sau API fail | Skipped sau API fail | Pass |
+| Full suite tạo báo cáo | 29 pass, 10 fail, 0 skip | 29 pass, 10 fail, 0 skip | 39 pass, 0 fail, 0 skip |
+| Upload artifact | Success | Success | Success |
+| Kết quả job | Failure | Failure | Success |
+| Thời gian job theo API | 90 giây | 65 giây | 66 giây |
+
+Thời gian job trong bảng được tính từ `started_at` đến `completed_at` của chính job, gồm các bước chuẩn bị, cài đặt, kiểm tra và hoàn tất job; không dùng chênh lệch giữa thời điểm tạo và cập nhật workflow để thay thế. Các con số chưa phải phép đo hiệu năng có kiểm soát. Chẳng hạn, hai attempt của run #11 đều exact cache hit nhưng thời gian cài dependency lần lượt là 72 và 46 giây, nên không thể giải thích chênh lệch tổng thời gian chỉ bằng nhãn hit/miss.
+
+**Kiểm chứng lượt fail và khả năng giữ báo cáo**
+
+Artifact của run #11 xác nhận toàn bộ 39 ca được thực thi ở lượt `test:ci`; không có ca bị skip trong JSON tổng hợp. Mười ID fail ở attempt 2 trùng với attempt 1 và danh sách baseline ở chương 4. Step smoke riêng bị bỏ qua nhưng ca smoke vẫn được chạy trong full suite. Ba file đã khai báo upload đều được tải về và đọc được: Jest JSON, coverage summary và Cobertura XML.
+
+Attempt 2 giữ kết quả job failure; step tạo coverage đỏ do test fail, còn upload success. Thời gian Jest của lượt full suite này là 1,449 giây, khác với 65 giây của toàn job. Kết quả này cho thấy luồng báo lỗi và lưu bằng chứng hoạt động trong tình huống assertion nghiệp vụ fail, không phải pipeline chỉ dừng trước khi bộ test được thực thi.
+
+**Phân biệt run xanh với baseline**
+
+Run #12 đạt 39/39 ca và các step đều pass, nhưng PR #20 có thay đổi nghiệp vụ trong `backend/server.js`: bộ đếm đăng nhập sai, phân quyền admin, gộp giỏ hàng, tính tổng checkout, xóa giỏ, điều kiện coupon và chuyển trạng thái đơn. Diff PR không thay đổi các file test. Vì vậy, run xanh thể hiện phản hồi CI trên **một phiên bản SUT khác**, không chứng minh SUT baseline ban đầu đã đạt toàn bộ test.
+
+Trong phạm vi báo cáo giữ nguyên SUT để kiểm thử, baseline 29 pass/10 fail vẫn được dùng cho các đối chiếu tương ứng. PR demo xanh được ghi riêng để giải thích nguồn gốc kết quả; không xem các thay đổi SUT đó là phần sửa lỗi do harness hay cấu hình CI mang lại. Tại thời điểm kiểm chứng, PR #20 chưa được merge.
+
+**Kết quả kiểm chứng cache**
+
+Log run #8 cho thấy runner không tìm thấy exact key đang yêu cầu, nhưng khôi phục được cache theo `restore-keys`, sau đó lưu cache dưới khóa mới. Các run #11 và #12 sử dụng exact key mới này. Đây là bằng chứng về partial restore và exact hit; chưa có lượt cache hoàn toàn rỗng trong tập được đối chiếu dưới đây.
+
+*Bảng 17. Trạng thái cache và thời gian cài dependency được quan sát*
+
+| Lượt chạy | Kết quả restore | Kết quả save | Thời gian `Install dependencies` |
+| --- | --- | --- | ---: |
+| #8, attempt 1 | Partial restore: khóa cũ có hash bắt đầu `7c08e1ce` | Lưu khóa mới có hash bắt đầu `6bd926b1` | 78 giây |
+| #11, attempt 1 | Exact hit khóa có hash bắt đầu `6bd926b1` | Skipped vì đã exact hit | 72 giây |
+| #11, attempt 2 | Exact hit cùng khóa | Skipped vì đã exact hit | 46 giây |
+| #12, attempt 1 | Exact hit cùng khóa | Skipped vì đã exact hit | 47 giây |
+
+Tiền tố chung của các khóa là `Linux-node-22.14.0-npm-`. Bảng cho thấy cơ chế restore/save đã hoạt động và cache có thể được dùng lại khi test fail. Tuy nhiên, các lượt khác nhau về commit, thời điểm và điều kiện runner; run #8 còn khôi phục một phần dữ liệu. Do đó, chưa dùng bảng này để công bố tỷ lệ tăng tốc giữa cache rỗng và cache hit.
+
+**Coverage và trạng thái các hạng mục**
+
+*Bảng 18. Coverage lấy từ artifact của hai phiên bản SUT trên GitHub Actions*
+
+| Tiêu chí | Run #11 — SUT baseline | Run #12 — SUT thay đổi ở PR #20 |
+| --- | --- | --- |
+| Statement | 57,98% — 178/307 | 60,24% — 200/332 |
+| Branch | 39,09% — 52/133 | 41,93% — 65/155 |
+| Function | 39,72% — 29/73 | 44,44% — 36/81 |
+| Line | 61,48% — 174/283 | 63,69% — 193/303 |
+
+Coverage của attempt 2 run #11 giữ các tỷ lệ baseline. Run #12 có cả tử số và mẫu số khác vì mã SUT đã thay đổi; chênh lệch không được diễn giải như việc chạy trên GitHub Actions tự làm tăng chất lượng bộ test. Workflow hiện thu coverage để quan sát, chưa có ngưỡng coverage được đặt làm điều kiện pass.
+
+Kết quả kiểm chứng xác nhận workflow chạy trên PR, các bước kiểm tra giữ exit code thật, cache được khôi phục/lưu và artifact vẫn được cung cấp khi test fail. Những phần còn cần hoàn thiện là chọn required CI check trong branch protection, kiểm chứng tác dụng chặn merge của check đó và triển khai coverage badge. Phần thực nghiệm này chưa sửa các cấu hình còn thiếu; báo cáo ghi nhận đúng trạng thái đã quan sát.
+
+Nguồn và các lệnh thu dữ liệu được tổng hợp tại [minh chứng GitHub Actions](assets/github-actions/evidence/README.md). Các snapshot được lưu để kết quả vẫn có thể đối chiếu khi artifact trên GitHub hết hạn.
 
 ## 6. Triển khai pipeline trên Jenkins
 
@@ -699,5 +915,9 @@ Các lệnh được chạy thành những bước riêng để ghi nhận đún
 33. Datadog documentation. [*Getting Started with Test Optimization*](https://docs.datadoghq.com/getting_started/test_optimization/).
 34. Datadog documentation. [*Flaky Tests Management*](https://docs.datadoghq.com/tests/flaky_management/).
 35. Datadog. [*Test Optimization*](https://www.datadoghq.com/product/test-optimization/).
+36. GitHub Docs. [*Workflow syntax for GitHub Actions*](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax).
+37. GitHub Docs. [*Evaluate expressions in workflows and actions — Status check functions*](https://docs.github.com/en/actions/reference/workflows-and-actions/expressions#status-check-functions).
+38. GitHub Actions. [*actions/cache v4 — Restore action*](https://github.com/actions/cache/blob/v4/restore/README.md).
+39. GitHub Actions. [*actions/upload-artifact v4*](https://github.com/actions/upload-artifact/blob/v4/README.md).
 
 ## Phụ lục A. Truy vết số liệu
