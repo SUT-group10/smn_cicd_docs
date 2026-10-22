@@ -301,11 +301,109 @@ Một quality gate có ý nghĩa cần đánh giá đúng phiên bản mã, gi�
 
 ## 3. Khảo sát và lựa chọn công cụ
 
+Việc lựa chọn công cụ xuất phát từ hai nhu cầu của đề tài: tự động thực thi bộ kiểm thử backend EShop và hỗ trợ phân tích các kết quả không ổn định. Nhóm xem xét khả năng chạy các lệnh kiểm tra hiện có, tích hợp với kho mã nguồn, lưu báo cáo, công sức cấu hình và yêu cầu vận hành. Đối với hướng AI, tiêu chí bổ sung là khả năng sử dụng log làm đầu vào, đưa ra giả thuyết có thể kiểm chứng và lưu lại quá trình phân tích để đối chiếu với cách làm thủ công.
+
+Phần khảo sát tập trung vào khả năng và mức độ phù hợp của từng phương án với phạm vi seminar. Các nhận xét về công sức triển khai là đánh giá định tính theo nhu cầu của nhóm; số liệu về thời gian chạy và kết quả so sánh AI với người được trình bày ở các chương thực nghiệm.
+
 ### 3.1. Công cụ CI truyền thống
+
+**GitHub Actions**
+
+GitHub Actions là nền tảng tự động hóa gắn với repository trên GitHub. Workflow có thể được kích hoạt bởi các sự kiện như push hoặc pull request, sau đó giao job cho runner để thực hiện những bước đã khai báo. Đối với EShop, workflow có thể chuẩn bị Node.js, cài dependency, chạy các lệnh kiểm tra và lưu báo cáo; các thao tác này sử dụng lại bộ lệnh của dự án thay vì yêu cầu viết một bộ test riêng cho nền tảng CI.
+
+Điểm phù hợp với nhóm là mã nguồn và phản hồi kiểm tra được quản lý trong cùng hệ thống. Người review có thể theo dõi kết quả ngay trên pull request và liên kết các check cần thiết với quy tắc bảo vệ nhánh. Việc sử dụng GitHub-hosted runner cũng giúp giảm phần hạ tầng phải tự quản lý khi bắt đầu triển khai.
+
+Nhóm vẫn cần hiểu YAML, sự kiện kích hoạt, quyền truy cập và cách bố trí job. Tính đúng của workflow phụ thuộc vào việc cấu hình đúng bộ lệnh, thu thập báo cáo và giữ nguyên trạng thái lỗi. Về chi phí, standard GitHub-hosted runner được sử dụng miễn phí cho repository công khai; larger runner và việc lưu trữ có chính sách riêng. Vì vậy, lựa chọn công cụ cần xét loại runner và nhu cầu lưu bằng chứng, không chỉ nhìn chi phí chạy test.
+
+**Jenkins**
+
+Jenkins là máy chủ tự động hóa mã nguồn mở, hỗ trợ mô tả quy trình bằng Jenkinsfile và mở rộng chức năng thông qua plugin. Với agent được chuẩn bị phù hợp, Jenkins có thể thực hiện cùng các lệnh npm và bộ kiểm thử mà nhóm sử dụng trên GitHub Actions. Khả năng tự quản lý môi trường cho phép nhóm chủ động công cụ, dữ liệu được giữ giữa các build và cách công bố báo cáo.
+
+Trong seminar, Jenkins cung cấp một mô hình triển khai khác để đối chiếu: nhóm phải thiết lập controller, agent, kết nối repository và những plugin cần cho pipeline. Qua đó, việc so sánh có thể xét cả định nghĩa pipeline, báo cáo kiểm thử lẫn công sức vận hành, thay vì chỉ so cú pháp YAML với Jenkinsfile.
+
+Jenkins được phân phối theo giấy phép MIT, nhưng việc sử dụng vẫn cần tài nguyên máy chạy, dung lượng lưu trữ và công sức quản trị. Nhóm phải duy trì phiên bản công cụ, plugin và cấu hình kết nối. Đây là phần công việc cần tính đến khi đánh giá một hệ thống CI tự quản lý, dù không có chi phí giấy phép sử dụng Jenkins.
+
+**GitLab CI/CD**
+
+GitLab CI/CD hỗ trợ mô tả pipeline bằng file `.gitlab-ci.yml`, trong đó khai báo các job, stage, biến và điều kiện thực thi. Các job được thực hiện bởi runner. Về khả năng kiểm thử, nền tảng này cũng có thể chạy một dự án Node.js với các lệnh cài dependency và Jest nếu môi trường được chuẩn bị phù hợp.
+
+GitLab CI/CD là phương án phù hợp để xem xét khi dự án sử dụng hệ sinh thái GitLab. Nền tảng cũng hỗ trợ tích hợp repository bên ngoài như GitHub; tuy nhiên, cần xem xét thêm cách đồng bộ, quyền truy cập và điều kiện của gói sử dụng. Với đề tài đã tổ chức mã nguồn và pull request trên GitHub, triển khai thêm GitLab sẽ tăng đầu mối cấu hình. Nhóm vì vậy khảo sát GitLab như một phương án thay thế, đồng thời giới hạn thực nghiệm ở hai nền tảng GitHub Actions và Jenkins để tập trung vào yêu cầu đối chiếu của đề tài.
+
+**Đối chiếu theo nhu cầu của seminar**
+
+*Bảng 5. Đối chiếu định tính các nền tảng CI được khảo sát*
+
+| Tiêu chí | GitHub Actions | Jenkins | GitLab CI/CD |
+| --- | --- | --- | --- |
+| Định nghĩa pipeline | YAML trong `.github/workflows` | Jenkinsfile | `.gitlab-ci.yml` |
+| Thành phần thực thi | GitHub-hosted hoặc self-hosted runner | Agent trên node được cấu hình | GitLab-hosted hoặc runner tự quản lý |
+| Công việc cần học và thiết lập | Workflow, sự kiện, job, quyền truy cập | Pipeline, controller, agent, plugin | Job/stage, biến, điều kiện chạy, runner |
+| Phù hợp với EShop | Tích hợp trực tiếp với repo và PR trên GitHub | Chạy cùng bộ lệnh; cần cấu hình kết nối GitHub | Chạy cùng bộ lệnh; cần thêm tổ chức dự án hoặc tích hợp repo ngoài |
+| Chi phí và vận hành | Xét runner, hạn mức và lưu trữ; giảm phần máy chủ nếu dùng hosted runner | Giấy phép MIT; tự quản lý hạ tầng và công cụ | Phụ thuộc gói sử dụng và mô hình runner |
+| Nguồn học tập và mở rộng | GitHub Docs, action và workflow mẫu | Jenkins Docs và hệ sinh thái plugin | GitLab Docs và cấu hình CI/CD mẫu |
+
+Cả ba nền tảng đều có thể phục vụ việc chạy kiểm thử tự động. Với phạm vi này, khác biệt có ý nghĩa nằm ở cách tích hợp vào quy trình hiện có, mức độ tự quản lý và khả năng cung cấp bằng chứng dễ kiểm tra. Bảng khảo sát là cơ sở lựa chọn, chưa phải kết luận nền tảng nào chạy nhanh hơn hay cho kết quả kiểm thử tốt hơn.
 
 ### 3.2. Hướng AI
 
+**Trợ lý ngôn ngữ hỗ trợ phân tích log**
+
+Một hướng áp dụng AI là cung cấp log và bối cảnh cho trợ lý ngôn ngữ để hỗ trợ tóm tắt lỗi, tổ chức giả thuyết và đề xuất bước kiểm tra tiếp theo. ChatGPT được nhóm chọn để khảo sát theo cách này. Đầu vào được chuẩn bị từ kết quả CI; phản hồi cần nêu rõ quan sát nào hỗ trợ giả thuyết và thông tin nào còn thiếu.
+
+Trong phạm vi seminar, ChatGPT được sử dụng để hỗ trợ triage trên dữ liệu nhóm cung cấp, không được tích hợp thành thành phần tự quyết định trạng thái pipeline. Cách tiếp cận này cho phép nhóm chuẩn bị cùng một bộ log cho người phân tích và AI, đồng thời lưu prompt và phản hồi để xem xét lại. Nó cũng phù hợp với bài toán muốn quan sát cách lập luận từ bằng chứng, thay vì chỉ nhận một nhãn pass/fail.
+
+Hiệu quả phụ thuộc vào bối cảnh được cung cấp và cách đặt yêu cầu. Prompt cần nêu mục tiêu phân tích, dữ liệu được phép sử dụng và đầu ra mong muốn. Chẳng hạn, nhóm có thể yêu cầu phân biệt quan sát trong log với suy đoán, viện dẫn bằng chứng cho từng giả thuyết và đưa ra bước xác minh. Phản hồi vẫn phải được review vì lời giải thích có vẻ hợp lý có thể thiếu căn cứ hoặc bỏ sót thông tin quan trọng.
+
+**Công cụ theo dõi kiểm thử và hỗ trợ xử lý flake**
+
+Một hướng khác là tích hợp công cụ quan sát kiểm thử vào pipeline để thu thập dữ liệu thực thi qua nhiều lượt chạy. Datadog Test Optimization là ví dụ được khảo sát: công cụ cung cấp thông tin về các lần chạy, thời gian, lỗi và tình trạng không ổn định của test. Flaky Tests Management hỗ trợ theo dõi, triage và quản lý các test có flake trong một giao diện tập trung.
+
+Hướng này phù hợp khi cần quan sát bộ test thường xuyên trên nhiều nhánh hoặc nhiều pipeline. Tuy nhiên, cần cấu hình thu thập dữ liệu và bảo đảm framework kiểm thử nằm trong phạm vi được hỗ trợ. Các khả năng AI như phân loại nguyên nhân hoặc gợi ý sửa còn có điều kiện dữ liệu và tích hợp tương ứng. Vì vậy, việc có một test fail rồi pass chưa đồng nghĩa đã sử dụng đầy đủ chức năng phân tích nguyên nhân bằng AI của nền tảng.
+
+Cần phân biệt **phát hiện kết quả không ổn định** với **phân tích nguyên nhân**. Phát hiện có thể dựa trên việc quan sát cả pass và fail trong lịch sử chạy; phân tích nguyên nhân cần thêm bối cảnh và phép xác minh. Tính năng thống kê hoặc retry không tự trở thành chức năng AI. Khi đánh giá công cụ, nhóm cần chỉ rõ chức năng nào đang được sử dụng và bằng chứng nào cho thấy nó hỗ trợ được bài toán.
+
+*Bảng 6. Đối chiếu hai cách tiếp cận hỗ trợ phân tích flaky test*
+
+| Tiêu chí | ChatGPT với log do nhóm chuẩn bị | Công cụ tích hợp như Datadog Test Optimization |
+| --- | --- | --- |
+| Đầu vào | Log, lịch sử chạy, bối cảnh và prompt | Dữ liệu test được thu thập qua tích hợp |
+| Cách sử dụng | Yêu cầu phân tích một trường hợp cụ thể | Theo dõi và quản lý kết quả qua nhiều lượt chạy |
+| Đầu ra quan tâm | Tóm tắt, giả thuyết, bằng chứng và bước xác minh | Lịch sử, chỉ số, trạng thái flake và chức năng phân tích được hỗ trợ |
+| Chuẩn bị | Chọn dữ liệu, đặt yêu cầu và lưu phản hồi | Cấu hình dịch vụ, thư viện thu thập dữ liệu và quyền truy cập |
+| Giới hạn cần kiểm tra | Suy đoán thiếu căn cứ, bối cảnh thiếu, phản hồi chưa được xác minh | Điều kiện tích hợp, dữ liệu cần thiết và phạm vi tính năng của gói sử dụng |
+| Vai trò trong seminar | Công cụ AI được dùng cho thí nghiệm đối chiếu | Phương án khảo sát, không triển khai trong phạm vi báo cáo |
+
+Để phù hợp với giới hạn thời gian và mục tiêu seminar, nhóm chọn cách chuẩn bị dữ liệu rồi dùng ChatGPT hỗ trợ phân tích. Lựa chọn này giúp tập trung việc đánh giá vào chất lượng triage trên cùng đầu vào. Nó chưa khẳng định ChatGPT chính xác hơn công cụ chuyên dụng hoặc phân tích thủ công; những nhận xét về hiệu quả phải dựa trên kết quả thí nghiệm.
+
 ### 3.3. Lựa chọn của nhóm và lý do
+
+Nhóm lựa chọn GitHub Actions làm CI chính, Jenkins làm nền tảng đối chiếu và ChatGPT làm công cụ hỗ trợ phân tích log. Ba công cụ đảm nhiệm những vai trò bổ sung cho nhau trong quy trình thực hiện.
+
+*Bảng 7. Công cụ được chọn và vai trò trong đề tài*
+
+| Công cụ | Vai trò | Nội dung cần thể hiện |
+| --- | --- | --- |
+| GitHub Actions | CI chính gắn với repository và pull request | Tự động kiểm tra, chạy test, lưu bằng chứng và cung cấp check cho quy trình merge |
+| Jenkins | Nền tảng CI đối chiếu | Chạy bộ lệnh tương ứng, công bố báo cáo và so sánh cấu hình, môi trường, thời gian, vận hành |
+| ChatGPT | Hỗ trợ triage flaky test | Phân tích cùng dữ liệu với người, đưa ra giả thuyết và bước kiểm chứng để đối chiếu |
+
+**Lý do chọn GitHub Actions làm CI chính**
+
+EShop của nhóm được quản lý trên GitHub, nên GitHub Actions phù hợp để gắn kiểm thử với các sự kiện push và pull request. Kết quả kiểm tra có thể được xem cùng thay đổi mã nguồn, thuận tiện cho review và áp dụng quy tắc bảo vệ nhánh. Nhóm cũng có thể sử dụng runner do GitHub cung cấp để giảm công việc chuẩn bị máy chủ CI ban đầu. Việc triển khai tập trung vào workflow và bộ lệnh kiểm thử mà dự án đã chuẩn bị.
+
+**Lý do triển khai thêm Jenkins**
+
+Jenkins cho phép đối chiếu với mô hình CI mà nhóm trực tiếp quản lý hạ tầng và công cụ. Việc sử dụng cùng bộ kiểm thử trên hai nền tảng giúp xem xét những khác biệt về định nghĩa pipeline, môi trường chạy, cách lưu và hiển thị báo cáo. Nhóm vì vậy sử dụng Jenkins như một phần thực nghiệm đối chiếu, thay vì chỉ mô tả nó như phương án dự phòng.
+
+Các phép so sánh cần ghi nhận phiên bản mã nguồn, bộ lệnh và điều kiện thực thi. Nếu hai môi trường khác nhau về runtime, tài nguyên hoặc trạng thái cache, phần nhận xét phải giải thích những khác biệt đó. Mục tiêu là xác định đặc điểm phù hợp của từng cấu hình và những yêu cầu vận hành đi kèm, không suy ra ưu thế chung chỉ từ một lượt chạy.
+
+**Lý do chọn ChatGPT cho hướng AI**
+
+Bài toán AI của nhóm là phân tích log và lịch sử chạy của một trường hợp flake có nguyên nhân đã biết. ChatGPT phù hợp với cách tổ chức thí nghiệm này vì nhóm có thể cung cấp đầu vào cụ thể, yêu cầu định dạng câu trả lời và giữ lại phản hồi để đánh giá. Thời gian chuẩn bị được tập trung vào chất lượng dữ liệu, cách phân tích và phép xác minh, thay vì xây dựng thêm một hệ thống thu thập test telemetry.
+
+Việc đánh giá cần tách bản phân tích thủ công khỏi phản hồi AI, sử dụng cùng dữ liệu và đối chiếu theo tiêu chí thống nhất. Những đề xuất của AI được kiểm tra bằng log và kết quả thực thi, không dùng trực tiếp để thay đổi expected result hoặc bỏ test cho pipeline thành công. Thiết kế thí nghiệm và kết quả cụ thể được trình bày ở các chương về flaky test và AI triage.
+
+GitLab CI/CD và Datadog được giữ ở phạm vi khảo sát để làm rõ những phương án có thể áp dụng trong bối cảnh khác. Với phạm vi hiện tại, tổ hợp GitHub Actions, Jenkins và ChatGPT đáp ứng ba phần việc của đề tài: kiểm thử tự động, đối chiếu hai nền tảng CI và đánh giá hỗ trợ AI khi phân tích lỗi không ổn định.
 
 ## 4. Hệ thống kiểm thử
 
@@ -415,5 +513,16 @@ Một quality gate có ý nghĩa cần đánh giá đúng phiên bản mã, gi�
 22. GitHub Docs. [*About protected branches*](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
 23. GitHub Docs. [*Status checks*](https://docs.github.com/en/pull-requests/reference/status-checks).
 24. Istanbul documentation. [*Using Alternative Reporters*](https://istanbul.js.org/docs/advanced/alternative-reporters/).
+25. GitHub Docs. [*Understanding GitHub Actions*](https://docs.github.com/en/actions/get-started/understand-github-actions).
+26. GitHub Docs. [*GitHub Actions billing*](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+27. Jenkins. [*MIT License*](https://www.jenkins.io/license/).
+28. GitLab Docs. [*Get started with GitLab CI/CD*](https://docs.gitlab.com/ci/).
+29. GitLab Docs. [*Runners*](https://docs.gitlab.com/ci/runners/).
+30. GitLab Docs. [*CI/CD for external repositories*](https://docs.gitlab.com/ci/ci_cd_for_external_repos/).
+31. OpenAI Docs. [*Use ChatGPT*](https://learn.chatgpt.com/docs/use-chatgpt).
+32. OpenAI Docs. [*Prompting*](https://learn.chatgpt.com/docs/prompting).
+33. Datadog documentation. [*Getting Started with Test Optimization*](https://docs.datadoghq.com/getting_started/test_optimization/).
+34. Datadog documentation. [*Flaky Tests Management*](https://docs.datadoghq.com/tests/flaky_management/).
+35. Datadog. [*Test Optimization*](https://www.datadoghq.com/product/test-optimization/).
 
 ## Phụ lục A. Truy vết số liệu
