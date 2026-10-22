@@ -409,11 +409,186 @@ GitLab CI/CD và Datadog được giữ ở phạm vi khảo sát để làm rõ
 
 ### 4.1. SUT: backend EShop
 
+**Đối tượng và phạm vi kiểm thử**
+
+Hệ thống được kiểm thử (System Under Test – SUT) trong seminar là backend của ứng dụng thương mại điện tử EShop. Toàn bộ ứng dụng còn có giao diện web, trang quản trị và ứng dụng mobile; tuy nhiên, bộ kiểm thử của nhóm tập trung vào các chức năng được cung cấp qua backend API. Việc giới hạn phạm vi này giúp nhóm xây dựng một bộ test có thể chạy tự động, không cần thao tác giao diện và có thể sử dụng lại trên cả GitHub Actions lẫn Jenkins.
+
+Backend sử dụng Node.js, Express, SQLite và JSON Web Token (JWT). Mã nguồn được tổ chức theo CommonJS; `backend/server.js` khai báo ứng dụng Express, middleware xác thực và các route xử lý nghiệp vụ. `backend/database.js` quản lý kết nối SQLite, tạo cấu trúc bảng và nạp dữ liệu ban đầu. Các nhóm chức năng được chọn kiểm thử gồm xác thực, truy cập tài nguyên theo quyền, danh mục sản phẩm, giỏ hàng, checkout, đơn hàng và mã giảm giá.
+
+**Đặc điểm kiến trúc ảnh hưởng đến kiểm thử**
+
+Dữ liệu của SUT tồn tại ở hai nơi. Các bảng `users`, `products`, `categories`, `orders`, `coupons` và `coupon_usage` được lưu trong SQLite. Riêng giỏ hàng được giữ trong đối tượng `userCarts` ở bộ nhớ của tiến trình Node.js. Vì vậy, chỉ tạo lại database chưa đủ để đưa ứng dụng về trạng thái ban đầu: nếu tái sử dụng cùng instance ứng dụng, dữ liệu giỏ hàng của test trước vẫn có thể ảnh hưởng đến test sau. Harness của nhóm phải cô lập cả database lẫn trạng thái trong bộ nhớ.
+
+Khi chạy trực tiếp, `server.js` mở cổng HTTP để phục vụ ứng dụng. Khi được import trong môi trường kiểm thử, module export `app` và `authenticateToken`, không tự mở cổng cố định 3000. Cách tổ chức này cho phép Supertest gửi request tới ứng dụng Express thật mà không yêu cầu thành viên khởi động server thủ công trước mỗi lần chạy test.
+
+**Cơ sở xác định kết quả mong đợi**
+
+Đặc tả nghiệp vụ trong `README.md` của repository mã nguồn là cơ sở xác định expected result; `api_specification.md` mô tả giao diện HTTP phục vụ việc xây dựng request. Kết quả thực tế được đối chiếu với yêu cầu, thay vì coi hành vi hiện có của chương trình là đáp án đúng. Ví dụ, yêu cầu checkout quy định backend phải tính tổng tiền; nếu chương trình lưu trực tiếp tổng tiền do client gửi lên thì test phải ghi nhận sai lệch đó.
+
+Trong phạm vi đề tài, nhóm không sửa lỗi nghiệp vụ của SUT. Các thay đổi phục vụ kiểm thử cho phép import ứng dụng và cô lập môi trường; các assertion vẫn giữ theo đặc tả. Bộ test vì vậy có thể chạy hoàn chỉnh nhưng trả kết quả fail khi phát hiện chức năng chưa đáp ứng yêu cầu. Đây là dữ liệu đầu vào cho phần triển khai và đánh giá CI ở các chương sau.
+
 ### 4.2. Bộ kiểm thử
+
+**Cấu trúc và vai trò của các nhóm test**
+
+Bộ kiểm thử sử dụng Jest làm test runner, thư viện assertion và công cụ đo coverage; Supertest được dùng để gửi request HTTP tới ứng dụng Express. Tại baseline được trình bày ở mục 4.4, bộ test gồm **39 ca trong 6 file test**, bao gồm 36 ca kiểm tra chức năng ở ba tầng unit, API, smoke và 3 ca kiểm tra tính đúng đắn của harness.
+
+*Bảng 8. Cấu trúc bộ kiểm thử backend EShop*
+
+| Nhóm | File trong `backend/tests/` | Số ca | Nội dung chính |
+| --- | --- | ---: | --- |
+| Unit | `unit/authentication.test.js` | 5 | Middleware JWT: thiếu token, token sai định dạng, sai khóa ký, hết hạn và hợp lệ |
+| API | `api/catalog-auth.test.js` | 11 | Danh sách và tìm kiếm sản phẩm, đăng nhập, hồ sơ, xác thực và quyền xem danh sách người dùng |
+| API | `api/cart-orders.test.js` | 10 | Giỏ hàng, checkout, lịch sử đơn cá nhân và điều kiện chuyển trạng thái đơn |
+| API | `api/coupons.test.js` | 9 | Điều kiện sử dụng, giá trị biên và công thức giảm giá |
+| Smoke | `smoke/purchase.test.js` | 1 | Luồng xem sản phẩm → đăng nhập → thêm giỏ → checkout → xem lịch sử đơn |
+| Harness | `harness/isolation.test.js` | 3 | Cô lập database, cô lập giỏ hàng và khả năng gọi cleanup nhiều lần |
+| **Tổng** | **6 file test** | **39** | **5 unit, 30 API, 1 smoke, 3 harness** |
+
+Trong bảng trên, số ca được tính theo từng lần thực thi test. Chẳng hạn, một khai báo `test.each` kiểm tra ba endpoint thiếu token được tính thành ba ca riêng. Ba ca harness kiểm tra hạ tầng chạy test, không được cộng vào số ca kiểm tra nghiệp vụ của EShop.
+
+**Unit test cho middleware xác thực**
+
+Các unit test gọi trực tiếp hàm `authenticateToken` với đối tượng request, response và hàm `next` được chuẩn bị cho từng trường hợp. Database được mock vì không tham gia hành vi đang kiểm tra; không có request HTTP hoặc câu lệnh SQL được thực thi. Phần xác minh JWT vẫn sử dụng middleware và thư viện JWT thật. Với token không hợp lệ, test kiểm tra phản hồi từ chối và việc không gọi `next`; với token hợp lệ, test kiểm tra danh tính được gán vào request và `next` được gọi đúng một lần.
+
+Cách kiểm tra này giúp xác định lỗi của middleware trong phạm vi nhỏ. Tuy nhiên, middleware xác thực hoạt động đúng chưa chứng minh từng route đã kiểm tra đầy đủ quyền truy cập. Vì vậy, bộ API test còn có trường hợp người dùng thông thường truy cập tài nguyên quản trị để kiểm tra việc áp dụng quyền ở cấp endpoint.
+
+**API test cho tích hợp và quy tắc nghiệp vụ**
+
+Các API test gửi request qua route Express thật, sử dụng JWT thật và SQLite thật trong bộ nhớ. Theo phạm vi kỹ thuật, đây cũng là các phép kiểm tra tích hợp giữa định tuyến, middleware, xử lý nghiệp vụ và truy cập dữ liệu. Nhóm không mock phản hồi API hay thay thế công thức tính tiền của SUT; vì vậy, sai lệch trong những thành phần này có thể thể hiện qua status code, response body hoặc trạng thái dữ liệu sau request.
+
+Các trường hợp được lựa chọn theo hành vi và rủi ro của chức năng. Nhóm xác thực có cả đầu vào hợp lệ và không hợp lệ. Nhóm phân quyền phân biệt chưa đăng nhập, người dùng thông thường và quản trị viên. Nhóm đơn hàng kiểm tra các trạng thái `pending`, `shipping`, `canceled` và điều kiện chuyển trạng thái. Nhóm coupon kết hợp các điều kiện mã tồn tại, còn hiệu lực, đủ giá trị đơn và chưa vượt giới hạn sử dụng.
+
+Phân tích giá trị biên được thể hiện ở ngưỡng áp dụng coupon `BIGBUY`: các tổng tiền 499.999, 500.000 và 500.001 đồng lần lượt nằm ngay dưới, đúng và ngay trên ngưỡng 500.000 đồng. Thiết kế này giúp phát hiện khác biệt giữa điều kiện “lớn hơn” và “lớn hơn hoặc bằng”, vốn khó nhận ra nếu chỉ chọn một giá trị cách xa ngưỡng. Với coupon phần trăm, expected result được tính độc lập: giảm 10% của 500.000 đồng phải bằng 50.000 đồng, số tiền còn lại là 450.000 đồng.
+
+Mỗi test có mã định danh như `U-AUTH-01`, `A-COUPON-05` hoặc `S-PURCHASE-01`; tên test thể hiện hành vi và, khi phù hợp, mã yêu cầu FR tương ứng. Mã định danh giúp theo dõi cùng một ca qua log local và báo cáo CI. Khi đặc tả chỉ yêu cầu từ chối mà chưa quy định status code cụ thể, assertion kiểm tra lỗi thuộc nhóm 4xx cùng các điều kiện liên quan, tránh áp đặt một mã HTTP không có căn cứ từ yêu cầu.
+
+**Smoke test và giới hạn bao phủ**
+
+Smoke test nối các bước chính của luồng mua hàng trong cùng một kịch bản: đọc danh sách sản phẩm, đăng nhập, thêm sản phẩm vào giỏ, checkout và kiểm tra đơn vừa tạo trong lịch sử của người dùng. Kịch bản kiểm tra các bước có thể kết nối với nhau và dữ liệu đơn hàng cơ bản được trả về đúng người dùng, tổng tiền và trạng thái ban đầu.
+
+Đây là smoke test qua API; nó không chạy trình duyệt, giao diện web hoặc ứng dụng mobile. Kịch bản sử dụng tổng tiền hợp lệ và không kiểm tra tất cả điều kiện của checkout, nên smoke pass vẫn có thể đi cùng API test fail ở trường hợp client sửa tổng tiền hoặc giỏ hàng chưa được xóa. Bộ test cũng chưa bao phủ toàn bộ yêu cầu EShop, các thuộc tính giao diện, kiểm thử tải hoặc đánh giá bảo mật đầy đủ. Các kết luận ở chương này được giới hạn trong những hành vi đã có assertion.
 
 ### 4.3. Fixture và tính độc lập
 
+**Tạo môi trường riêng cho từng test**
+
+Fixture dùng chung được tổ chức trong `backend/tests/helpers/harness.js`. Với các test API và smoke, `beforeEach` gọi `createHarness()` để tạo instance ứng dụng cùng database mới; `afterEach` đóng database sau khi test kết thúc, kể cả khi assertion fail. Các test harness có thể tạo nhiều instance trong cùng một ca để đối chiếu trạng thái, sau đó đóng toàn bộ instance đã tạo.
+
+Harness sử dụng `jest.isolateModules` khi nạp `server.js` và `database.js`. Mỗi lần tạo harness vì vậy có phạm vi module riêng, bao gồm cả đối tượng giỏ hàng trong bộ nhớ. Constructor SQLite được thay tạm thời để chuyển đường dẫn database sang `:memory:`. Việc thay thế này chỉ thay nơi lưu dữ liệu: SQL tạo bảng, SQL seed, truy vấn và logic xử lý request vẫn chạy bằng mã thật của SUT. Sau bước nạp module, mock constructor được khôi phục trong khối `finally`.
+
+![Tổ chức thực thi bộ kiểm thử backend EShop](assets/system/eshop-test-system.png)
+
+*Hình 6. Hai đường thực thi của bộ kiểm thử EShop và vòng đời fixture cho các test cần dữ liệu. Unit test gọi trực tiếp middleware; API, smoke và các ca kiểm tra harness sử dụng instance cô lập.*
+
+**Bảo đảm fixture đã sẵn sàng**
+
+Khởi tạo database là quá trình bất đồng bộ. Nếu test gửi request trước khi seed hoàn tất, lỗi thiếu dữ liệu có thể bị hiểu nhầm thành lỗi nghiệp vụ. Để tránh tình huống đó, `createHarness()` chờ một truy vấn kiểm tra dữ liệu được xếp sau các lệnh khởi tạo, đồng thời xác nhận số bản ghi ở cả sáu bảng: 2 người dùng, 5 sản phẩm, 4 coupon, 3 danh mục, 0 đơn hàng và 0 lượt sử dụng coupon. Chỉ khi các điều kiện này thỏa mãn, helper mới trả về ứng dụng cho test sử dụng.
+
+Các helper `login`, `product`, `order` và `exhaustCoupon` hỗ trợ chuẩn bị trạng thái theo mục tiêu từng ca. `login` lấy token qua API đăng nhập thật; `product` tìm sản phẩm theo tên thay vì cố định ID; `order` và `exhaustCoupon` sử dụng SQL để tạo trạng thái đơn hàng hoặc lượt dùng coupon cần kiểm tra. Việc chuẩn bị trực tiếp bằng SQL được dùng cho điều kiện đầu vào, trong khi hành vi đang được đánh giá vẫn phải được thực hiện qua thao tác tương ứng và kiểm tra bằng assertion. Ví dụ, test hủy đơn có thể tạo trước đơn `shipping`, rồi gọi API hủy và kiểm tra trạng thái sau đó.
+
+**Cleanup và bảo vệ dữ liệu gốc**
+
+Mỗi instance giữ kết nối SQLite riêng và cung cấp hàm `close()`. Hàm này lưu lại Promise đóng kết nối, nên việc gọi nhiều lần sử dụng cùng kết quả cleanup. Nếu setup thất bại sau khi đã mở database, helper thực hiện đóng kết nối trước khi đưa lỗi ra ngoài. Lỗi cleanup không bị bỏ qua vì một kết nối chưa đóng có thể làm tiến trình test không kết thúc hoặc ảnh hưởng đến các lần chạy tiếp theo.
+
+Database `:memory:` được hủy khi kết nối tương ứng đóng. Bộ test không cần xóa hoặc reset file `backend/database.sqlite` đang dùng cho ứng dụng. Việc tạo lại cả database và app giúp test tiếp theo nhận trạng thái ban đầu, đồng thời không reset trạng thái của một instance khác còn đang tồn tại.
+
+**Kiểm chứng tính độc lập**
+
+Ba ca `H-ISOLATION-01/02/03` kiểm tra lần lượt việc thay đổi dữ liệu không lan sang database khác, giỏ hàng riêng theo instance và cleanup có thể gọi lặp lại. Ngoài ra, lệnh `npm run test:isolation` chạy toàn bộ bộ test bằng ba tiến trình Jest kế tiếp với seed 101, 202 và 303 để xáo thứ tự test trong mỗi file. Script đối chiếu trạng thái từng tên test, danh sách mười test fail đã biết, số test bị bỏ qua và số tài nguyên còn mở được Jest phát hiện; đồng thời so sánh SHA-256 của file database gốc trước và sau phép kiểm tra.
+
+Kết quả ở baseline cho thấy cả ba seed đều có 39 test, 29 pass, 10 fail, không có open handle được báo cáo và hash database gốc không đổi. Lệnh chẩn đoán isolation trả exit code 0 vì đáp ứng các tiêu chí trên; từng lượt Jest vẫn trả exit code 1 do các assertion nghiệp vụ fail. Do đó, kết quả kiểm tra tính độc lập không thay thế kết quả kiểm thử chức năng hoặc quality gate của pipeline.
+
+Bộ test hiện chạy tuần tự bằng `--runInBand`; helper module isolation này không được thiết kế để dùng với `test.concurrent`. Ba seed là bằng chứng về các thứ tự đã kiểm tra, chưa chứng minh bộ test ổn định với mọi thứ tự, mức tải hoặc cách thực thi song song. Khi thêm test hay sửa lỗi SUT, danh sách kết quả kỳ vọng trong script chẩn đoán cũng cần được cập nhật dựa trên kết quả đã xác minh.
+
 ### 4.4. Baseline
+
+**Mục đích và điều kiện ghi nhận**
+
+Baseline là mốc kết quả ban đầu dùng để đối chiếu khi đưa cùng bộ kiểm thử lên các nền tảng CI. Mốc này cần xác định được phiên bản mã nguồn, môi trường, câu lệnh và kết quả quan sát, để phân biệt lỗi nghiệp vụ đã có với lỗi mới do cấu hình pipeline hoặc thay đổi mã nguồn. Baseline của chương này sử dụng lần kiểm chứng B-04 trên clone local sạch ngày 13/10/2026, được lưu trong repository mã nguồn; các số liệu dưới đây là kết quả của lần chạy đã lưu, không phải một lần chạy mới khi biên soạn báo cáo.
+
+*Bảng 9. Điều kiện của baseline local B-04*
+
+| Nội dung | Giá trị ghi nhận |
+| --- | --- |
+| Phiên bản mã nguồn | Commit `a7f0923a168b5228920c27be04452c2dfcfe4de7` |
+| Ngày kiểm chứng | 13/10/2026, múi giờ Asia/Bangkok (UTC+07:00) |
+| Môi trường | Windows, PowerShell; Node.js `v24.14.0`, npm `11.21.0` |
+| Trạng thái clone | Không có sẵn `node_modules` và báo cáo coverage; dùng lại runtime và npm cache của máy |
+| Cài dependency | `npm ci --no-audit --no-fund` trong thư mục `backend` |
+| Lượt Jest dùng để lấy số liệu coverage và thời gian | `npm run test:ci` kèm `--detectOpenHandles --json --outputFile=<đường-dẫn-report-tạm>` |
+| Log minh chứng | `docs/evidence/B-04/clean-clone.log` |
+| Snapshot coverage | `docs/evidence/B-04/cobertura-coverage.xml` |
+
+Các đường dẫn trong bảng được tính từ gốc repository mã nguồn EShop. Snapshot XML đã chuẩn hóa đường dẫn nguồn thành `backend`, giữ nguyên các bộ đếm coverage. Clone sạch ở đây mô tả dependency và báo cáo trong thư mục dự án, không có nghĩa đây là phép đo với npm cache rỗng.
+
+**Kết quả thực thi**
+
+Quy trình kiểm chứng gồm cài dependency, lint, kiểm tra cú pháp, chạy test và thu coverage. Backend là ứng dụng CommonJS chạy trực tiếp; lệnh `build` gọi script kiểm tra cú pháp bằng Node, không tạo bundle hoặc thư mục `dist`. Vì vậy, build pass cho biết mã vượt qua phép kiểm tra cú pháp đã cấu hình, chưa khẳng định đúng nghiệp vụ.
+
+*Bảng 10. Kết quả các bước tại baseline B-04*
+
+| Bước | Kết quả | Ý nghĩa |
+| --- | --- | --- |
+| Cài dependency | Exit code 0 | Hoàn tất cài đặt theo lockfile |
+| Lint | Exit code 0 | Không có lỗi hoặc warning theo cấu hình ESLint áp dụng |
+| Build | Exit code 0 | Các file thuộc phạm vi script vượt qua kiểm tra cú pháp |
+| Bộ kiểm thử đầy đủ | 39 ca: 29 pass, 10 fail, 0 skip; exit code 1 | Các test được thực thi; còn assertion nghiệp vụ chưa thỏa |
+| Tổng hợp suite | 3 suite pass, 3 suite fail | Các file API có lỗi; unit, smoke và harness pass |
+| Chẩn đoán isolation | Exit code 0 ở ba seed | Trạng thái từng test ổn định theo phép kiểm tra, database gốc không đổi |
+
+Theo từng nhóm, unit có 5/5 ca pass, API có 20/30 ca pass, smoke có 1/1 ca pass và harness có 3/3 ca pass. Thời gian Jest của lượt `test:ci` dùng để thu coverage là **2,443 giây**. Đây là thời gian Jest báo cho lượt chạy đó, không bao gồm toàn bộ quá trình cài đặt, lint, build hoặc thời gian chờ của một pipeline CI; một lần đo local cũng chưa đủ để đánh giá hiệu năng chung.
+
+**Các sai lệch nghiệp vụ đã ghi nhận**
+
+Mười test fail được giữ nguyên expected result theo đặc tả. Bảng 11 tóm tắt hành vi quan sát để làm mốc nhận diện khi đọc kết quả CI.
+
+*Bảng 11. Các test fail ở baseline*
+
+| Test ID | Kết quả mong đợi | Hành vi quan sát |
+| --- | --- | --- |
+| `A-AUTH-03` | Một lần đăng nhập sai tăng bộ đếm đúng 1 | Bộ đếm tăng 2 |
+| `A-ACCESS-02` | Người dùng thường bị từ chối xem danh sách người dùng quản trị | API trả HTTP 200 |
+| `A-CART-03` | Thêm lại cùng sản phẩm gộp thành một dòng, tổng số lượng 3 | Giỏ hàng có hai dòng |
+| `A-CHECKOUT-02` | Backend tự tính tổng 60.000.000 đồng từ sản phẩm và số lượng | Đơn lưu tổng tiền 1 đồng do client gửi |
+| `A-CHECKOUT-03` | Checkout thành công làm rỗng giỏ hàng | Sản phẩm vẫn còn trong giỏ |
+| `A-ORDER-03` | Người dùng không được hủy đơn đang giao (`shipping`) | API chấp nhận, trả HTTP 200 |
+| `A-ORDER-04` | Đơn đã hủy không chuyển tiếp sang `delivered`, kể cả bởi admin | API chấp nhận, trả HTTP 200 |
+| `A-COUPON-05` | Tổng tiền đúng ngưỡng 500.000 đồng được áp dụng `BIGBUY` | API từ chối bằng HTTP 400 |
+| `A-COUPON-07` | Request chưa xác thực bị từ chối dù body có `user_id` | API chấp nhận, trả HTTP 200 |
+| `A-COUPON-09` | `SAVE10` giảm 50.000 đồng trên tổng 500.000 đồng, còn 450.000 đồng | Giá trị giảm là −4.500.000 đồng, tổng còn lại 5.000.000 đồng |
+
+Các kết quả này thể hiện mười ca kiểm thử không được đáp ứng; không tự suy ra có đúng mười nguyên nhân gốc độc lập. Việc cùng các ID fail xuất hiện lại ở ba seed giúp phân biệt các sai lệch lặp lại trong baseline với dấu hiệu kết quả thay đổi theo thứ tự chạy. Tuy nhiên, khi CI xuất hiện lỗi mới hoặc kết quả khác baseline, vẫn phải kiểm tra log và điều kiện thực thi trước khi kết luận nguyên nhân.
+
+**Coverage và cách diễn giải**
+
+Jest được cấu hình đo `server.js` và `database.js`, bao gồm cả phần mã trong hai file chưa được test gọi; mã test và helper không nằm trong phạm vi tính tỷ lệ này. Kết quả summary của lượt B-04 được ghi nhận như sau.
+
+*Bảng 12. Coverage của backend tại baseline B-04 theo Jest*
+
+| Tiêu chí | Số phần tử được thực thi / tổng số | Tỷ lệ |
+| --- | ---: | ---: |
+| Statement | 178/307 | 57,98% |
+| Branch | 52/133 | 39,09% |
+| Function | 29/73 | 39,72% |
+| Line | 174/283 | 61,48% |
+
+Line coverage 61,48% cho thấy bộ test đã thực thi một phần đáng kể mã backend, đồng thời còn nhiều dòng chưa được đi qua. Branch coverage 39,09% cho thấy phạm vi thực thi các nhánh điều kiện còn hạn chế. Những tỷ lệ này mô tả mức độ mã được thực thi trong phạm vi đo; chúng không phải tỷ lệ yêu cầu được kiểm tra đầy đủ hoặc tỷ lệ chức năng đúng. Việc có mười test fail nhưng vẫn sinh được coverage cũng cho thấy báo cáo độ bao phủ và verdict test là hai loại thông tin cần đọc cùng nhau.
+
+Cấu hình baseline chưa đặt `coverageThreshold`; không có cơ sở để xem các tỷ lệ này là đã đạt một ngưỡng nghiệm thu. Các ngưỡng minh họa ở phần cơ sở lý thuyết không phải ngưỡng đã triển khai cho EShop. Khi đưa bộ test lên CI, kết quả test fail vẫn phải được giữ lại, cùng log và coverage để người đọc có thể kiểm tra nguyên nhân.
+
+**Bộ lệnh dùng lại trên CI**
+
+Từ thư mục `backend`, các lệnh chuẩn hóa là:
+
+```sh
+npm ci
+npm run lint
+npm run build
+npm run test:ci
+```
+
+Các lệnh được chạy thành những bước riêng để ghi nhận đúng trạng thái từng bước và vẫn thu báo cáo khi test fail. Trong phiên bản cấu hình hiện tại, `test:ci` còn có reporter `jest-junit` để tạo `test-results/junit.xml`, bên cạnh console và coverage. Reporter JUnit được bổ sung sau mốc local B-04; không coi file này là đầu ra đã có của lần baseline nói trên. Các chương triển khai CI sẽ trình bày cách hai nền tảng gọi bộ lệnh, công bố kết quả và lưu bằng chứng.
 
 ## 5. Triển khai pipeline trên GitHub Actions
 
