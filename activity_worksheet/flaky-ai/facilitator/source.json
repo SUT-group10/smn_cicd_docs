@@ -1,0 +1,75 @@
+{
+  "description": "Pedagogical excerpt for the flaky/AI module of Pipeline Postmortem; not a new experiment or AI analysis.",
+  "source_repository": "https://github.com/SUT-group10/eshop-sut-group10",
+  "measured_revision": "52e400689109b5423ad04eb2bef41280a0f149ff",
+  "ci_run_id": 39860438568,
+  "ci_run_url": "https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39860438568",
+  "archived_analysis_packet": "../../../report/assets/triage/v2/ai-sol/api-analysis-input-39860438568-1.zip",
+  "source_packet_id": "20261022T215153Z-1abf079b",
+  "source_batch_runs": 10,
+  "selected_runs": [
+    "run-02",
+    "run-04",
+    "run-06"
+  ],
+  "selection": "Intentional teaching selection: recovered after retry, exhausted retry, initial pass. Not a random sample or a fresh run.",
+  "data_derivation": {
+    "context": "Vietnamese summary of original README.md; metadata columns selected from history.json.",
+    "console": "Complete line-numbered console.log of each selected run, embedded in data.md with event content/order/line numbers unchanged. Markdown uses LF line endings.",
+    "logs": [
+      {
+        "path": "run-02/console.log",
+        "lines": 56
+      },
+      {
+        "path": "run-04/console.log",
+        "lines": 78
+      },
+      {
+        "path": "run-06/console.log",
+        "lines": 30
+      }
+    ]
+  },
+  "yaml_derivation": {
+    "source_path": ".github/workflows/flaky-experiment.yml",
+    "revision": "52e400689109b5423ad04eb2bef41280a0f149ff",
+    "retained": [
+      "permissions",
+      "order-history job configuration",
+      "checkout and setup-node",
+      "Install dependencies",
+      "Record source and runtime",
+      "Upload analysis packet"
+    ],
+    "omitted": [
+      "workflow name and workflow_dispatch inputs",
+      "test invocation and experiment environment",
+      "organizer upload"
+    ],
+    "purpose": "Reading excerpt only, not an executable workflow or a YAML repair puzzle."
+  },
+  "skill": {
+    "copied_from": "../../../user_guide/assets/flaky-ai/ci-log-triage",
+    "files": [
+      "SKILL.md",
+      "SOURCES.md",
+      "LICENSE.txt"
+    ],
+    "license": "../participant/.agents/skills/ci-log-triage/LICENSE.txt",
+    "source_notice": "../participant/.agents/skills/ci-log-triage/SOURCES.md"
+  },
+  "expected_subset_counts": {
+    "runs": 3,
+    "attempts": 6,
+    "retries": 3,
+    "first_pass": 1,
+    "first_fail": 2,
+    "final_pass": 2,
+    "final_fail": 1,
+    "passed_attempts": 2,
+    "failed_attempts": 4
+  },
+  "participant_archive": "../api-postmortem-participant.zip",
+  "acceptance": "Content/source/package QA only; independent peer worksheet trial is not yet recorded."
+}

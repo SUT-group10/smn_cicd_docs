@@ -1,0 +1,41 @@
+# Trích đoạn workflow dùng để đọc, KHÔNG phải file hoàn chỉnh để chạy.
+# Tên workflow và phần trigger/input đã được lược.
+# Các khối giữ lại bên dưới lấy từ workflow của batch nguồn.
+permissions:
+  contents: read
+
+jobs:
+  order-history:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.14.0
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+        env:
+          npm_config_build_from_source: 'true'
+      - name: Record source and runtime
+        run: |
+          git rev-parse HEAD
+          node --version
+          npm --version
+          python --version
+      # Lược khối gọi bộ chạy test và truyền các input thí nghiệm.
+      # Metadata và console đã cấp ghi các attempt/kết quả thực tế.
+      - name: Upload analysis packet (safe to hand to analysts)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: api-analysis-input-${{ github.run_id }}-${{ github.run_attempt }}
+          path: backend/test-results/order-history/ci/participant/
+          if-no-files-found: warn
+          retention-days: 90
+# Lược bước upload hồ sơ riêng của người điều phối.
