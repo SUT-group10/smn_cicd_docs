@@ -248,29 +248,29 @@ Kết quả dưới đây được trích xuất từ phiên chạy GitHub Actio
 
 ### 6.2. Kết quả đo lường hiệu quả của `npm cache` (Task C-03)
 
-Nhóm thực hiện đo hai lần chạy liên tiếp trên cùng một commit/lockfile (`backend/package-lock.json` có mã băm `7c08e1ce2d98b13fa94005160c0f254bb6459662f4051a6d6de73ea9a8af2f71`), cùng hệ điều hành `ubuntu-22.04` và Node `22.14.0`. Kết quả được trình bày ở Bảng 7.
+Nhóm thực hiện đo hai lần chạy liên tiếp trên cùng một [commit](https://github.com/SUT-group10/eshop-sut-group10/pull/10/commits/5297dd82b0512709ab598fa9a2cbb42bd8a0dd51)/lockfile (`backend/package-lock.json` có mã băm `7c08e1ce2d98b13fa94005160c0f254bb6459662f4051a6d6de73ea9a8af2f71`), cùng hệ điều hành `ubuntu-22.04` và Node `22.14.0`. Kết quả được trình bày ở Bảng 7.
 
 *Bảng 7. So sánh thời lượng giữa lần chạy Cache Miss và Cache Hit (Task C-03)*
 
 | Chỉ số đo lường | Lần chạy 1 (Cache Miss) | Lần chạy 2 (Cache Hit) | Nhận xét / Chênh lệch |
 | --- | --- | --- | --- |
-| **Run URL** | `[Placeholder: Link Run 1]` | `[Placeholder: Link Run 2]` | Cùng khóa cấu hình và môi trường runner |
+| **Run URL** | `https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39728833825/attempts/1` | `https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39728833825` | Cùng khóa cấu hình và môi trường runner |
 | **Trạng thái `Restore npm cache**` | `Cache not found` | `Cache restored from key` | Khôi phục đúng gói tarballs trong `~/.npm` |
 | **Trạng thái `Save npm cache**` | `Cache saved successfully` | `Skipped` | Không tốn thời gian ghi đè cache ở lần chạy thứ hai |
-| **Thời gian step `Install dependencies` (`npm ci`)** | `[Placeholder: vd 58s]` | `[Placeholder: vd 14s]` | Giảm `[Placeholder: vd 44s (~75%)]`; phần thời gian còn lại ở lần Hit chủ yếu do biên dịch C++ cho `sqlite3` |
-| **Tổng thời gian Job (`Total duration`)** | `[Placeholder: vd 1m 12s]` | `[Placeholder: vd 28s]` | Rút ngắn đáng kể vòng lặp phản hồi (feedback loop) trên mỗi PR |
+| **Thời gian step `Install dependencies` (`npm ci`)** | `1m11s` | `55s` | Giảm `16s ~ 22.5%`; phần thời gian còn lại ở lần Hit chủ yếu do biên dịch C++ cho `sqlite3` |
+| **Tổng thời gian Job (`Total duration`)** | `1m32s` | `1m11s` | Rút ngắn đáng kể vòng lặp phản hồi (feedback loop) trên mỗi PR |
 
 ### 6.3. Số liệu Coverage thực tế và quyết định về Coverage Badge (Task C-04, C-06)
 
 Khi tải gói artefact `backend-ci-reports-<run_id>` về giải nén, nhóm thu được đầy đủ ba tệp: `cobertura-coverage.xml`, `coverage-summary.json` và `jest-report.json`. Số liệu độ bao phủ mã nguồn tính trên hai tệp cốt lõi của hệ thống (`backend/server.js` và `backend/database.js`) từ `coverage-summary.json` khớp hoàn toàn với lần chạy cục bộ và trên Jenkins:
 
 * **Lines coverage:** `61.48%` (`174 / 283` dòng)
-* **Statements coverage:** `[Placeholder: điền % từ coverage-summary.json, vd 60.41%]`
+* **Statements coverage:** `57.98%` (`178 / 307` dòng)
 * **Functions / Methods coverage:** `39.73%` (`29 / 73` hàm)
 * **Branches coverage:** `39.09%` (`52 / 133` nhánh trong `coverage-summary.json`; tương ứng `41.74%` tức `48 / 115` nhánh theo chuẩn quy đổi của `cobertura-coverage.xml`).
 
 **Về việc hiển thị Coverage Badge (Task C-06):**
-Theo đúng quy tắc kỹ thuật trong `github-actions-runbook.md` (Mục 5), nhóm **tuyệt đối không gắn huy hiệu (badge) chứa con số coverage tĩnh (hard-coded)** lên `README.md` vì huy hiệu tĩnh sẽ nhanh chóng sai lệch so với kết quả thực tế khi mã nguồn thay đổi, gây hiểu lầm về chất lượng hệ thống. Do workflow hiện khóa quyền ở mức tối thiểu `permissions: contents: read` để bảo mật và không đẩy dữ liệu sang dịch vụ bên thứ ba (như Codecov/Coveralls), nhóm sử dụng trực tiếp tệp `coverage-summary.json` và `cobertura-coverage.xml` trong gói Artefact của từng run làm nguồn dữ liệu chuẩn xác duy nhất (Single Source of Truth).
+Theo đúng quy tắc kỹ thuật nhóm **tuyệt đối không gắn huy hiệu (badge) chứa con số coverage tĩnh (hard-coded)** lên `README.md` vì huy hiệu tĩnh sẽ nhanh chóng sai lệch so với kết quả thực tế khi mã nguồn thay đổi, gây hiểu lầm về chất lượng hệ thống. Do workflow hiện khóa quyền ở mức tối thiểu `permissions: contents: read` để bảo mật và không đẩy dữ liệu sang dịch vụ bên thứ ba (như Codecov/Coveralls), nhóm sử dụng trực tiếp tệp `coverage-summary.json` và `cobertura-coverage.xml` trong gói Artefact của từng run làm nguồn dữ liệu chuẩn xác duy nhất (Single Source of Truth).
 
 ---
 
@@ -293,14 +293,23 @@ Mở rộng step `API tests`, tìm từ khóa `FAIL tests/api/` để xác đị
 
 
 2. **Đối chiếu với tệp `jest-report.json` trong gói Artefact:**
-Tải gói `backend-ci-reports-<run_id>` về máy, mở `jest-report.json` để xem mảng `assertionResults`. Tệp JSON cung cấp chính xác thông điệp `failureMessages`, số dòng mã nguồn trong file test và thời gian chạy của từng ca kiểm thử dưới định dạng có cấu trúc (rất thuận lợi để làm đầu vào chuẩn hóa cho công cụ AI Triage ở Task E).
+Tải gói `backend-ci-reports-<run_id>` về máy, mở `jest-report.json` để xem mảng `assertionResults`. Tệp JSON cung cấp chính xác thông điệp `failureMessages`, số dòng mã nguồn trong file test và thời gian chạy của từng ca kiểm thử dưới định dạng có cấu trúc (rất thuận lợi để làm đầu vào chuẩn hóa cho công cụ AI Triage).
 3. **Truy ngược về mã nguồn SUT ở đúng `GITHUB_SHA`:**
 Dựa vào `Commit SHA` được in ở step `Record runtime`, kiểm thử viên mở file `backend/server.js` tại đúng phiên bản đó và phát hiện câu lệnh điều kiện đang viết `if (total_amount <= coupon.min_order_amount)` thay vì `<` (hoặc tương tự ở các lỗi `A-AUTH-03` tăng bộ đếm sai, `A-CHECKOUT-02` tin tưởng `total_amount` từ client). Nhờ đó, nhóm khẳng định lỗi thuộc về mã nguồn SUT vi phạm đặc tả chứ không phải lỗi môi trường runner.
 
+Hình 4.1 đến Hình 4.4 được lấy từ [Run](https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39728833825/job/119660329330) từ commit ở mục 6.2
 
-*(Placeholder: Chèn ảnh chụp màn hình đoạn log báo FAIL của step `API tests` trên GitHub Actions)*
+![alt text](assets/github-actions/API-tests-log/1.png)
+*Hình 4.1 Log chi tiết chỉ rõ vị trí assertion thất bại ngay trên giao diện GitHub Actions*
 
-*Hình 4. Log chi tiết chỉ rõ vị trí assertion thất bại ngay trên giao diện GitHub Actions*
+![alt text](assets/github-actions/API-tests-log/2.png)
+*Hình 4.2 Log chi tiết chỉ rõ vị trí assertion thất bại ngay trên giao diện GitHub Actions*
+
+![alt text](assets/github-actions/API-tests-log/3.png)
+*Hình 4.3 Log chi tiết chỉ rõ vị trí assertion thất bại ngay trên giao diện GitHub Actions*
+
+![alt text](assets/github-actions/API-tests-log/4.png)
+*Hình 4.4 Log chi tiết chỉ rõ vị trí assertion thất bại ngay trên giao diện GitHub Actions*
 
 ---
 
@@ -340,7 +349,7 @@ Bảng 8 tổng hợp các sự cố thực tế đã phát sinh trong quá trì
 
 
 
----
+
 
 ## 9. Hạn chế
 
@@ -351,7 +360,6 @@ Hệ thống CI trên GitHub Actions hiện tại của nhóm có bốn giới h
 3. **Độ bao phủ mã nguồn (Coverage) mới dừng ở mức quan sát (Observability):** Mặc dù `cobertura-coverage.xml` và `coverage-summary.json` luôn được sinh và lưu trữ sau mỗi lần chạy, pipeline chưa áp đặt ngưỡng chặn cứng (coverage threshold gate) để đánh trượt build dựa trên tỷ lệ phần trăm coverage, và chưa tích hợp dịch vụ bên ngoài để hiển thị huy hiệu động (dynamic badge).
 4. **Sự phụ thuộc vào tài nguyên máy ảo dùng chung của GitHub:** Thời gian biên dịch từ mã nguồn của `sqlite3` ở bước `npm ci` có độ dao động nhất định giữa các lần chạy (từ vài giây đến khoảng 1 phút) tùy thuộc vào hiệu năng CPU và băng thông I/O của GitHub-hosted runner được cấp phát tại thời điểm đó.
 
----
 
 ## 10. Kết luận
 
@@ -359,5 +367,4 @@ Nhóm đã xây dựng và vận hành thành công hệ thống CI chính trên
 
 Kết quả thực thi trên GitHub Actions thống nhất tuyệt đối với môi trường Clean Clone cục bộ và nền tảng đối chiếu Jenkins: phát hiện chính xác 10 lỗi nghiệp vụ baseline của SUT (29/39 test pass, line coverage đạt 61,48%) và tự động xuất đầy đủ gói artefact (`cobertura-coverage.xml`, `coverage-summary.json`, `jest-report.json`) ở mọi phiên chạy. Hạ tầng này đóng vai trò là nền tảng cốt lõi để nhóm thực hiện phép so sánh đa nền tảng với Jenkins (Task D-05, D-06) cũng như triển khai thí nghiệm 10 lần chạy Flaky Test và đánh giá khả năng chẩn đoán log của AI (Task E).
 
-```
 
