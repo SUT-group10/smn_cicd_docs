@@ -1424,6 +1424,48 @@ Sau sửa, chạy xác nhận không dựa vào retry và đọc lại trace/tr�
 
 ## 12. Kết luận và bài học
 
+### 12.1. Kết quả đạt được theo mục tiêu
+
+*Bảng 35. Đối chiếu kết quả với mục tiêu ở mục 1.2*
+
+| Mục tiêu | Kết quả | Mức độ |
+| --- | --- | --- |
+| 1. Test harness | 39 test (unit, API, smoke, harness), SQLite trong bộ nhớ cho từng test; kết quả từng test giữ nguyên qua ba thứ tự xáo trộn | Đạt |
+| 2. GitHub Actions | Workflow chạy trên PR/push, giữ exit code thật, khôi phục/lưu cache, upload artifact cả khi test fail (run #11, #12) | Đạt |
+| 3. Jenkins | Pipeline sáu stage cho cùng kết quả 29 pass/10 fail, line coverage 61,48% như GitHub Actions; trang Tests/Coverage đủ để chẩn đoán đến từng assertion | Đạt |
+| 4. Flaky test | Batch `timed`: lần đầu 5 PASS/5 FAIL, retry làm ba run chuyển sang pass, verdict cuối 8/2. Sau khi đổi sang chờ đúng Promise (`awaited`, retry = 0): 10/10 PASS, 10/10 trace đúng thứ tự | Đạt |
+| 5. Người và AI | Vượng và GPT-6.1 Sol cùng xác định vấn đề thứ tự giữa submit và history; mỗi bên có điểm cần làm rõ (nhãn "cửa sổ CI"; nhận xét GET, phép tính xác suất) | Đạt |
+| 6. Bài học | Xem mục 12.2 và chương 11 | Đạt |
+
+Tóm lại, nhóm đã xây được một quy trình CI có thể tái lập: bộ kiểm thử độc lập, hai pipeline cho cùng verdict trên cùng SUT, và quy trình phân tích flaky test có kiểm chứng bằng thực nghiệm. Pipeline đỏ trên SUT baseline không phải dấu hiệu CI hỏng; đó là kết quả đúng của quality gate khi SUT chưa đáp ứng đặc tả.
+
+### 12.2. Bài học
+
+**Về pipeline**
+
+- **Một verdict đỏ trung thực có giá trị hơn một verdict xanh giả tạo.** Không đổi expected, skip test hay nuốt exit code là điều kiện để kết quả CI còn ý nghĩa.
+- **Màu của build chưa đủ để kết luận.** Với 10 lỗi baseline, cần đối chiếu danh sách ID fail; run xanh của PR #20 cũng phải được ghi rõ là đến từ một phiên bản SUT khác.
+- **Bằng chứng phải được giữ lại khi thất bại.** Bước upload/publish chạy cả khi test fail, cùng snapshot metadata và log, giúp đối chiếu được kể cả khi artifact trên CI đã hết hạn.
+- **Số đo phải đi kèm phạm vi.** Thời gian Jest, thời gian job và thời gian cài dependency là các đại lượng khác nhau; nhãn cache hit cũng không tự giải thích chênh lệch thời gian.
+
+**Về flaky test**
+
+- **Retry che triệu chứng, không sửa nguyên nhân.** Ba run chuyển từ fail sang pass nhờ retry, nhưng chỉ khi đổi điều kiện chờ thì lỗi mới hết.
+- **Xác nhận một bản sửa bằng trace, không chỉ bằng màu xanh.** 10/10 run sau sửa đều có mốc thời gian chứng minh POST hoàn tất trước khi đọc history.
+
+**Về AI**
+
+- **AI hữu ích như một bản phân tích thứ hai có cấu trúc.** Nó tổ chức tốt log và chuỗi retry, nhưng trong mẫu này chưa cho thấy phát hiện được điều mà người bỏ sót.
+- **Mọi đề xuất của AI là giả thuyết.** Cả trong triage (nhãn "cửa sổ CI") lẫn trong cấu hình CI (đề xuất `save-always` không còn dùng được), người kỹ sư vẫn phải kiểm chứng với tài liệu, source và lần chạy thật.
+- **Phân tích thủ công cũng cần được review như output AI.** So sánh công bằng đòi hỏi cùng dữ liệu đầu vào, cùng rubric, và phân tích của người phải được lưu trước khi xem AI.
+
+### 12.3. Hướng phát triển
+
+- Chọn `Backend quality gates` làm required check, kiểm chứng tác dụng chặn merge và bổ sung coverage badge.
+- Đo lại GitHub Actions và Jenkins trên cùng commit, cùng phiên bản Node và trạng thái cache được kiểm soát (cache rỗng và cache hit), mỗi nền tảng ít nhất 3 lượt.
+- Đặt ngưỡng coverage làm điều kiện của quality gate khi bộ test đã ổn định.
+- Thử AI triage trên log có nhiều nguồn lỗi hơn, với nhiều lượt và nhiều model, để đánh giá độ ổn định thay vì dựa trên một output.
+
 ## 13. Tài liệu tham khảo
 
 1. [GitHub Actions Documentation](https://docs.github.com/en/actions).
