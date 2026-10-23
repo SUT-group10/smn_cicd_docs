@@ -1342,6 +1342,12 @@ Một nhãn không rõ vẫn có thể làm sai report dù số liệu đúng. N
 
 Người review vì vậy cần kiểm tra trường nguồn, phạm vi số đo, đơn vị quan sát và trạng thái giả thuyết. Phân tích thủ công cũng chịu yêu cầu này: nhận xét GET chỉ 1–2 ms hoặc phép tính xác suất không kiểm tra giả định có thể gây nhiễu nếu được chép nguyên như kết luận chung.
 
+**Ví dụ thực tế về "Bẫy ảo giác" của AI trong cấu hình CI:**
+Khi yêu cầu LLM (Gemini 4 Argon) thiết lập lưu trữ `npm cache` cho một pipeline đang có baseline lỗi (fails 10 assertions), AI đã đề xuất sử dụng tham số `save-always: true` với kỳ vọng runner sẽ luôn lưu cache ở bước `Post`.
+
+* **Phân tích lỗi:** Đề xuất này hoàn toàn vô giá trị (INVALID) trên môi trường thực tế. Tham số này đã bị GitHub đánh dấu *deprecated*. Quan trọng hơn, cơ chế hoạt động của runner sẽ tự động bỏ qua (skip) các `Post` hooks ngay khi phát hiện một test step thất bại (exit code != 0). Hậu quả là cache không bao giờ được ghi lại, làm sai lệch toàn bộ phép đo hiệu năng của pipeline.
+* **Cách nhóm khắc phục:** Người kỹ sư phải tự thiết kế lại luồng bằng kỹ thuật "Decoupled Cache". Nhóm đã tách tác vụ thành `actions/cache/restore@v4` và `actions/cache/save@v4`, đặt lệnh Save ngay sau bước `npm ci` và trước khi kiểm thử bắt đầu, kèm cờ `if: ${{ !cancelled() }}`. Điều này đảm bảo cache luôn được lưu an toàn trước khi Test Harness báo đỏ. Việc kiểm chứng đề xuất của AI trong trường hợp này đòi hỏi kiến thức chuyên sâu về vòng đời thực thi của CI, điều mà bản thân LLM chưa cập nhật kịp.
+
 ### 10.2. Failure modes của AI
 
 **Cơ chế gây hiểu nhầm và bằng chứng**
