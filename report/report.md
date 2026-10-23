@@ -10,7 +10,7 @@ Tích hợp liên tục (Continuous Integration – CI) hỗ trợ quy trình n�
 
 Một thách thức của kiểm thử tự động là flaky test – test có thể cho kết quả pass hoặc fail qua các lần chạy dù mã nguồn không đổi. Hiện tượng này làm nhiễu kết quả pipeline và tăng công sức điều tra. AI có thể được sử dụng để hỗ trợ đọc log và đề xuất giả thuyết nguyên nhân; tuy nhiên, các đề xuất đó cần được kiểm chứng bằng bằng chứng thực nghiệm.
 
-Trong đề tài T07 – *CI/CD & Test-Harness Engineering*, nhóm thực hành trên backend của hệ thống EShop: xây dựng test harness và pipeline kiểm thử, triển khai trên GitHub Actions và Jenkins, đồng thời so sánh phân tích flaky test thủ công với phân tích có hỗ trợ của ChatGPT.
+Trong đề tài T07 – *CI/CD & Test-Harness Engineering*, nhóm thực hành trên backend của hệ thống EShop: xây dựng test harness và pipeline kiểm thử, triển khai trên GitHub Actions và Jenkins, đồng thời so sánh phân tích flaky test thủ công với trợ lý GPT trên cùng dữ liệu log.
 
 ### 1.2. Mục tiêu
 
@@ -19,8 +19,8 @@ Báo cáo trình bày quá trình thực hiện và đánh giá các mục tiêu
 1. Xây dựng test harness và bộ kiểm thử backend EShop, với fixture, setup và cleanup hỗ trợ tính độc lập và khả năng tái lập của test.
 2. Thiết lập workflow GitHub Actions để tự động kiểm tra mã nguồn, chạy kiểm thử và lưu log, báo cáo kiểm thử, coverage cùng các artifact liên quan.
 3. Triển khai pipeline tương ứng trên Jenkins, chạy cùng bộ kiểm thử để đối chiếu kết quả, thời gian thực thi, cơ chế cache và công sức cấu hình, vận hành.
-4. Tạo một flaky test do cơ chế chờ theo thời gian, quan sát kết quả qua 10 lần chạy, sau đó sửa nguyên nhân gây flake và chạy lại để xác nhận.
-5. So sánh phân tích thủ công với phân tích có hỗ trợ của ChatGPT trên cùng log và lịch sử chạy, dựa trên độ đúng của giả thuyết, bằng chứng, bước xác minh, thời gian và các suy diễn thiếu căn cứ.
+4. Tạo một flaky test do cơ chế chờ theo thời gian, quan sát 10 run cùng retry history, sau đó sửa quan hệ đồng bộ và xác nhận trên CI với retry tắt.
+5. So sánh phân tích thủ công với GPT-6.1 Sol dùng skill trên cùng log và lịch sử retry của thí nghiệm v2, dựa trên độ đúng của giả thuyết, bằng chứng, bước xác minh, thời gian và các suy diễn thiếu căn cứ.
 6. Rút ra bài học về độ tin cậy của pipeline, giá trị và giới hạn của AI trong phân tích flaky test, cùng cách áp dụng quy trình cho dự án khác.
 
 ### 1.3. Phạm vi
@@ -299,6 +299,28 @@ Một quality gate có ý nghĩa cần đánh giá đúng phiên bản mã, gi�
 
 ### 2.6. Flaky test
 
+**Khái niệm và cách nhận diện**
+
+Flaky test là test có thể cho cả kết quả pass và fail qua các lần thực thi trên cùng phiên bản mã. Theo cách định nghĩa của Google Testing Blog, dấu hiệu quan trọng là sự xuất hiện của hai kết quả với cùng code. Không cần biết nguyên nhân trước mới nhận diện dấu hiệu flaky; phân tích nguyên nhân là bước tiếp theo. Khi đối chiếu, vẫn cần kiểm tra dữ liệu, cấu hình và môi trường, vì cùng commit không bảo đảm mọi điều kiện thực thi đều giống nhau. [Google Testing Blog](https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html).
+
+Flaky mô tả tính không ổn định của kết quả, không phải một cấp kiểm thử riêng. Unit test, API test hoặc smoke test đều có thể có đặc tính này. Một test luôn fail vì cùng sai lệch nghiệp vụ chưa cho thấy flakiness; ngược lại, sửa mã rồi test chuyển từ fail sang pass cũng chưa chứng minh kết quả trước đó không ổn định. Cần phân biệt thay đổi hành vi theo phiên bản với thay đổi kết quả giữa những lượt dự kiến tương đương.
+
+**Nguyên nhân và vấn đề đồng bộ**
+
+Kết quả có thể phụ thuộc vào những điều kiện chưa được kiểm soát như thứ tự test, trạng thái dùng chung, tác vụ bất đồng bộ, thời gian hoặc dịch vụ bên ngoài. Ví dụ, nếu một test để lại dữ liệu mà test sau sử dụng, việc chạy riêng và chạy cả suite có thể cho kết quả khác nhau. Cô lập fixture, quản lý setup/teardown và kiểm tra những phụ thuộc ngầm là các hướng điều tra cần thiết. [pytest documentation](https://docs.pytest.org/en/stable/explanation/flaky.html).
+
+Đối với thao tác bất đồng bộ, một khoảng sleep cố định chỉ cho biết test đã chờ một thời gian, không bảo đảm công việc cần đợi đã hoàn tất. Chẳng hạn, test bắt đầu đặt hàng rồi chờ 120 ms trước khi đọc lịch sử tài khoản. Nếu thao tác đặt hàng chưa hoàn tất, assertion có thể kiểm tra snapshot quá sớm. Hướng xử lý là đồng bộ với điều kiện hoàn tất phù hợp, thay vì chỉ kéo dài sleep. Tài liệu Android Developers cũng minh họa rủi ro này khi kiểm thử ứng dụng có tác vụ nền; nguyên tắc chờ trạng thái được vận dụng cho test API trong thực nghiệm của nhóm. [Test synchronization](https://developer.android.com/training/testing/instrumented-tests/stability).
+
+Nguyên nhân không nhất thiết luôn nằm ở test. Test có thể phát hiện lỗi đồng thời thật trong sản phẩm hoặc bị ảnh hưởng bởi môi trường. Vì vậy, nhãn flaky không phải lý do để thay expected result, bỏ assertion hoặc mặc định chức năng đã đúng. Cần truy từ triệu chứng tới bằng chứng rồi mới quyết định sửa test, harness, môi trường hay mã sản phẩm. [Martin Fowler — Eradicating Non-Determinism in Tests](https://martinfowler.com/articles/nonDeterminism.html).
+
+**Run history, retry và ảnh hưởng đến CI**
+
+Lịch sử chạy ghi các lượt thực thi và kết quả; retry history ghi những lần thực thi lại gắn với lượt thất bại. Cần phân biệt dispatch một workflow mới, rerun workflow/job và retry một test bên trong runner. Trong v2, một run là một tiến trình Jest mới, một attempt là một lần chạy toàn bộ test body và mỗi attempt có fixture mới. Chính sách tối đa hai retry cho phép nhiều nhất ba attempt: lần đầu và hai lần thử lại nếu còn fail; pass thì dừng. Jest cung cấp `jest.retryTimes` cho cơ chế chạy lại test thất bại. [Jest — retryTimes](https://jestjs.io/docs/jest-object#jestretrytimesnumretries-options).
+
+Retry có thể làm kết quả cuối chuyển xanh dù lần đầu đã fail. Do đó, khi phân tích cần giữ kết quả các attempt và chính sách retry, không chỉ verdict cuối. Việc chạy lại thành công không tự chứng minh nguyên nhân đã được sửa. Google ghi nhận các biện pháp chạy lại có thể giảm một số gián đoạn nhưng vẫn để lại chi phí điều tra và nguy cơ bỏ qua lỗi thật. [Google Testing Blog](https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html).
+
+Trong CI, một kết quả đỏ cần giúp nhóm xác định hành động tiếp theo. Flake làm nhiễu tín hiệu đó vì cùng mã có thể bị chặn ở lượt này nhưng vượt qua ở lượt khác. Log, report và thông tin phiên bản của mỗi lượt tạo cơ sở để phân biệt lỗi nghiệp vụ, lỗi thực thi và kết quả không ổn định. Chương 8 trình bày thí nghiệm order history v2 được tạo có chủ đích, ghi riêng kết quả lần đầu, retry history và verdict cuối; chương 9 đối chiếu cách người và AI sử dụng cùng bằng chứng để đưa ra giả thuyết và bước xác minh.
+
 ## 3. Khảo sát và lựa chọn công cụ
 
 Việc lựa chọn công cụ xuất phát từ hai nhu cầu của đề tài: tự động thực thi bộ kiểm thử backend EShop và hỗ trợ phân tích các kết quả không ổn định. Nhóm xem xét khả năng chạy các lệnh kiểm tra hiện có, tích hợp với kho mã nguồn, lưu báo cáo, công sức cấu hình và yêu cầu vận hành. Đối với hướng AI, tiêu chí bổ sung là khả năng sử dụng log làm đầu vào, đưa ra giả thuyết có thể kiểm chứng và lưu lại quá trình phân tích để đối chiếu với cách làm thủ công.
@@ -348,7 +370,7 @@ Cả ba nền tảng đều có thể phục vụ việc chạy kiểm thử t�
 
 **Trợ lý ngôn ngữ hỗ trợ phân tích log**
 
-Một hướng áp dụng AI là cung cấp log và bối cảnh cho trợ lý ngôn ngữ để hỗ trợ tóm tắt lỗi, tổ chức giả thuyết và đề xuất bước kiểm tra tiếp theo. ChatGPT được nhóm chọn để khảo sát theo cách này. Đầu vào được chuẩn bị từ kết quả CI; phản hồi cần nêu rõ quan sát nào hỗ trợ giả thuyết và thông tin nào còn thiếu.
+Một hướng áp dụng AI là cung cấp log và bối cảnh cho trợ lý ngôn ngữ để hỗ trợ tóm tắt lỗi, tổ chức giả thuyết và đề xuất bước kiểm tra tiếp theo. ChatGPT được nhóm chọn để khảo sát theo cách này. Lượt triage v2 được lưu theo model thực hiện là GPT-6.1 Sol, áp dụng skill `ci-log-triage`; hồ sơ và kết quả cụ thể ở chương 9. Đầu vào được chuẩn bị từ kết quả CI; phản hồi cần nêu rõ quan sát nào hỗ trợ giả thuyết và thông tin nào còn thiếu.
 
 Trong phạm vi seminar, ChatGPT được sử dụng để hỗ trợ triage trên dữ liệu nhóm cung cấp, không được tích hợp thành thành phần tự quyết định trạng thái pipeline. Cách tiếp cận này cho phép nhóm chuẩn bị cùng một bộ log cho người phân tích và AI, đồng thời lưu prompt và phản hồi để xem xét lại. Nó cũng phù hợp với bài toán muốn quan sát cách lập luận từ bằng chứng, thay vì chỉ nhận một nhãn pass/fail.
 
@@ -1075,31 +1097,324 @@ GitHub Actions phù hợp làm CI chính của EShop nhờ gắn trực tiếp v
 
 ### 8.1. Thiết kế flaky test
 
+**Mục tiêu và vị trí trong hệ thống kiểm thử**
+
+Nhóm chủ động tạo một lỗi đồng bộ trong API test để quan sát sự biến thiên kết quả và cách retry ảnh hưởng đến tín hiệu CI. Phiên bản hiện hành là **order history v2**, kiểm tra đơn vừa đặt có xuất hiện trong lịch sử tài khoản hay không. Test sử dụng API EShop thật qua Supertest, Jest và helper `createHarness()` của chương 4. Mỗi attempt tạo application instance và SQLite `:memory:` riêng, đăng nhập người dùng fixture, thêm sản phẩm vào giỏ và xác nhận ban đầu chưa có đơn hàng.
+
+Đây là một test trong `order-history.case.js`, được chọn riêng bằng `jest.flaky.config.cjs`; suite unit/API/smoke thông thường chỉ chọn `*.test.js`. Workflow `Flaky experiment (manual only)` chỉ nhận `workflow_dispatch`, tách khỏi các quality gate chính ở chương 5 và 6. AI được sử dụng sau khi thu log; không có bước AI tự quyết định pass/fail hoặc tự sửa mã trong workflow.
+
+Đợt cart v1 được giữ tại [hồ sơ lịch sử v1 (ZIP)](assets/flaky/cart-v1-archive.zip). V1 gồm 10 dispatch không retry và xác nhận bản sửa local; các kết quả đó không được cộng vào mẫu v2 hoặc dùng thay bằng chứng retry trong chương này.
+
+**Cơ chế tạo sự biến thiên**
+
+Test khởi phát `POST /api/checkout` qua một Express gateway kiểm thử. Gateway ghi nhận request, chờ độ trễ được chọn rồi chuyển POST tới app EShop; GET không chịu bước chờ này. Độ trễ sampled là số nguyên trong khoảng **20–220 ms**, sinh theo seed của batch được lưu cho người tổ chức. Gateway không giả response, trạng thái database hoặc kết quả assertion. Như vậy, nhóm điều khiển thời gian chuyển request trong môi trường thử nghiệm, không kết luận backend thực tế có lỗi mạng tương ứng.
+
+Ở chế độ `timed`, test đợi cố định **120 ms** sau khi khởi phát POST rồi gửi `GET /api/orders/my-orders`, chưa phụ thuộc POST hoàn tất. `await sleep(...)` chỉ tạm dừng phần tiếp theo của test; nó không bảo đảm thao tác đặt hàng đã kết thúc và không khóa toàn bộ tiến trình Node.js. Nếu GET đọc trước khi đơn được tạo, snapshot có thể rỗng dù request trả HTTP 200.
+
+*Bảng 26. Các thành phần của test order history v2*
+
+| Thành phần | Thiết kế |
+| --- | --- |
+| Điều kiện ban đầu | App và database mới mỗi attempt; người dùng đã xác thực, có sản phẩm trong giỏ, chưa có đơn |
+| Thao tác ghi | POST checkout thật; gateway làm biến thiên thời gian chuyển POST, sampled 20–220 ms |
+| Lần đọc được đánh giá | Chế độ `timed` đợi 120 ms rồi gửi GET history, giữ nguyên snapshot nhận được |
+| Lần đọc xác minh | Sau khi đợi POST hoàn tất, gửi GET `confirmation` trên cùng fixture |
+| Oracle | POST/GET trả 200; history có đúng một đơn với ID, owner, tổng tiền và trạng thái mong đợi; confirmation xác nhận đúng đơn |
+| Failure mục tiêu | `HISTORY_ORDER_COUNT`, expected 1, actual 0; lỗi setup/HTTP/transport/cleanup được phân loại riêng |
+| Cleanup | Đợi request còn lại, đóng harness kể cả khi assertion fail; retry tạo fixture mới |
+
+Confirmation giúp phân biệt snapshot được lấy quá sớm với trạng thái sau khi POST hoàn tất. Kết quả confirmation không thay thế history ban đầu để làm assertion pass. HTTP status, thời điểm client/server, request ID, snapshot và assertion được giữ theo từng attempt; không random trực tiếp verdict hoặc đổi expected theo độ trễ.
+
+![Timeline của order history trước và sau sửa](assets/flaky/v2/order-history-timeline.png)
+
+*Hình 11. Dấu vết thực tế của run-02/attempt 1 và 2 trong batch timed, cùng run-01/attempt 1 của batch awaited. Mốc 0 là lúc client gửi POST của từng attempt; đây là phép đổi gốc từ elapsed_ms trong log. Hình biểu diễn thứ tự request, không dùng để so hiệu năng hai batch hoặc coi retry là tiếp tục dữ liệu của fixture trước.*
+
 ### 8.2. Protocol thí nghiệm
+
+**Điều kiện và đơn vị thực thi**
+
+[Protocol v2](assets/flaky/v2/order-history-protocol.md) định nghĩa trước cách lấy mẫu, oracle, retry và yêu cầu bằng chứng. Một **run** là một tiến trình Jest mới; một **attempt** là một lần thực thi toàn bộ test body. Batch chính gồm 10 run tuần tự trong **một dispatch** GitHub Actions, trên cùng revision và runner. Không sửa test giữa các run hoặc chạy thêm mẫu để đạt tỷ lệ pass/fail mong muốn.
+
+Jest thực hiện `jest.retryTimes(2, {logErrorsBeforeRetry: true, retryImmediately: true})`: tối đa một lần đầu và hai retry, dừng ngay khi pass. Mỗi attempt có fixture mới. `run_attempt=1` của GitHub cho biết đây là lần thực thi đầu của workflow, không phải số retry bên trong test.
+
+*Bảng 27. Điều kiện và dữ liệu của batch E-03 v2*
+
+| Nhóm điều kiện | Giá trị hoặc quy tắc |
+| --- | --- |
+| Revision đo | `52e400689109b5423ad04eb2bef41280a0f149ff`, source working tree sạch |
+| Workflow / branch | `flaky-experiment.yml`; `test/issue-5-flaky-retry-v2`; variant `timed`, 10 run, retry limit 2 |
+| Môi trường | Ubuntu 22.04.5, image `20261012.322.1`; Node v24.14.0, npm 11.9.0, Jest 30.5.2, Python 3.10.12 |
+| Lệnh điều phối | `python ../docs/experiments/run-order-history.py --variant timed --runs 10 --retries 2 --output test-results/order-history/ci`, từ backend |
+| Dependency và fixture | `npm ci` theo lockfile; SQLite riêng mỗi attempt; không dùng database đang vận hành |
+| Điều kiện thời gian | Observation wait 120 ms; latency sampled 20–220 ms; seed `17264554395344709815` |
+| Dữ liệu cần giữ | SHA/source state, runtime, URL, UTC, duration, native Jest JSON/console, events, attempts, retry reasons, assertion và source snapshot |
+
+Collector kiểm tra kết quả native Jest với ledger và trace trước khi xuất gói dữ liệu. **Exit 0** nghĩa là mọi run pass cuối; **exit 1** là batch hợp lệ nhưng còn run fail sau hết retry; **exit 2** báo lỗi evidence hoặc lỗi ngoài assertion mục tiêu. Workflow vẫn thử upload artifact khi test step fail và run không bị cancel; upload thành công không đổi verdict của test.
+
+**Log gốc và gói phân tích**
+
+Organizer giữ raw/native Jest, controls, source snapshot và mapping tới revision. Packet analysis chỉ có README, prompt, history cùng `events.jsonl`, console có số dòng, `attempts.json`, `result.json` của 10 run. Đây là 43 file biểu diễn 10 run, không phải 43 lần chạy. Log gốc được giữ riêng; packet xuất theo schema và allowlist, không sửa timing hoặc kết quả thủ công sau khi xem phân tích.
+
+`elapsed_ms` dùng đồng hồ monotonic chung trong từng process, bao gồm setup và retry; chỉ so trực tiếp các mốc trong cùng run. `time_utc` định hướng thời gian; `sequence` ghi thứ tự sự kiện. Duration attempt, duration native Jest và `process_duration_ms` có phạm vi riêng, không dùng thay cho duration toàn job.
 
 ### 8.3. Kết quả 10 lần chạy
 
+**Kết quả lần đầu, retry và verdict cuối**
+
+[Batch CI 39860438568](https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39860438568) được thu ngày 22/10/2026 UTC, tương ứng sáng 23/10 UTC+7. [Metadata và artifact](assets/flaky/v2/README.md#hai-batch-ci) ghi đủ 10 run hợp lệ, không evidence error. Bảng 28 giữ riêng chuỗi attempt và kết quả cuối; P là pass, F là fail. Duration đo toàn process, không phải duration attempt cuối.
+
+*Bảng 28. Kết quả 10 run trong batch timed, retry tối đa 2*
+
+| Run | Chuỗi attempt | Retry đã dùng | Kết quả cuối | Process duration (ms) |
+| --- | --- | ---: | --- | ---: |
+| 01 | P | 0 | PASS | 1170,420 |
+| 02 | F → P | 1 | PASS | 1322,723 |
+| 03 | F → F → P | 2 | PASS | 1519,160 |
+| 04 | F → F → F | 2 | FAIL | 1671,137 |
+| 05 | F → F → F | 2 | FAIL | 1571,234 |
+| 06 | P | 0 | PASS | 1168,233 |
+| 07 | P | 0 | PASS | 1170,982 |
+| 08 | F → F → P | 2 | PASS | 1517,776 |
+| 09 | P | 0 | PASS | 1118,513 |
+| 10 | P | 0 | PASS | 1167,323 |
+
+Nguồn là [history và report từng run trong ZIP analysis](assets/triage/v2/ai-sol/api-analysis-input-39860438568-1.zip), đối chiếu với [batch.json trong ZIP phụ trợ](assets/flaky/v2/supporting-evidence.zip) và native Jest trong organizer. Lần đầu có **5 PASS/5 FAIL**; ba run phục hồi sau retry; verdict cuối **8 PASS/2 FAIL**. Tổng cộng 19 attempt, trong đó 9 retry, 8 attempt pass và 11 fail. Cả 11 failure đều ở `HISTORY_ORDER_COUNT`, expected 1/actual 0; cả 19 confirmation thấy một đơn và 57 response được theo dõi đều HTTP 200.
+
+Tỷ lệ fail lần đầu 5/10, fail cuối 2/10 và fail trên mọi attempt 11/19 có mẫu số khác nhau. Retry dừng sau pass, nên 19 attempt không phải 19 mẫu độc lập được chọn trước. Trong batch này, retry làm ba run có verdict cuối pass dù đã thất bại trước đó; điều đó chưa phải sửa nguyên nhân. Hai run vẫn fail sau ba attempt giải thích workflow đỏ, trong khi collector hoàn tất và hai bước upload artifact thành công.
+
+**Dẫn chứng về thứ tự và phạm vi thời gian**
+
+Ở run-02/attempt 1, console L0005 ghi gửi submit tại 172,552 ms; L0007 gửi history tại 292,894 ms. Client nhận history rỗng tại 297,566 ms, trước khi nhận submit thành công tại 329,849 ms; confirmation nhận một đơn tại 333,382 ms. Assertion vẫn kiểm tra snapshot history ban đầu và fail. Attempt 2 có fixture mới, POST hoàn tất trước khi history được gửi và pass; không phải đơn của attempt 1 vừa xuất hiện sau retry.
+
+Trong cả mẫu, 11 attempt fail có history đến server trước submit server completion; 8 attempt pass có thứ tự ngược lại. Khoảng từ gửi POST đến gửi history là 119,636–121,437 ms. Các mốc hỗ trợ vấn đề thứ tự; thời điểm response hoàn tất không tự là mốc commit DB và ngưỡng gần 120 ms không phải SLA nghiệp vụ.
+
+Cửa sổ từ process Jest đầu bắt đầu tới process cuối kết thúc là 13,418 giây; collector là 13,441 giây; toàn job 104 giây. Ba phạm vi được giữ riêng trong metadata. Chẳng hạn run-03 có native Jest duration 155 ms, gần duration attempt cuối 154,867 ms, trong khi tổng ba attempt là 660,670 ms và process là 1519,160 ms. Chỉ dùng duration attempt cuối sẽ bỏ phần công việc trước retry.
+
 ### 8.4. Sửa flake và xác nhận
+
+**Thay đổi quan hệ chờ**
+
+Phiên bản v2 giữ hai cách đồng bộ trong cùng test qua cấu hình `timed` và `awaited`. Ở `awaited`, test đợi đúng Promise của POST, kiểm tra không có transport error và status 200 rồi mới gửi history. Không tăng sleep, thêm retry, đổi oracle hoặc sửa nghiệp vụ SUT. Đoạn điều phối cốt lõi trong source snapshot là:
+
+```javascript
+if (variant === 'awaited') {
+  const submitted = await pendingSubmit;
+  if (submitted.error) throw submitted.error;
+  observer.check(attempt, 'SUBMIT_HTTP', submitted.response.status, 200);
+} else {
+  await sleep(observationWaitMs);
+}
+const observed = await observer.send(
+  gateway, user.token, attempt, 'history', 'GET', '/api/orders/my-orders');
+```
+
+Đây là trích đoạn cách chọn điều kiện chờ, không phải toàn bộ test. Source snapshot nằm trong organizer của từng batch; các bước confirmation, giữ snapshot đầu và cleanup vẫn được thực hiện. Việc chọn cấu hình trước batch không thay đổi logic giữa các run.
+
+**Xác nhận trên GitHub Actions**
+
+[Run 39911447981](https://github.com/SUT-group10/eshop-sut-group10/actions/runs/39911447981) thực hiện ngày 23/10/2026, trên revision `13e50679ef6fa9261dfe933babf62a4a5722fb86`, với `awaited`, 10 run và retry=0. [Hồ sơ E-09](assets/flaky/v2/README.md#hai-batch-ci) giữ hai artifact, job logs, metadata và kiểm tra thứ tự của cả 10 run.
+
+*Bảng 29. Đối chiếu hai batch CI trước và sau đổi điều kiện chờ*
+
+| Điều kiện | Timed, batch 39860438568 | Awaited, batch 39911447981 |
+| --- | --- | --- |
+| Run / retry tối đa | 10 / 2 | 10 / 0 |
+| Lần đầu | 5 PASS, 5 FAIL | 10 PASS, 0 FAIL |
+| Phục hồi sau retry | 3 run | 0 |
+| Verdict cuối | 8 PASS, 2 FAIL | 10 PASS, 0 FAIL |
+| Attempt / attempt fail | 19 / 11 | 10 / 0 |
+| Evidence error | 0 | 0 |
+| Quan hệ xác nhận | 11 failure đọc history trước khi submit hoàn tất phía server | 10/10 nhận POST thành công trước khi gửi history |
+
+Ở run-01 sau sửa, client nhận POST lúc 361,895 ms rồi gửi history lúc 362,339 ms; run-10 có hai mốc tương ứng 328,837 và 329,170 ms. Cả 10 native Jest report có đúng một invocation, không retry reasons; mọi assertion pass, history và confirmation có đúng một đơn, fixture đóng thành công. Nhóm xác nhận bằng trace và dữ liệu, thay vì chỉ dùng màu xanh của workflow.
+
+Hai batch CI có SHA, seed và thời điểm riêng. Metadata đối chiếu cho thấy 12 fingerprint của các file thực thi/dependency trùng nhau; revision khác nhau do cập nhật hồ sơ. Kết quả hỗ trợ sửa quan hệ đồng bộ trong các điều kiện đã chạy, nhưng không dùng hai batch để tính riêng tác động của retry, so tốc độ hoặc bảo đảm không còn mọi lỗi ở mọi môi trường. Các kiểm chứng local và dữ liệu v1 tiếp tục được giữ riêng với mẫu CI này.
 
 ## 9. AI triage và so sánh với phân tích thủ công
 
 ### 9.1. Phân tích thủ công
 
+**Quan sát, giả thuyết và bước kiểm tra**
+
+Nguyễn Khắc Vượng tự phân tích [gói timed v2](assets/triage/v2/ai-sol/api-analysis-input-39860438568-1.zip) trong **20 phút**, hoàn thiện trước khi xem output AI, theo xác nhận bàn giao. [Bản phân tích gốc](assets/triage/v2/human/phan-tich-order-history.md) được giữ nguyên. Kết quả tổng hợp khớp 10 run, 19 attempt, 9 retry và verdict cuối 8 PASS/2 FAIL.
+
+H1 mạnh nhất của Vượng là history được gửi theo mốc gần cố định khoảng 120 ms, không phụ thuộc submit hoàn tất. Bản phân tích dùng server received/completed, confirmation và quan hệ thời gian trên cả 19 attempt. H2 xét biến thiên thời gian submit như yếu tố làm race thay đổi; H3 về read-after-write được xếp yếu vì các lần đọc sau submit đều thấy đơn. Vượng nêu thiếu source và mốc commit DB, chưa coi cơ chế mã là đã được xác nhận khi triage.
+
+Ba hướng kiểm tra được đề nghị là rà điều phối history, thêm mốc nội bộ checkout/commit và chạy biến thể có kiểm soát. Đề xuất ít nhất 20 lượt mỗi biến thể là kế hoạch của bản phân tích, không phải số lượt đã thực hiện hoặc yêu cầu tối thiểu của đề. Một nhận xét hữu ích là native Jest duration của run có retry chỉ phản ánh attempt cuối trong bộ dữ liệu này, nên cần đọc thêm ledger và process duration.
+
+**Các điểm cần đối chiếu trong bản thủ công**
+
+Nhận xét GET chỉ mất 1–2 ms không đúng cho toàn mẫu: run-10 có history server duration 8,780 ms và confirmation 11,585 ms. Phép tính xác suất khoảng 0,19 từ `(11/19)^3` cũng cần giả định độc lập và cùng xác suất chậm, trong khi các attempt được lấy thêm sau fail và dừng sau pass. Không dùng phép tính này làm ước lượng xác suất lỗi thực tế. Hai điểm đó không bác bỏ H1, nhưng cho thấy phân tích thủ công cũng cần kiểm tra lại dẫn chứng và giới hạn suy luận.
+
 ### 9.2. Chuẩn bị dữ liệu và prompt
+
+**Đầu vào chung và ranh giới dữ liệu**
+
+Người và AI sử dụng cùng artifact analysis của batch 39860438568. Collector v2 ghi sự kiện theo schema an toàn và tự xuất packet, thay cho việc sửa log thủ công như ở đợt v1. Dữ liệu timing, status, assertion và retry được giữ; phần source, controls và giải thích thiết kế nằm trong organizer. Các file gốc tiếp tục được lưu để đối chiếu sau triage.
+
+*Bảng 30. Thành phần đầu vào và dữ liệu giữ cho người tổ chức*
+
+| Thành phần | Vai trò và cách bàn giao |
+| --- | --- |
+| README, prompt, history | Định nghĩa run/attempt/retry, đồng hồ và yêu cầu phân tích; cung cấp cho cả hai bên |
+| Events, console đánh số dòng | Cùng tập sự kiện HTTP/assertion; giữ giá trị gốc để viện dẫn, không đếm trùng |
+| Attempts và result từng run | Giữ verdict từng attempt, fixture, lỗi, invocation và retry; result đã đối chiếu native Jest |
+| Nhãn run/revision | Bí danh `run-01`…`run-10`, `revision-01`; không cấp SHA/branch để bên phân tích tự điều tra source |
+| Raw/native Jest, controls, source snapshot | Organizer giữ để xác minh; không đưa đáp án hoặc tham số điều khiển vào prompt |
+| Dữ liệu nhạy cảm | Schema không xuất token, header xác thực, địa chỉ hay lỗi thô; chỉ giữ các trường response fixture cần cho phân tích |
+
+Packet không có code frame và tham số latency, nhưng README nói rõ đây là dữ liệu thí nghiệm có controls do người tổ chức giữ. Vì vậy, không mô tả đầu vào như log sản xuất hoặc đã che hoàn toàn mọi gợi ý về bối cảnh. Nhóm giữ nguyên packet đã sử dụng, không sửa lại sau khi xem kết quả phân tích.
+
+**Phương pháp và yêu cầu đầu ra**
+
+Nhóm chọn systematic debugging từ `obra/superpowers`, cố định nguồn tại commit `2ce8aa15d05bd57213e6f746f953aafb7ded7a8b`, rồi điều chỉnh thành `ci-log-triage` chỉ đọc dữ liệu. Kỹ thuật gồm kiểm kê bằng chứng, đối chiếu các trường hợp pass/fail, lập giả thuyết và đề xuất phép xác minh. Đây là lựa chọn theo độ phù hợp; nhóm không suy ra phương pháp tối ưu qua thực nghiệm hoặc nhận là đã thử ba prompt patterns.
+
+*Bảng 31. Cấu trúc bản skill được dùng cho triage*
+
+| Thành phần | Vai trò |
+| --- | --- |
+| `SKILL.md` | Quy định phạm vi, kiểm kê/đối chiếu bằng chứng và cấu trúc output |
+| `SOURCES.md` | Lưu nguồn, revision và các phần giữ/bỏ/thêm so với phương pháp gốc |
+| `LICENSE.txt` | Giữ thông báo bản quyền và giấy phép MIT |
+| Model | Đọc hướng dẫn và dữ liệu để tạo câu trả lời; skill không tự chạy như parser, Jest hoặc dịch vụ CI |
+
+Yêu cầu output gồm bốn phần: dữ liệu và kết quả; tối đa ba giả thuyết có dẫn chứng, giới hạn và mức chắc chắn; đúng ba next-checks; kết luận hiện tại. AI dừng ở triage, không đọc source hoặc tự chạy test để biến bước đề xuất thành kết quả xác minh. [Bản skill và nguồn](../user_guide/assets/flaky-ai/ci-log-triage/SKILL.md) được giữ cùng hồ sơ phương pháp dùng chung.
+
+Lượt v2 được bàn giao với prompt gọi `ci-log-triage`, yêu cầu giải nén ZIP, bám cấu trúc README và ghi đủ thông tin thời gian. [Prompt được cung cấp lại](assets/triage/v2/ai-sol/prompt.md) có ghi việc lược đường dẫn cá nhân; [output](assets/triage/v2/ai-sol/response.md) và [metadata](assets/triage/v2/ai-sol/metadata.json) lưu riêng. Nhóm không dựng thêm một phiên hoặc prompt gốc đầy đủ hơn bằng suy đoán.
+
+![Luồng người–AI và xác minh của thí nghiệm v2](assets/triage/v2/human-ai-flow.png)
+
+*Hình 12. Cùng packet timed cho hai bản phân tích; Vượng hoàn thiện trước khi xem Sol. Người tổ chức đối chiếu thiết kế và xác nhận awaited trên CI sau triage. Thời lượng AI trong hình chỉ đến mốc chốt bằng chứng, chưa gồm soạn trả lời.*
 
 ### 9.3. Kết quả AI triage
 
+**Tổng hợp lịch sử và giả thuyết chính**
+
+Model được xác nhận cho lượt v2 là **GPT-6.1 Sol**, dùng skill `ci-log-triage`. Output tổng hợp đúng 10 run/19 attempt, phân biệt 5 run fail lần đầu với 2 fail cuối và giữ đủ ba run phục hồi. AI không dùng confirmation để thay snapshot fail, cũng không coi retry pass là dữ liệu của fixture trước vừa xuất hiện.
+
+Sol đưa một H1: history được gửi sau khoảng chờ gần cố định trong khi submit có thể còn xử lý. Dẫn chứng run-02 sử dụng mốc client: history nhận rỗng tại 297,566 ms, trước submit response 329,849 ms. Trên toàn mẫu, 11 failure có history nhận trước submit response; 8 pass có submit response trước history gửi. AI ghi mức chắc chắn cao về mẫu thứ tự và trung bình về cơ chế điều phối, chưa xác nhận timer, thiếu `await` hay một lỗi sản phẩm cụ thể.
+
+Ba next-checks là kiểm tra đúng request/Promise được chờ; thay đổi riêng độ trễ submit trong điều kiện kiểm soát; bổ sung mốc ghi/commit và query cùng request ID. Output nói rõ chưa chạy lại, sửa mã hoặc thực hiện các bước xác minh này. Các kiểm chứng source/local/CI do người tổ chức thực hiện ở mục 8.4 được ghi tách khỏi lượt triage.
+
+**Thông tin thời gian và điểm cần làm rõ**
+
+Sol ghi khoảng phân tích **05:10:33–05:11:12 ngày 23/10/2026 UTC+7**, tương ứng 39 giây, gồm giải nén, đọc và đối chiếu đến mốc chốt bằng chứng. Thời gian soạn câu trả lời sau đó nằm ngoài khoảng đo. Tổng thời lượng hoàn thiện chưa xác định, nên chưa tính chênh lệch năng suất với 20 phút của Vượng.
+
+Output gọi khoảng 13,418 giây của các process Jest là “cửa sổ CI”. Các mốc được trích đúng nhưng nhãn quá rộng, dễ bị dùng thành duration toàn pipeline; metadata thực tế ghi job 104 giây. Báo cáo giữ nhận xét này để phân biệt số đúng với ý nghĩa có thể gây nhầm, không đổi output gốc hoặc xem nó như bằng chứng AI bịa thời gian.
+
 ### 9.4. So sánh theo rubric
+
+**Tiêu chí và kết quả đối chiếu**
+
+Nhóm dùng năm tiêu chí: nguyên nhân dự đoán, bằng chứng, bước xác minh, thời gian và suy diễn thiếu căn cứ. Đánh giá mang tính định tính trên các hồ sơ đã lưu; không tự tạo điểm số, tỷ lệ chính xác hoặc thứ hạng công cụ.
+
+*Bảng 32. Đối chiếu phân tích thủ công và GPT-6.1 Sol trong v2*
+
+| Tiêu chí | Vượng | GPT-6.1 Sol | Nhận xét |
+| --- | --- | --- | --- |
+| Nguyên nhân | H1 điều phối; H2 biến thiên submit; H3 read-after-write yếu | Một H1 về khoảng chờ và thứ tự đọc | Đồng thuận cơ chế nghi ngờ; H2 mô tả yếu tố biến thiên, chưa chỉ ra vị trí gateway |
+| Bằng chứng | Server received/completed, timing hai nhóm, confirmation, duration attempt cuối | Client sent/received, request ID, retry chain và fixture mới | Hai loại mốc khác nhau, không phải mâu thuẫn; cả hai có dẫn chứng chính đúng |
+| Next-checks | Rà điều phối, thêm mốc DB, thực nghiệm hai biến thể | Rà đúng Promise, điều khiển latency, nối commit/query | Cùng có ba hướng khả thi; chưa thực hiện toàn bộ kế hoạch đề xuất |
+| Thời gian | 20 phút hoàn thiện | 39 giây tới chốt bằng chứng, chưa gồm soạn trả lời | Khác phạm vi, chưa so tốc độ hoàn thiện |
+| Suy diễn | Có giới hạn thiếu source; nhận xét GET và phép tính xác suất cần thu hẹp | Thận trọng về implementation; nhãn “cửa sổ CI” cần làm rõ | Cần kiểm tra cả hai, chưa có chẩn đoán bịa được xác nhận |
+
+Vượng bổ sung nhận xét rõ về duration attempt cuối; Sol tập trung một giả thuyết và trình bày đủ retry chain. Một hoặc ba giả thuyết không tự quyết định chất lượng: cần xét chúng có được dữ liệu hỗ trợ và có phân biệt được bằng kiểm tra tiếp theo hay không.
+
+**Đối chiếu sau triage**
+
+Source snapshot cho thấy history trong `timed` dựa vào sleep 120 ms, trong khi POST đi qua gateway có latency biến thiên. H1 của hai bên phù hợp cơ chế đã biết. Batch `awaited` có 10/10 PASS không retry và 10 trace đúng quan hệ chờ, bổ sung bằng chứng thực nghiệm cho kết luận. Kết quả không chỉ dựa vào việc người và AI đồng thuận.
+
+[Bản đối chiếu E-08](assets/triage/v2/AI_vs_Human_Triage.md) lưu các nhận xét chi tiết. Quy trình review gắn với [PR #21](https://github.com/SUT-group10/eshop-sut-group10/pull/21), có trạng thái tại lúc bàn giao trong source-index của [ZIP phụ trợ](assets/flaky/v2/supporting-evidence.zip). Hồ sơ có một output được bàn giao và model được xác nhận, chưa có toàn bộ tool trace để kiểm toán mọi tài nguyên của phiên gốc. Các giới hạn này được giữ khi đánh giá chương 10.
 
 ## 10. Thảo luận
 
 ### 10.1. AI hữu ích và gây nhiễu ở đâu
 
+**Giá trị quan sát được**
+
+Trong v2, AI tổ chức được log và retry thành một bản phân tích có thể kiểm tra lại: kết quả lần đầu/cuối, request ID, snapshot và các bước xác minh được nối rõ. Việc chỉ giữ một giả thuyết chính khi chưa có bằng chứng cho nguyên nhân khác giúp tránh mở rộng điều tra không cần thiết. Output phân biệt dấu vết trực tiếp với phần cần source và thực nghiệm.
+
+Vượng cũng nhận diện đúng vấn đề thứ tự. AI có giá trị như một bản phân tích thứ hai có cấu trúc, nhưng mẫu này chưa chứng minh AI tìm được điều người bỏ sót hoặc chính xác hơn người. Vì thời gian 39 giây chưa gồm soạn trả lời và chưa đo đủ công sức review/xác minh, nhóm chưa lượng hóa mức tiết kiệm thời gian hay hiệu quả riêng của skill.
+
+**Nhiễu và công sức kiểm chứng**
+
+Một nhãn không rõ vẫn có thể làm sai report dù số liệu đúng. Nếu dùng “cửa sổ CI” 13,418 giây như duration toàn job, phần cài dependency và upload sẽ bị bỏ khỏi phép so. Tương tự, khi rút gọn output thành “8/10 pass”, người dùng có thể mất thông tin 5 run fail lần đầu và 3 run chỉ pass sau retry. Sol đã giữ được thông tin retry; đây là điểm cần bảo toàn khi sử dụng lại kết quả.
+
+Người review vì vậy cần kiểm tra trường nguồn, phạm vi số đo, đơn vị quan sát và trạng thái giả thuyết. Phân tích thủ công cũng chịu yêu cầu này: nhận xét GET chỉ 1–2 ms hoặc phép tính xác suất không kiểm tra giả định có thể gây nhiễu nếu được chép nguyên như kết luận chung.
+
 ### 10.2. Failure modes của AI
+
+**Cơ chế gây hiểu nhầm và bằng chứng**
+
+Đề T07 yêu cầu User Guide nêu ba cách công cụ có thể gây hiểu nhầm. [E-10 v2](assets/triage/v2/E-10.md) đánh giá ba failure modes có dữ liệu minh họa, tách điểm xuất hiện trong output khỏi rủi ro đã được Sol tránh. Kết luận không phải ba lần AI chẩn đoán sai.
+
+*Bảng 33. Ba failure modes khi sử dụng AI triage và biện pháp kiểm chứng*
+
+| Failure mode | Dữ kiện và tình trạng trong lượt Sol | Biện pháp kiểm chứng |
+| --- | --- | --- |
+| Nhầm phạm vi thời gian | Nhãn “cửa sổ CI” cho 13,418 giây dễ bị hiểu là toàn job 104 giây. Đây là điểm diễn đạt đã xuất hiện; số liệu gốc không bị bịa | Ghi trường nguồn, đơn vị và hai đầu mốc; phân biệt attempt, process, job và thời gian phân tích |
+| Bỏ failure trước retry | Run-02 F → P; run-03/08 F → F → P. Chỉ dùng final status sẽ bỏ ba run phục hồi. Sol đã giữ đúng chuỗi retry và fixture mới | Đối chiếu initial/final status, invocations, attempts và native retry reasons; không coi retry là bản sửa |
+| Biến tương quan thành nguyên nhân đã xác nhận | Đọc sớm rỗng và HTTP 200 chưa xác định thiếu await, vị trí latency hay mốc commit DB. Sol nêu giới hạn này và chưa nhận đã xác minh | Tách quan sát/giả thuyết/kết quả kiểm tra; rà source, hợp đồng API và chạy biến thể sau sửa không retry |
+
+FM-01 cần làm rõ khi đưa output vào báo cáo; FM-02 và FM-03 là rủi ro được tình huống thực tế minh họa nhưng chưa xảy ra như lỗi của lượt Sol đã bàn giao. Phân loại đó giữ đánh giá công bằng: không bịa thêm failure để đủ số lượng, đồng thời vẫn đưa ra được cách sử dụng công cụ thận trọng. [User Guide](../user_guide/flaky-ai.md) chuyển các bài học thành thao tác đọc dữ liệu và kiểm chứng.
 
 ### 10.3. Hạn chế
 
+**Dữ liệu và bối cảnh phân tích**
+
+Thí nghiệm chỉ có một API test được chủ động tạo lỗi đồng bộ, gateway điều khiển latency và log khá đầy đủ. Mười run của mỗi batch không đại diện cho log sản xuất nhiều dịch vụ, thiếu context hoặc có nhiều lỗi đồng thời. Metadata cho biết đây là thí nghiệm, nên không coi đầu vào đã loại bỏ mọi gợi ý thiết kế.
+
+Vượng hoàn thiện phân tích thủ công trước khi xem AI, theo xác nhận bàn giao. Hồ sơ AI gồm prompt được cung cấp lại, output và model xác nhận; chưa có đầy đủ phiên gốc để kiểm toán ngữ cảnh hay xác định mọi lần thử. Một output đúng cũng chưa chứng minh chất lượng trên mọi CI log hoặc quan hệ nhân quả giữa việc dùng skill và độ đúng.
+
+**Retry, môi trường và khả năng khái quát**
+
+V2 đã có retry history thực tế: 9 attempt bổ sung, ba run phục hồi và hai run hết budget vẫn fail. Tuy nhiên, policy dừng sau pass làm các attempt có cấu trúc phụ thuộc và được chọn sau failure; 11/19 không phải ước lượng từ 19 mẫu độc lập được lên kế hoạch trước. Muốn đo riêng ảnh hưởng policy cần đối chứng cùng revision, lịch latency và điều kiện đo.
+
+Batch `timed` và `awaited` trên CI có seed và thời điểm riêng, dù các fingerprint thực thi/dependency khớp. Báo cáo dùng chúng để kiểm tra quan hệ chờ và kết quả sau sửa, không suy tốc độ hoặc hiệu quả retry từ hai duration. Các kiểm chứng local dùng cùng seed cho những biến thể tương ứng được giữ riêng; không cộng chúng vào mẫu CI. Số mẫu hữu hạn và một môi trường runner không bảo đảm loại bỏ mọi lỗi tương lai.
+
 ## 11. Áp dụng cho dự án khác
+
+**Hợp đồng kiểm thử và dữ liệu khởi đầu**
+
+Phần có thể tái sử dụng là quy trình thực thi, lưu bằng chứng và xác minh, không phải endpoint checkout, ngưỡng 120 ms hoặc kết luận của ca order history. Dự án mới cần xác định hành vi mong đợi, lệnh chạy thật, assertion và điều kiện fail. Fixture phải tạo trạng thái đã biết, cô lập dữ liệu thay đổi và cleanup khi assertion fail; dependency bên ngoài, đồng hồ và dữ liệu ngẫu nhiên cần được kiểm soát hoặc ghi nhận.
+
+Trước khi đưa lên CI, chạy từ clone sạch và xác nhận report thực sự phản ánh test đã chạy. Không thay expected hoặc bỏ test để làm trạng thái xanh khi SUT không đạt đặc tả. Nếu sản phẩm không cần compile, bước build có thể kiểm tra cú pháp với phạm vi được nói rõ, thay vì một lệnh chỉ in thông báo thành công.
+
+**Pipeline và hợp đồng log**
+
+Pipeline gọi lại bộ lệnh dự án, cố định runtime/lockfile và ghi SHA thực thi. Runner vẫn chịu trách nhiệm discovery, setup/teardown, assertion và report; cache không thay thế fixture hoặc cài dependency. Kiểm tra cả lượt pass và fail, giữ exit code và lấy được artifact khi có thể. Status check/branch protection cần kiểm chứng cấu hình và hành vi riêng, không tự phát sinh chỉ vì có YAML.
+
+![Quy trình áp dụng lại cho dự án khác](assets/triage/reuse-flow.png)
+
+*Hình 13. Quy trình chung từ hợp đồng test tới phản hồi vào dự án. Công nghệ runner và schema có thể thay đổi; phiên bản, dữ liệu khởi đầu, nguồn bằng chứng và phép xác minh cần được giữ rõ.*
+
+*Bảng 34. Các thành phần cần cấu hình khi chuyển sang dự án khác*
+
+| Thành phần | Phần cần thay | Điều kiện kiểm tra được |
+| --- | --- | --- |
+| Test và fixture | Luồng, expected, dữ liệu, dependency, cleanup | Chạy riêng/cả suite không phụ thuộc trạng thái cũ ngoài thiết kế |
+| Runner và retry | Framework, discovery, timeout, budget, điều kiện dừng | Đếm được lần đầu, retry, verdict cuối và fixture của từng attempt |
+| Pipeline | Trigger, runtime, agent, cache, lockfile, upload | Đúng revision, giữ exit code và đọc được dữ liệu khi fail |
+| Log và lịch sử | Run/test/request ID, snapshot, assertion, clocks, source state | Nối được sự kiện và không đếm nhiều file thành nhiều run |
+| Packet cho AI | Bối cảnh cho phép, định nghĩa trường, nội dung nhạy cảm, tách organizer | Hai bên có cùng dữ liệu; không cấp trước đáp án hoặc source ngoài phạm vi |
+| Xác minh và bàn giao | Biến thể có mục tiêu, cấu hình/patch, trước/sau, hướng dẫn | Kiểm tra quan hệ nguyên nhân và giữ đủ bằng chứng của bản sửa |
+
+Schema nên nối được request ID, attempt và fixture; có UTC để định hướng và đồng hồ phù hợp để suy thứ tự. Nếu framework không có native retry report, cần phương pháp tương đương và ghi hạn chế. Phân biệt retry bên trong runner với rerun job/workflow; các cách đó có thể khởi tạo lại môi trường khác nhau. Một status cuối không thay được toàn bộ lịch sử.
+
+**Tổ chức người–AI triage**
+
+Khi gặp lỗi không ổn định, giữ cả pass và fail cùng revision/điều kiện; không mặc định mọi job đỏ là flaky. Một log fail có thể hỗ trợ phân tích triệu chứng nhưng chưa chứng minh biến thiên. Packet nên được tạo bằng quy tắc rõ ràng, loại secrets và đáp án thiết kế, giữ bản gốc để đối chiếu. Nếu so người với AI, người phân tích lưu bài trước khi xem output AI; bên AI dùng ngữ cảnh chưa biết lời giải và cùng bộ dữ liệu được giao.
+
+Phương pháp `ci-log-triage` giữ được cách kiểm kê, đối chiếu, đưa tối đa ba giả thuyết và ba next-checks; không áp đặt endpoint hay nguyên nhân order history cho log khác. Khi thiếu timing, commit marker hoặc source, output phải ghi thông tin thiếu. Lưu prompt, hướng dẫn, model, output và các lần thử thực tế. Muốn so năng suất cần cùng phạm vi thời gian, kể cả phần review/xác minh theo mục tiêu đo.
+
+**Xác minh và phản hồi vào dự án**
+
+Chuyển giả thuyết thành phép kiểm tra có kết quả hỗ trợ/bác bỏ. Nếu thay code, lưu revision/patch; nếu thay cấu hình có sẵn như `timed`/`awaited`, ghi rõ variant và policy. Chỉ thay yếu tố cần kiểm tra, giữ oracle và lưu dữ liệu cả trước/sau. Trong ca này, chờ thao tác hoàn tất thay cho sleep là bản sửa; retry chỉ cho quan sát thêm và không tự xử lý nguyên nhân.
+
+Sau sửa, chạy xác nhận không dựa vào retry và đọc lại trace/trạng thái nghiệp vụ, thay vì chỉ nhìn màu job. Cập nhật hướng dẫn, trách nhiệm xử lý và chất lượng tín hiệu CI. Workflow thí nghiệm riêng của EShop tránh đưa flake có chủ đích vào required checks; dự án khác cần cách tổ chức phù hợp rủi ro và chính sách của mình.
+
+[User Guide flaky/AI](../user_guide/flaky-ai.md) cung cấp bước thực hành từ lấy packet, chuẩn bị workspace, chạy triage tới kiểm chứng; [GitHub Actions](../user_guide/github-actions.md) và [Jenkins](../user_guide/jenkins.md) hướng dẫn hai pipeline. Khả năng tái sử dụng ở chương này là quy trình có điều kiện từ trải nghiệm EShop; nhóm chưa triển khai và đo lại toàn bộ trên một dự án thứ hai.
+
 
 ## 12. Kết luận và bài học
 
@@ -1114,3 +1429,9 @@ GitHub Actions phù hợp làm CI chính của EShop nhờ gắn trực tiếp v
 7. [GitLab CI/CD Documentation](https://docs.gitlab.com/ci/).
 8. [ChatGPT Help Center](https://help.openai.com/en/collections/3742473-chatgpt).
 9. [Datadog Documentation](https://docs.datadoghq.com/).
+10. [Google Testing Blog — Flaky Tests at Google and How We Mitigate Them](https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html).
+11. [pytest documentation — Flaky tests](https://docs.pytest.org/en/stable/explanation/flaky.html).
+12. [Martin Fowler — Eradicating Non-Determinism in Tests](https://martinfowler.com/articles/nonDeterminism.html).
+13. [Android Developers — Big test stability](https://developer.android.com/training/testing/instrumented-tests/stability).
+14. [Jest — jest.retryTimes](https://jestjs.io/docs/jest-object#jestretrytimesnumretries-options).
+15. [obra/superpowers — systematic-debugging, bản nguồn được cố định](https://github.com/obra/superpowers/blob/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/systematic-debugging/SKILL.md).
